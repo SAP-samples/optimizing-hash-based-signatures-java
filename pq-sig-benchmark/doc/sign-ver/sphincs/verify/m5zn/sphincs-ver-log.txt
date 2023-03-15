@@ -1,0 +1,3161 @@
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_128s)
+
+# Run progress: 0.00% complete, ETA 00:50:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.524 ms/op
+# Warmup Iteration   2: 1.514 ms/op
+Iteration   1: 1.515 ms/op
+Iteration   2: 1.515 ms/op
+Iteration   3: 1.516 ms/op
+Iteration   4: 1.516 ms/op
+Iteration   5: 1.514 ms/op
+Iteration   6: 1.514 ms/op
+Iteration   7: 1.515 ms/op
+Iteration   8: 1.514 ms/op
+Iteration   9: 1.513 ms/op
+Iteration  10: 1.515 ms/op
+Iteration  11: 1.512 ms/op
+Iteration  12: 1.513 ms/op
+Iteration  13: 1.516 ms/op
+Iteration  14: 1.513 ms/op
+Iteration  15: 1.518 ms/op
+Iteration  16: 1.515 ms/op
+Iteration  17: 1.515 ms/op
+Iteration  18: 1.515 ms/op
+Iteration  19: 1.513 ms/op
+Iteration  20: 1.514 ms/op
+Iteration  21: 1.521 ms/op
+Iteration  22: 1.514 ms/op
+Iteration  23: 1.518 ms/op
+Iteration  24: 1.515 ms/op
+Iteration  25: 1.514 ms/op
+Iteration  26: 1.515 ms/op
+Iteration  27: 1.519 ms/op
+Iteration  28: 1.532 ms/op
+Iteration  29: 1.519 ms/op
+Iteration  30: 1.513 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.516 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (1.512, 1.516, 1.532), stdev = 0.004
+  CI (99.9%): [1.513, 1.518] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_192s)
+
+# Run progress: 1.67% complete, ETA 01:47:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.986 ms/op
+# Warmup Iteration   2: 2.979 ms/op
+Iteration   1: 2.976 ms/op
+Iteration   2: 2.984 ms/op
+Iteration   3: 2.977 ms/op
+Iteration   4: 2.974 ms/op
+Iteration   5: 2.975 ms/op
+Iteration   6: 2.975 ms/op
+Iteration   7: 2.973 ms/op
+Iteration   8: 2.974 ms/op
+Iteration   9: 2.974 ms/op
+Iteration  10: 2.975 ms/op
+Iteration  11: 2.974 ms/op
+Iteration  12: 2.976 ms/op
+Iteration  13: 2.976 ms/op
+Iteration  14: 2.976 ms/op
+Iteration  15: 2.976 ms/op
+Iteration  16: 2.974 ms/op
+Iteration  17: 2.976 ms/op
+Iteration  18: 2.975 ms/op
+Iteration  19: 2.975 ms/op
+Iteration  20: 2.975 ms/op
+Iteration  21: 2.970 ms/op
+Iteration  22: 2.973 ms/op
+Iteration  23: 2.975 ms/op
+Iteration  24: 2.974 ms/op
+Iteration  25: 2.973 ms/op
+Iteration  26: 2.975 ms/op
+Iteration  27: 2.975 ms/op
+Iteration  28: 2.980 ms/op
+Iteration  29: 2.975 ms/op
+Iteration  30: 2.974 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.975 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (2.970, 2.975, 2.984), stdev = 0.002
+  CI (99.9%): [2.974, 2.977] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_256s)
+
+# Run progress: 3.33% complete, ETA 02:15:25
+# Fork: 1 of 1
+# Warmup Iteration   1: 5.691 ms/op
+# Warmup Iteration   2: 5.679 ms/op
+Iteration   1: 5.682 ms/op
+Iteration   2: 5.681 ms/op
+Iteration   3: 5.690 ms/op
+Iteration   4: 5.681 ms/op
+Iteration   5: 5.681 ms/op
+Iteration   6: 5.702 ms/op
+Iteration   7: 5.680 ms/op
+Iteration   8: 5.682 ms/op
+Iteration   9: 5.677 ms/op
+Iteration  10: 5.675 ms/op
+Iteration  11: 5.679 ms/op
+Iteration  12: 5.673 ms/op
+Iteration  13: 5.673 ms/op
+Iteration  14: 5.676 ms/op
+Iteration  15: 5.678 ms/op
+Iteration  16: 5.674 ms/op
+Iteration  17: 5.680 ms/op
+Iteration  18: 5.679 ms/op
+Iteration  19: 5.679 ms/op
+Iteration  20: 5.678 ms/op
+Iteration  21: 5.679 ms/op
+Iteration  22: 5.678 ms/op
+Iteration  23: 5.677 ms/op
+Iteration  24: 5.680 ms/op
+Iteration  25: 5.678 ms/op
+Iteration  26: 5.679 ms/op
+Iteration  27: 5.677 ms/op
+Iteration  28: 5.676 ms/op
+Iteration  29: 5.682 ms/op
+Iteration  30: 5.677 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  5.680 ±(99.9%) 0.004 ms/op [Average]
+  (min, avg, max) = (5.673, 5.680, 5.702), stdev = 0.005
+  CI (99.9%): [5.676, 5.683] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = shake_192s)
+
+# Run progress: 5.00% complete, ETA 02:23:33
+# Fork: 1 of 1
+# Warmup Iteration   1: 3.233 ms/op
+# Warmup Iteration   2: 3.227 ms/op
+Iteration   1: 3.218 ms/op
+Iteration   2: 3.219 ms/op
+Iteration   3: 3.220 ms/op
+Iteration   4: 3.222 ms/op
+Iteration   5: 3.223 ms/op
+Iteration   6: 3.227 ms/op
+Iteration   7: 3.219 ms/op
+Iteration   8: 3.220 ms/op
+Iteration   9: 3.231 ms/op
+Iteration  10: 3.219 ms/op
+Iteration  11: 3.220 ms/op
+Iteration  12: 3.219 ms/op
+Iteration  13: 3.226 ms/op
+Iteration  14: 3.216 ms/op
+Iteration  15: 3.217 ms/op
+Iteration  16: 3.233 ms/op
+Iteration  17: 3.226 ms/op
+Iteration  18: 3.221 ms/op
+Iteration  19: 3.221 ms/op
+Iteration  20: 3.221 ms/op
+Iteration  21: 3.224 ms/op
+Iteration  22: 3.223 ms/op
+Iteration  23: 3.217 ms/op
+Iteration  24: 3.218 ms/op
+Iteration  25: 3.223 ms/op
+Iteration  26: 3.240 ms/op
+Iteration  27: 3.218 ms/op
+Iteration  28: 3.249 ms/op
+Iteration  29: 3.221 ms/op
+Iteration  30: 3.223 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  3.223 ±(99.9%) 0.005 ms/op [Average]
+  (min, avg, max) = (3.216, 3.223, 3.249), stdev = 0.007
+  CI (99.9%): [3.219, 3.228] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = shake_256s)
+
+# Run progress: 6.67% complete, ETA 02:27:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 4.191 ms/op
+# Warmup Iteration   2: 4.191 ms/op
+Iteration   1: 4.176 ms/op
+Iteration   2: 4.190 ms/op
+Iteration   3: 4.194 ms/op
+Iteration   4: 4.183 ms/op
+Iteration   5: 4.192 ms/op
+Iteration   6: 4.192 ms/op
+Iteration   7: 4.185 ms/op
+Iteration   8: 4.184 ms/op
+Iteration   9: 4.179 ms/op
+Iteration  10: 4.179 ms/op
+Iteration  11: 4.188 ms/op
+Iteration  12: 4.185 ms/op
+Iteration  13: 4.182 ms/op
+Iteration  14: 4.181 ms/op
+Iteration  15: 4.173 ms/op
+Iteration  16: 4.177 ms/op
+Iteration  17: 4.181 ms/op
+Iteration  18: 4.176 ms/op
+Iteration  19: 4.179 ms/op
+Iteration  20: 4.178 ms/op
+Iteration  21: 4.174 ms/op
+Iteration  22: 4.180 ms/op
+Iteration  23: 4.176 ms/op
+Iteration  24: 4.181 ms/op
+Iteration  25: 4.184 ms/op
+Iteration  26: 4.179 ms/op
+Iteration  27: 4.177 ms/op
+Iteration  28: 4.182 ms/op
+Iteration  29: 4.224 ms/op
+Iteration  30: 4.179 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  4.183 ±(99.9%) 0.006 ms/op [Average]
+  (min, avg, max) = (4.173, 4.183, 4.224), stdev = 0.009
+  CI (99.9%): [4.177, 4.189] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = haraka_192s)
+
+# Run progress: 8.33% complete, ETA 02:24:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 7.188 ms/op
+# Warmup Iteration   2: 7.174 ms/op
+Iteration   1: 7.174 ms/op
+Iteration   2: 7.179 ms/op
+Iteration   3: 7.171 ms/op
+Iteration   4: 7.167 ms/op
+Iteration   5: 7.170 ms/op
+Iteration   6: 7.171 ms/op
+Iteration   7: 7.168 ms/op
+Iteration   8: 7.171 ms/op
+Iteration   9: 7.168 ms/op
+Iteration  10: 7.168 ms/op
+Iteration  11: 7.165 ms/op
+Iteration  12: 7.168 ms/op
+Iteration  13: 7.172 ms/op
+Iteration  14: 7.169 ms/op
+Iteration  15: 7.193 ms/op
+Iteration  16: 7.171 ms/op
+Iteration  17: 7.176 ms/op
+Iteration  18: 7.170 ms/op
+Iteration  19: 7.166 ms/op
+Iteration  20: 7.170 ms/op
+Iteration  21: 7.164 ms/op
+Iteration  22: 7.166 ms/op
+Iteration  23: 7.165 ms/op
+Iteration  24: 7.167 ms/op
+Iteration  25: 7.166 ms/op
+Iteration  26: 7.184 ms/op
+Iteration  27: 7.164 ms/op
+Iteration  28: 7.165 ms/op
+Iteration  29: 7.166 ms/op
+Iteration  30: 7.166 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  7.170 ±(99.9%) 0.004 ms/op [Average]
+  (min, avg, max) = (7.164, 7.170, 7.193), stdev = 0.006
+  CI (99.9%): [7.166, 7.174] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = haraka_256s)
+
+# Run progress: 10.00% complete, ETA 02:41:06
+# Fork: 1 of 1
+# Warmup Iteration   1: 9.570 ms/op
+# Warmup Iteration   2: 9.546 ms/op
+Iteration   1: 9.542 ms/op
+Iteration   2: 9.544 ms/op
+Iteration   3: 9.552 ms/op
+Iteration   4: 9.545 ms/op
+Iteration   5: 9.548 ms/op
+Iteration   6: 9.545 ms/op
+Iteration   7: 9.548 ms/op
+Iteration   8: 9.549 ms/op
+Iteration   9: 9.547 ms/op
+Iteration  10: 9.549 ms/op
+Iteration  11: 9.545 ms/op
+Iteration  12: 9.549 ms/op
+Iteration  13: 9.546 ms/op
+Iteration  14: 9.545 ms/op
+Iteration  15: 9.545 ms/op
+Iteration  16: 9.547 ms/op
+Iteration  17: 9.541 ms/op
+Iteration  18: 9.546 ms/op
+Iteration  19: 9.545 ms/op
+Iteration  20: 9.538 ms/op
+Iteration  21: 9.546 ms/op
+Iteration  22: 9.549 ms/op
+Iteration  23: 9.541 ms/op
+Iteration  24: 9.551 ms/op
+Iteration  25: 9.550 ms/op
+Iteration  26: 9.550 ms/op
+Iteration  27: 9.552 ms/op
+Iteration  28: 9.550 ms/op
+Iteration  29: 9.541 ms/op
+Iteration  30: 9.546 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  9.546 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (9.538, 9.546, 9.552), stdev = 0.003
+  CI (99.9%): [9.544, 9.549] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_128f)
+
+# Run progress: 11.67% complete, ETA 02:48:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 4.954 ms/op
+# Warmup Iteration   2: 4.911 ms/op
+Iteration   1: 4.907 ms/op
+Iteration   2: 4.914 ms/op
+Iteration   3: 4.915 ms/op
+Iteration   4: 4.910 ms/op
+Iteration   5: 4.909 ms/op
+Iteration   6: 4.917 ms/op
+Iteration   7: 4.909 ms/op
+Iteration   8: 4.907 ms/op
+Iteration   9: 4.902 ms/op
+Iteration  10: 4.905 ms/op
+Iteration  11: 4.909 ms/op
+Iteration  12: 4.903 ms/op
+Iteration  13: 4.906 ms/op
+Iteration  14: 4.905 ms/op
+Iteration  15: 4.905 ms/op
+Iteration  16: 4.905 ms/op
+Iteration  17: 4.912 ms/op
+Iteration  18: 4.910 ms/op
+Iteration  19: 4.916 ms/op
+Iteration  20: 4.902 ms/op
+Iteration  21: 4.902 ms/op
+Iteration  22: 4.905 ms/op
+Iteration  23: 4.905 ms/op
+Iteration  24: 4.908 ms/op
+Iteration  25: 4.905 ms/op
+Iteration  26: 4.903 ms/op
+Iteration  27: 4.907 ms/op
+Iteration  28: 4.915 ms/op
+Iteration  29: 4.907 ms/op
+Iteration  30: 4.907 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  4.908 ±(99.9%) 0.003 ms/op [Average]
+  (min, avg, max) = (4.902, 4.908, 4.917), stdev = 0.004
+  CI (99.9%): [4.905, 4.911] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_192f)
+
+# Run progress: 13.33% complete, ETA 02:30:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 8.853 ms/op
+# Warmup Iteration   2: 8.795 ms/op
+Iteration   1: 8.805 ms/op
+Iteration   2: 8.797 ms/op
+Iteration   3: 8.799 ms/op
+Iteration   4: 8.799 ms/op
+Iteration   5: 8.800 ms/op
+Iteration   6: 8.798 ms/op
+Iteration   7: 8.794 ms/op
+Iteration   8: 8.794 ms/op
+Iteration   9: 8.788 ms/op
+Iteration  10: 8.795 ms/op
+Iteration  11: 8.792 ms/op
+Iteration  12: 8.837 ms/op
+Iteration  13: 8.796 ms/op
+Iteration  14: 8.797 ms/op
+Iteration  15: 8.793 ms/op
+Iteration  16: 8.792 ms/op
+Iteration  17: 8.789 ms/op
+Iteration  18: 8.784 ms/op
+Iteration  19: 8.781 ms/op
+Iteration  20: 8.783 ms/op
+Iteration  21: 8.788 ms/op
+Iteration  22: 8.786 ms/op
+Iteration  23: 8.791 ms/op
+Iteration  24: 8.805 ms/op
+Iteration  25: 8.795 ms/op
+Iteration  26: 8.797 ms/op
+Iteration  27: 8.798 ms/op
+Iteration  28: 8.793 ms/op
+Iteration  29: 8.791 ms/op
+Iteration  30: 8.787 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  8.795 ±(99.9%) 0.007 ms/op [Average]
+  (min, avg, max) = (8.781, 8.795, 8.837), stdev = 0.010
+  CI (99.9%): [8.788, 8.801] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_256f)
+
+# Run progress: 15.00% complete, ETA 02:16:29
+# Fork: 1 of 1
+# Warmup Iteration   1: 12.184 ms/op
+# Warmup Iteration   2: 12.143 ms/op
+Iteration   1: 12.147 ms/op
+Iteration   2: 12.156 ms/op
+Iteration   3: 12.147 ms/op
+Iteration   4: 12.136 ms/op
+Iteration   5: 12.145 ms/op
+Iteration   6: 12.145 ms/op
+Iteration   7: 12.141 ms/op
+Iteration   8: 12.147 ms/op
+Iteration   9: 12.144 ms/op
+Iteration  10: 12.133 ms/op
+Iteration  11: 12.144 ms/op
+Iteration  12: 12.143 ms/op
+Iteration  13: 12.144 ms/op
+Iteration  14: 12.153 ms/op
+Iteration  15: 12.151 ms/op
+Iteration  16: 12.145 ms/op
+Iteration  17: 12.148 ms/op
+Iteration  18: 12.135 ms/op
+Iteration  19: 12.140 ms/op
+Iteration  20: 12.142 ms/op
+Iteration  21: 12.135 ms/op
+Iteration  22: 12.154 ms/op
+Iteration  23: 12.154 ms/op
+Iteration  24: 12.140 ms/op
+Iteration  25: 12.148 ms/op
+Iteration  26: 12.148 ms/op
+Iteration  27: 12.145 ms/op
+Iteration  28: 12.143 ms/op
+Iteration  29: 12.131 ms/op
+Iteration  30: 12.146 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  12.144 ±(99.9%) 0.004 ms/op [Average]
+  (min, avg, max) = (12.131, 12.144, 12.156), stdev = 0.006
+  CI (99.9%): [12.140, 12.148] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_128s_simple)
+
+# Run progress: 16.67% complete, ETA 02:05:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.805 ms/op
+# Warmup Iteration   2: 0.773 ms/op
+Iteration   1: 0.772 ms/op
+Iteration   2: 0.773 ms/op
+Iteration   3: 0.772 ms/op
+Iteration   4: 0.773 ms/op
+Iteration   5: 0.774 ms/op
+Iteration   6: 0.773 ms/op
+Iteration   7: 0.774 ms/op
+Iteration   8: 0.773 ms/op
+Iteration   9: 0.773 ms/op
+Iteration  10: 0.774 ms/op
+Iteration  11: 0.772 ms/op
+Iteration  12: 0.773 ms/op
+Iteration  13: 0.772 ms/op
+Iteration  14: 0.772 ms/op
+Iteration  15: 0.774 ms/op
+Iteration  16: 0.772 ms/op
+Iteration  17: 0.772 ms/op
+Iteration  18: 0.772 ms/op
+Iteration  19: 0.773 ms/op
+Iteration  20: 0.774 ms/op
+Iteration  21: 0.772 ms/op
+Iteration  22: 0.774 ms/op
+Iteration  23: 0.773 ms/op
+Iteration  24: 0.773 ms/op
+Iteration  25: 0.773 ms/op
+Iteration  26: 0.774 ms/op
+Iteration  27: 0.771 ms/op
+Iteration  28: 0.772 ms/op
+Iteration  29: 0.770 ms/op
+Iteration  30: 0.770 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.773 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.770, 0.773, 0.774), stdev = 0.001
+  CI (99.9%): [0.772, 0.773] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_192s_simple)
+
+# Run progress: 18.33% complete, ETA 01:57:55
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.380 ms/op
+# Warmup Iteration   2: 1.375 ms/op
+Iteration   1: 1.375 ms/op
+Iteration   2: 1.375 ms/op
+Iteration   3: 1.375 ms/op
+Iteration   4: 1.375 ms/op
+Iteration   5: 1.374 ms/op
+Iteration   6: 1.374 ms/op
+Iteration   7: 1.375 ms/op
+Iteration   8: 1.375 ms/op
+Iteration   9: 1.376 ms/op
+Iteration  10: 1.375 ms/op
+Iteration  11: 1.375 ms/op
+Iteration  12: 1.376 ms/op
+Iteration  13: 1.374 ms/op
+Iteration  14: 1.374 ms/op
+Iteration  15: 1.375 ms/op
+Iteration  16: 1.375 ms/op
+Iteration  17: 1.376 ms/op
+Iteration  18: 1.375 ms/op
+Iteration  19: 1.375 ms/op
+Iteration  20: 1.375 ms/op
+Iteration  21: 1.375 ms/op
+Iteration  22: 1.374 ms/op
+Iteration  23: 1.374 ms/op
+Iteration  24: 1.375 ms/op
+Iteration  25: 1.376 ms/op
+Iteration  26: 1.375 ms/op
+Iteration  27: 1.375 ms/op
+Iteration  28: 1.375 ms/op
+Iteration  29: 1.376 ms/op
+Iteration  30: 1.376 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.375 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (1.374, 1.375, 1.376), stdev = 0.001
+  CI (99.9%): [1.375, 1.375] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_256s_simple)
+
+# Run progress: 20.00% complete, ETA 01:53:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.106 ms/op
+# Warmup Iteration   2: 2.098 ms/op
+Iteration   1: 2.098 ms/op
+Iteration   2: 2.098 ms/op
+Iteration   3: 2.097 ms/op
+Iteration   4: 2.098 ms/op
+Iteration   5: 2.097 ms/op
+Iteration   6: 2.097 ms/op
+Iteration   7: 2.098 ms/op
+Iteration   8: 2.096 ms/op
+Iteration   9: 2.098 ms/op
+Iteration  10: 2.097 ms/op
+Iteration  11: 2.098 ms/op
+Iteration  12: 2.098 ms/op
+Iteration  13: 2.098 ms/op
+Iteration  14: 2.098 ms/op
+Iteration  15: 2.098 ms/op
+Iteration  16: 2.098 ms/op
+Iteration  17: 2.098 ms/op
+Iteration  18: 2.097 ms/op
+Iteration  19: 2.097 ms/op
+Iteration  20: 2.097 ms/op
+Iteration  21: 2.098 ms/op
+Iteration  22: 2.096 ms/op
+Iteration  23: 2.098 ms/op
+Iteration  24: 2.097 ms/op
+Iteration  25: 2.097 ms/op
+Iteration  26: 2.097 ms/op
+Iteration  27: 2.097 ms/op
+Iteration  28: 2.097 ms/op
+Iteration  29: 2.097 ms/op
+Iteration  30: 2.098 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.097 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (2.096, 2.097, 2.098), stdev = 0.001
+  CI (99.9%): [2.097, 2.098] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = shake_192s_simple)
+
+# Run progress: 21.67% complete, ETA 01:48:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.477 ms/op
+# Warmup Iteration   2: 1.470 ms/op
+Iteration   1: 1.472 ms/op
+Iteration   2: 1.472 ms/op
+Iteration   3: 1.471 ms/op
+Iteration   4: 1.470 ms/op
+Iteration   5: 1.470 ms/op
+Iteration   6: 1.470 ms/op
+Iteration   7: 1.474 ms/op
+Iteration   8: 1.471 ms/op
+Iteration   9: 1.471 ms/op
+Iteration  10: 1.471 ms/op
+Iteration  11: 1.470 ms/op
+Iteration  12: 1.471 ms/op
+Iteration  13: 1.470 ms/op
+Iteration  14: 1.470 ms/op
+Iteration  15: 1.470 ms/op
+Iteration  16: 1.471 ms/op
+Iteration  17: 1.474 ms/op
+Iteration  18: 1.470 ms/op
+Iteration  19: 1.470 ms/op
+Iteration  20: 1.472 ms/op
+Iteration  21: 1.472 ms/op
+Iteration  22: 1.471 ms/op
+Iteration  23: 1.471 ms/op
+Iteration  24: 1.471 ms/op
+Iteration  25: 1.470 ms/op
+Iteration  26: 1.470 ms/op
+Iteration  27: 1.471 ms/op
+Iteration  28: 1.471 ms/op
+Iteration  29: 1.470 ms/op
+Iteration  30: 1.470 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.471 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (1.470, 1.471, 1.474), stdev = 0.001
+  CI (99.9%): [1.470, 1.472] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = shake_256s_simple)
+
+# Run progress: 23.33% complete, ETA 01:44:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.253 ms/op
+# Warmup Iteration   2: 2.245 ms/op
+Iteration   1: 2.243 ms/op
+Iteration   2: 2.245 ms/op
+Iteration   3: 2.244 ms/op
+Iteration   4: 2.244 ms/op
+Iteration   5: 2.245 ms/op
+Iteration   6: 2.242 ms/op
+Iteration   7: 2.243 ms/op
+Iteration   8: 2.243 ms/op
+Iteration   9: 2.245 ms/op
+Iteration  10: 2.243 ms/op
+Iteration  11: 2.244 ms/op
+Iteration  12: 2.244 ms/op
+Iteration  13: 2.243 ms/op
+Iteration  14: 2.243 ms/op
+Iteration  15: 2.243 ms/op
+Iteration  16: 2.242 ms/op
+Iteration  17: 2.243 ms/op
+Iteration  18: 2.243 ms/op
+Iteration  19: 2.245 ms/op
+Iteration  20: 2.245 ms/op
+Iteration  21: 2.244 ms/op
+Iteration  22: 2.246 ms/op
+Iteration  23: 2.244 ms/op
+Iteration  24: 2.244 ms/op
+Iteration  25: 2.246 ms/op
+Iteration  26: 2.245 ms/op
+Iteration  27: 2.248 ms/op
+Iteration  28: 2.244 ms/op
+Iteration  29: 2.245 ms/op
+Iteration  30: 2.245 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.244 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (2.242, 2.244, 2.248), stdev = 0.001
+  CI (99.9%): [2.243, 2.245] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = haraka_192s_simple)
+
+# Run progress: 25.00% complete, ETA 01:41:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 3.148 ms/op
+# Warmup Iteration   2: 3.138 ms/op
+Iteration   1: 3.136 ms/op
+Iteration   2: 3.138 ms/op
+Iteration   3: 3.135 ms/op
+Iteration   4: 3.138 ms/op
+Iteration   5: 3.136 ms/op
+Iteration   6: 3.138 ms/op
+Iteration   7: 3.135 ms/op
+Iteration   8: 3.138 ms/op
+Iteration   9: 3.135 ms/op
+Iteration  10: 3.136 ms/op
+Iteration  11: 3.134 ms/op
+Iteration  12: 3.137 ms/op
+Iteration  13: 3.134 ms/op
+Iteration  14: 3.136 ms/op
+Iteration  15: 3.136 ms/op
+Iteration  16: 3.139 ms/op
+Iteration  17: 3.136 ms/op
+Iteration  18: 3.134 ms/op
+Iteration  19: 3.136 ms/op
+Iteration  20: 3.134 ms/op
+Iteration  21: 3.137 ms/op
+Iteration  22: 3.134 ms/op
+Iteration  23: 3.135 ms/op
+Iteration  24: 3.135 ms/op
+Iteration  25: 3.138 ms/op
+Iteration  26: 3.139 ms/op
+Iteration  27: 3.147 ms/op
+Iteration  28: 3.139 ms/op
+Iteration  29: 3.138 ms/op
+Iteration  30: 3.139 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  3.137 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (3.134, 3.137, 3.147), stdev = 0.002
+  CI (99.9%): [3.135, 3.138] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = haraka_256s_simple)
+
+# Run progress: 26.67% complete, ETA 01:40:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 4.952 ms/op
+# Warmup Iteration   2: 4.937 ms/op
+Iteration   1: 4.937 ms/op
+Iteration   2: 4.937 ms/op
+Iteration   3: 4.939 ms/op
+Iteration   4: 4.939 ms/op
+Iteration   5: 4.939 ms/op
+Iteration   6: 4.937 ms/op
+Iteration   7: 4.936 ms/op
+Iteration   8: 4.933 ms/op
+Iteration   9: 4.936 ms/op
+Iteration  10: 4.935 ms/op
+Iteration  11: 4.937 ms/op
+Iteration  12: 4.933 ms/op
+Iteration  13: 4.942 ms/op
+Iteration  14: 4.934 ms/op
+Iteration  15: 4.935 ms/op
+Iteration  16: 4.937 ms/op
+Iteration  17: 4.936 ms/op
+Iteration  18: 4.932 ms/op
+Iteration  19: 4.932 ms/op
+Iteration  20: 4.932 ms/op
+Iteration  21: 4.932 ms/op
+Iteration  22: 4.934 ms/op
+Iteration  23: 4.937 ms/op
+Iteration  24: 4.934 ms/op
+Iteration  25: 4.931 ms/op
+Iteration  26: 4.936 ms/op
+Iteration  27: 4.933 ms/op
+Iteration  28: 4.937 ms/op
+Iteration  29: 4.936 ms/op
+Iteration  30: 4.936 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  4.936 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (4.931, 4.936, 4.942), stdev = 0.003
+  CI (99.9%): [4.934, 4.937] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_128f_simple)
+
+# Run progress: 28.33% complete, ETA 01:39:47
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.346 ms/op
+# Warmup Iteration   2: 2.324 ms/op
+Iteration   1: 2.323 ms/op
+Iteration   2: 2.324 ms/op
+Iteration   3: 2.324 ms/op
+Iteration   4: 2.324 ms/op
+Iteration   5: 2.325 ms/op
+Iteration   6: 2.325 ms/op
+Iteration   7: 2.325 ms/op
+Iteration   8: 2.324 ms/op
+Iteration   9: 2.324 ms/op
+Iteration  10: 2.325 ms/op
+Iteration  11: 2.325 ms/op
+Iteration  12: 2.324 ms/op
+Iteration  13: 2.323 ms/op
+Iteration  14: 2.323 ms/op
+Iteration  15: 2.325 ms/op
+Iteration  16: 2.321 ms/op
+Iteration  17: 2.322 ms/op
+Iteration  18: 2.325 ms/op
+Iteration  19: 2.323 ms/op
+Iteration  20: 2.323 ms/op
+Iteration  21: 2.324 ms/op
+Iteration  22: 2.323 ms/op
+Iteration  23: 2.326 ms/op
+Iteration  24: 2.324 ms/op
+Iteration  25: 2.324 ms/op
+Iteration  26: 2.325 ms/op
+Iteration  27: 2.324 ms/op
+Iteration  28: 2.325 ms/op
+Iteration  29: 2.323 ms/op
+Iteration  30: 2.323 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.324 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (2.321, 2.324, 2.326), stdev = 0.001
+  CI (99.9%): [2.323, 2.325] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_192f_simple)
+
+# Run progress: 30.00% complete, ETA 01:34:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 4.292 ms/op
+# Warmup Iteration   2: 4.253 ms/op
+Iteration   1: 4.256 ms/op
+Iteration   2: 4.252 ms/op
+Iteration   3: 4.255 ms/op
+Iteration   4: 4.251 ms/op
+Iteration   5: 4.253 ms/op
+Iteration   6: 4.249 ms/op
+Iteration   7: 4.249 ms/op
+Iteration   8: 4.250 ms/op
+Iteration   9: 4.250 ms/op
+Iteration  10: 4.247 ms/op
+Iteration  11: 4.246 ms/op
+Iteration  12: 4.253 ms/op
+Iteration  13: 4.249 ms/op
+Iteration  14: 4.247 ms/op
+Iteration  15: 4.245 ms/op
+Iteration  16: 4.251 ms/op
+Iteration  17: 4.250 ms/op
+Iteration  18: 4.245 ms/op
+Iteration  19: 4.249 ms/op
+Iteration  20: 4.250 ms/op
+Iteration  21: 4.250 ms/op
+Iteration  22: 4.246 ms/op
+Iteration  23: 4.247 ms/op
+Iteration  24: 4.252 ms/op
+Iteration  25: 4.248 ms/op
+Iteration  26: 4.250 ms/op
+Iteration  27: 4.248 ms/op
+Iteration  28: 4.249 ms/op
+Iteration  29: 4.251 ms/op
+Iteration  30: 4.249 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  4.250 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (4.245, 4.250, 4.256), stdev = 0.003
+  CI (99.9%): [4.248, 4.251] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = bc, sphincsplus_parameter = sha2_256f_simple)
+
+# Run progress: 31.67% complete, ETA 01:28:53
+# Fork: 1 of 1
+# Warmup Iteration   1: 3.987 ms/op
+# Warmup Iteration   2: 3.952 ms/op
+Iteration   1: 3.952 ms/op
+Iteration   2: 3.951 ms/op
+Iteration   3: 3.946 ms/op
+Iteration   4: 3.947 ms/op
+Iteration   5: 3.947 ms/op
+Iteration   6: 3.947 ms/op
+Iteration   7: 3.946 ms/op
+Iteration   8: 3.947 ms/op
+Iteration   9: 3.948 ms/op
+Iteration  10: 3.947 ms/op
+Iteration  11: 3.947 ms/op
+Iteration  12: 3.946 ms/op
+Iteration  13: 3.949 ms/op
+Iteration  14: 3.948 ms/op
+Iteration  15: 3.947 ms/op
+Iteration  16: 3.947 ms/op
+Iteration  17: 3.947 ms/op
+Iteration  18: 3.948 ms/op
+Iteration  19: 3.947 ms/op
+Iteration  20: 3.944 ms/op
+Iteration  21: 3.947 ms/op
+Iteration  22: 3.947 ms/op
+Iteration  23: 3.948 ms/op
+Iteration  24: 3.948 ms/op
+Iteration  25: 3.945 ms/op
+Iteration  26: 3.947 ms/op
+Iteration  27: 3.946 ms/op
+Iteration  28: 3.948 ms/op
+Iteration  29: 3.946 ms/op
+Iteration  30: 3.945 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  3.947 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (3.944, 3.947, 3.952), stdev = 0.002
+  CI (99.9%): [3.946, 3.948] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_128s)
+
+# Run progress: 33.33% complete, ETA 01:24:14
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_192s)
+
+# Run progress: 35.00% complete, ETA 01:18:13
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_256s)
+
+# Run progress: 36.67% complete, ETA 01:12:46
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = shake_192s)
+
+# Run progress: 38.33% complete, ETA 01:07:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.558 ms/op
+# Warmup Iteration   2: 1.550 ms/op
+Iteration   1: 1.547 ms/op
+Iteration   2: 1.545 ms/op
+Iteration   3: 1.548 ms/op
+Iteration   4: 1.548 ms/op
+Iteration   5: 1.548 ms/op
+Iteration   6: 1.545 ms/op
+Iteration   7: 1.548 ms/op
+Iteration   8: 1.547 ms/op
+Iteration   9: 1.547 ms/op
+Iteration  10: 1.546 ms/op
+Iteration  11: 1.545 ms/op
+Iteration  12: 1.551 ms/op
+Iteration  13: 1.548 ms/op
+Iteration  14: 1.546 ms/op
+Iteration  15: 1.545 ms/op
+Iteration  16: 1.548 ms/op
+Iteration  17: 1.547 ms/op
+Iteration  18: 1.546 ms/op
+Iteration  19: 1.547 ms/op
+Iteration  20: 1.548 ms/op
+Iteration  21: 1.547 ms/op
+Iteration  22: 1.547 ms/op
+Iteration  23: 1.547 ms/op
+Iteration  24: 1.545 ms/op
+Iteration  25: 1.547 ms/op
+Iteration  26: 1.547 ms/op
+Iteration  27: 1.546 ms/op
+Iteration  28: 1.545 ms/op
+Iteration  29: 1.548 ms/op
+Iteration  30: 1.547 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.547 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (1.545, 1.547, 1.551), stdev = 0.001
+  CI (99.9%): [1.546, 1.548] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = shake_256s)
+
+# Run progress: 40.00% complete, ETA 01:06:02
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.172 ms/op
+# Warmup Iteration   2: 2.159 ms/op
+Iteration   1: 2.157 ms/op
+Iteration   2: 2.159 ms/op
+Iteration   3: 2.155 ms/op
+Iteration   4: 2.157 ms/op
+Iteration   5: 2.156 ms/op
+Iteration   6: 2.158 ms/op
+Iteration   7: 2.156 ms/op
+Iteration   8: 2.156 ms/op
+Iteration   9: 2.155 ms/op
+Iteration  10: 2.156 ms/op
+Iteration  11: 2.156 ms/op
+Iteration  12: 2.157 ms/op
+Iteration  13: 2.155 ms/op
+Iteration  14: 2.157 ms/op
+Iteration  15: 2.156 ms/op
+Iteration  16: 2.157 ms/op
+Iteration  17: 2.156 ms/op
+Iteration  18: 2.158 ms/op
+Iteration  19: 2.157 ms/op
+Iteration  20: 2.154 ms/op
+Iteration  21: 2.157 ms/op
+Iteration  22: 2.154 ms/op
+Iteration  23: 2.157 ms/op
+Iteration  24: 2.155 ms/op
+Iteration  25: 2.158 ms/op
+Iteration  26: 2.157 ms/op
+Iteration  27: 2.156 ms/op
+Iteration  28: 2.156 ms/op
+Iteration  29: 2.163 ms/op
+Iteration  30: 2.157 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.157 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (2.154, 2.157, 2.163), stdev = 0.002
+  CI (99.9%): [2.155, 2.158] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = haraka_192s)
+
+# Run progress: 41.67% complete, ETA 01:04:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.384 ms/op
+# Warmup Iteration   2: 0.376 ms/op
+Iteration   1: 0.375 ms/op
+Iteration   2: 0.376 ms/op
+Iteration   3: 0.376 ms/op
+Iteration   4: 0.377 ms/op
+Iteration   5: 0.376 ms/op
+Iteration   6: 0.375 ms/op
+Iteration   7: 0.377 ms/op
+Iteration   8: 0.376 ms/op
+Iteration   9: 0.377 ms/op
+Iteration  10: 0.377 ms/op
+Iteration  11: 0.377 ms/op
+Iteration  12: 0.376 ms/op
+Iteration  13: 0.377 ms/op
+Iteration  14: 0.376 ms/op
+Iteration  15: 0.376 ms/op
+Iteration  16: 0.376 ms/op
+Iteration  17: 0.377 ms/op
+Iteration  18: 0.377 ms/op
+Iteration  19: 0.375 ms/op
+Iteration  20: 0.376 ms/op
+Iteration  21: 0.376 ms/op
+Iteration  22: 0.378 ms/op
+Iteration  23: 0.376 ms/op
+Iteration  24: 0.377 ms/op
+Iteration  25: 0.376 ms/op
+Iteration  26: 0.376 ms/op
+Iteration  27: 0.376 ms/op
+Iteration  28: 0.378 ms/op
+Iteration  29: 0.377 ms/op
+Iteration  30: 0.376 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.376 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.375, 0.376, 0.378), stdev = 0.001
+  CI (99.9%): [0.376, 0.377] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = haraka_256s)
+
+# Run progress: 43.33% complete, ETA 01:01:14
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.574 ms/op
+# Warmup Iteration   2: 0.568 ms/op
+Iteration   1: 0.569 ms/op
+Iteration   2: 0.566 ms/op
+Iteration   3: 0.568 ms/op
+Iteration   4: 0.570 ms/op
+Iteration   5: 0.568 ms/op
+Iteration   6: 0.571 ms/op
+Iteration   7: 0.570 ms/op
+Iteration   8: 0.567 ms/op
+Iteration   9: 0.565 ms/op
+Iteration  10: 0.568 ms/op
+Iteration  11: 0.569 ms/op
+Iteration  12: 0.567 ms/op
+Iteration  13: 0.567 ms/op
+Iteration  14: 0.575 ms/op
+Iteration  15: 0.568 ms/op
+Iteration  16: 0.567 ms/op
+Iteration  17: 0.562 ms/op
+Iteration  18: 0.561 ms/op
+Iteration  19: 0.564 ms/op
+Iteration  20: 0.563 ms/op
+Iteration  21: 0.564 ms/op
+Iteration  22: 0.566 ms/op
+Iteration  23: 0.562 ms/op
+Iteration  24: 0.565 ms/op
+Iteration  25: 0.563 ms/op
+Iteration  26: 0.563 ms/op
+Iteration  27: 0.565 ms/op
+Iteration  28: 0.562 ms/op
+Iteration  29: 0.564 ms/op
+Iteration  30: 0.563 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.566 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (0.561, 0.566, 0.575), stdev = 0.003
+  CI (99.9%): [0.564, 0.568] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_128f)
+
+# Run progress: 45.00% complete, ETA 00:58:32
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_192f)
+
+# Run progress: 46.67% complete, ETA 00:54:44
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_256f)
+
+# Run progress: 48.33% complete, ETA 00:51:12
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_128s_simple)
+
+# Run progress: 50.00% complete, ETA 00:47:54
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_192s_simple)
+
+# Run progress: 51.67% complete, ETA 00:44:49
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_256s_simple)
+
+# Run progress: 53.33% complete, ETA 00:41:55
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = shake_192s_simple)
+
+# Run progress: 55.00% complete, ETA 00:39:12
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.815 ms/op
+# Warmup Iteration   2: 0.811 ms/op
+Iteration   1: 0.811 ms/op
+Iteration   2: 0.812 ms/op
+Iteration   3: 0.810 ms/op
+Iteration   4: 0.809 ms/op
+Iteration   5: 0.810 ms/op
+Iteration   6: 0.810 ms/op
+Iteration   7: 0.810 ms/op
+Iteration   8: 0.810 ms/op
+Iteration   9: 0.811 ms/op
+Iteration  10: 0.810 ms/op
+Iteration  11: 0.810 ms/op
+Iteration  12: 0.811 ms/op
+Iteration  13: 0.811 ms/op
+Iteration  14: 0.809 ms/op
+Iteration  15: 0.809 ms/op
+Iteration  16: 0.810 ms/op
+Iteration  17: 0.810 ms/op
+Iteration  18: 0.810 ms/op
+Iteration  19: 0.811 ms/op
+Iteration  20: 0.811 ms/op
+Iteration  21: 0.811 ms/op
+Iteration  22: 0.811 ms/op
+Iteration  23: 0.811 ms/op
+Iteration  24: 0.810 ms/op
+Iteration  25: 0.809 ms/op
+Iteration  26: 0.809 ms/op
+Iteration  27: 0.809 ms/op
+Iteration  28: 0.812 ms/op
+Iteration  29: 0.810 ms/op
+Iteration  30: 0.811 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.810 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.809, 0.810, 0.812), stdev = 0.001
+  CI (99.9%): [0.810, 0.811] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = shake_256s_simple)
+
+# Run progress: 56.67% complete, ETA 00:37:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.203 ms/op
+# Warmup Iteration   2: 1.194 ms/op
+Iteration   1: 1.193 ms/op
+Iteration   2: 1.193 ms/op
+Iteration   3: 1.194 ms/op
+Iteration   4: 1.195 ms/op
+Iteration   5: 1.195 ms/op
+Iteration   6: 1.194 ms/op
+Iteration   7: 1.195 ms/op
+Iteration   8: 1.194 ms/op
+Iteration   9: 1.193 ms/op
+Iteration  10: 1.193 ms/op
+Iteration  11: 1.195 ms/op
+Iteration  12: 1.194 ms/op
+Iteration  13: 1.194 ms/op
+Iteration  14: 1.193 ms/op
+Iteration  15: 1.196 ms/op
+Iteration  16: 1.196 ms/op
+Iteration  17: 1.194 ms/op
+Iteration  18: 1.192 ms/op
+Iteration  19: 1.194 ms/op
+Iteration  20: 1.195 ms/op
+Iteration  21: 1.193 ms/op
+Iteration  22: 1.197 ms/op
+Iteration  23: 1.194 ms/op
+Iteration  24: 1.194 ms/op
+Iteration  25: 1.193 ms/op
+Iteration  26: 1.194 ms/op
+Iteration  27: 1.195 ms/op
+Iteration  28: 1.195 ms/op
+Iteration  29: 1.197 ms/op
+Iteration  30: 1.195 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.194 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (1.192, 1.194, 1.197), stdev = 0.001
+  CI (99.9%): [1.194, 1.195] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = haraka_192s_simple)
+
+# Run progress: 58.33% complete, ETA 00:36:12
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.245 ms/op
+# Warmup Iteration   2: 0.242 ms/op
+Iteration   1: 0.241 ms/op
+Iteration   2: 0.243 ms/op
+Iteration   3: 0.245 ms/op
+Iteration   4: 0.248 ms/op
+Iteration   5: 0.246 ms/op
+Iteration   6: 0.246 ms/op
+Iteration   7: 0.244 ms/op
+Iteration   8: 0.252 ms/op
+Iteration   9: 0.251 ms/op
+Iteration  10: 0.249 ms/op
+Iteration  11: 0.250 ms/op
+Iteration  12: 0.250 ms/op
+Iteration  13: 0.250 ms/op
+Iteration  14: 0.243 ms/op
+Iteration  15: 0.245 ms/op
+Iteration  16: 0.243 ms/op
+Iteration  17: 0.247 ms/op
+Iteration  18: 0.245 ms/op
+Iteration  19: 0.245 ms/op
+Iteration  20: 0.247 ms/op
+Iteration  21: 0.249 ms/op
+Iteration  22: 0.250 ms/op
+Iteration  23: 0.250 ms/op
+Iteration  24: 0.249 ms/op
+Iteration  25: 0.245 ms/op
+Iteration  26: 0.247 ms/op
+Iteration  27: 0.246 ms/op
+Iteration  28: 0.245 ms/op
+Iteration  29: 0.247 ms/op
+Iteration  30: 0.243 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.247 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (0.241, 0.247, 0.252), stdev = 0.003
+  CI (99.9%): [0.245, 0.249] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = haraka_256s_simple)
+
+# Run progress: 60.00% complete, ETA 00:34:26
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.329 ms/op
+# Warmup Iteration   2: 0.321 ms/op
+Iteration   1: 0.327 ms/op
+Iteration   2: 0.328 ms/op
+Iteration   3: 0.328 ms/op
+Iteration   4: 0.330 ms/op
+Iteration   5: 0.326 ms/op
+Iteration   6: 0.331 ms/op
+Iteration   7: 0.332 ms/op
+Iteration   8: 0.330 ms/op
+Iteration   9: 0.333 ms/op
+Iteration  10: 0.326 ms/op
+Iteration  11: 0.326 ms/op
+Iteration  12: 0.326 ms/op
+Iteration  13: 0.335 ms/op
+Iteration  14: 0.330 ms/op
+Iteration  15: 0.338 ms/op
+Iteration  16: 0.332 ms/op
+Iteration  17: 0.334 ms/op
+Iteration  18: 0.332 ms/op
+Iteration  19: 0.322 ms/op
+Iteration  20: 0.327 ms/op
+Iteration  21: 0.326 ms/op
+Iteration  22: 0.326 ms/op
+Iteration  23: 0.323 ms/op
+Iteration  24: 0.330 ms/op
+Iteration  25: 0.336 ms/op
+Iteration  26: 0.330 ms/op
+Iteration  27: 0.328 ms/op
+Iteration  28: 0.326 ms/op
+Iteration  29: 0.335 ms/op
+Iteration  30: 0.334 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.330 ±(99.9%) 0.003 ms/op [Average]
+  (min, avg, max) = (0.322, 0.330, 0.338), stdev = 0.004
+  CI (99.9%): [0.327, 0.332] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_128f_simple)
+
+# Run progress: 61.67% complete, ETA 00:32:43
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_192f_simple)
+
+# Run progress: 63.33% complete, ETA 00:30:28
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = jni, sphincsplus_parameter = sha2_256f_simple)
+
+# Run progress: 65.00% complete, ETA 00:28:20
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.NullPointerException: Cannot read field "N" because "engine" is null
+	at org.example.bcpqc.pqc.crypto.sphincsplus.SPHINCSPlusKeyPairGenerator.generateKeyPair(SPHINCSPlusKeyPairGenerator.java:35)
+	at org.example.bcpqc.pqc.jcajce.provider.sphincsplus.SPHINCSPlusKeyPairGeneratorSpi.generateKeyPair(SPHINCSPlusKeyPairGeneratorSpi.java:114)
+	at com.sap.pq_sig_benchmark.util.KeyHelper.loadOrGenerateKeyPair(KeyHelper.java:63)
+	at com.sap.pq_sig_benchmark.verify.VerificationBenchmark.setUp(VerificationBenchmark.java:47)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest._jmh_tryInit_f_sphincsplusverificationbenchmark0_0(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:345)
+	at com.sap.pq_sig_benchmark.verify.jmh_generated.SPHINCSPlusVerificationBenchmark_verify_jmhTest.verify_AverageTime(SPHINCSPlusVerificationBenchmark_verify_jmhTest.java:139)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_128s)
+
+# Run progress: 66.67% complete, ETA 00:26:19
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.878 ms/op
+# Warmup Iteration   2: 0.870 ms/op
+Iteration   1: 0.870 ms/op
+Iteration   2: 0.870 ms/op
+Iteration   3: 0.870 ms/op
+Iteration   4: 0.870 ms/op
+Iteration   5: 0.870 ms/op
+Iteration   6: 0.869 ms/op
+Iteration   7: 0.870 ms/op
+Iteration   8: 0.870 ms/op
+Iteration   9: 0.871 ms/op
+Iteration  10: 0.870 ms/op
+Iteration  11: 0.870 ms/op
+Iteration  12: 0.870 ms/op
+Iteration  13: 0.873 ms/op
+Iteration  14: 0.871 ms/op
+Iteration  15: 0.871 ms/op
+Iteration  16: 0.870 ms/op
+Iteration  17: 0.873 ms/op
+Iteration  18: 0.870 ms/op
+Iteration  19: 0.870 ms/op
+Iteration  20: 0.871 ms/op
+Iteration  21: 0.871 ms/op
+Iteration  22: 0.870 ms/op
+Iteration  23: 0.871 ms/op
+Iteration  24: 0.870 ms/op
+Iteration  25: 0.870 ms/op
+Iteration  26: 0.870 ms/op
+Iteration  27: 0.870 ms/op
+Iteration  28: 0.870 ms/op
+Iteration  29: 0.870 ms/op
+Iteration  30: 0.870 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.870 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.869, 0.870, 0.873), stdev = 0.001
+  CI (99.9%): [0.870, 0.871] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_192s)
+
+# Run progress: 68.33% complete, ETA 00:25:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.499 ms/op
+# Warmup Iteration   2: 1.490 ms/op
+Iteration   1: 1.491 ms/op
+Iteration   2: 1.490 ms/op
+Iteration   3: 1.491 ms/op
+Iteration   4: 1.490 ms/op
+Iteration   5: 1.489 ms/op
+Iteration   6: 1.489 ms/op
+Iteration   7: 1.489 ms/op
+Iteration   8: 1.490 ms/op
+Iteration   9: 1.489 ms/op
+Iteration  10: 1.491 ms/op
+Iteration  11: 1.489 ms/op
+Iteration  12: 1.489 ms/op
+Iteration  13: 1.490 ms/op
+Iteration  14: 1.489 ms/op
+Iteration  15: 1.490 ms/op
+Iteration  16: 1.495 ms/op
+Iteration  17: 1.490 ms/op
+Iteration  18: 1.494 ms/op
+Iteration  19: 1.490 ms/op
+Iteration  20: 1.490 ms/op
+Iteration  21: 1.489 ms/op
+Iteration  22: 1.490 ms/op
+Iteration  23: 1.494 ms/op
+Iteration  24: 1.489 ms/op
+Iteration  25: 1.494 ms/op
+Iteration  26: 1.489 ms/op
+Iteration  27: 1.495 ms/op
+Iteration  28: 1.489 ms/op
+Iteration  29: 1.490 ms/op
+Iteration  30: 1.494 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.491 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (1.489, 1.491, 1.495), stdev = 0.002
+  CI (99.9%): [1.489, 1.492] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_256s)
+
+# Run progress: 70.00% complete, ETA 00:23:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.944 ms/op
+# Warmup Iteration   2: 2.929 ms/op
+Iteration   1: 2.923 ms/op
+Iteration   2: 2.924 ms/op
+Iteration   3: 2.926 ms/op
+Iteration   4: 2.924 ms/op
+Iteration   5: 2.924 ms/op
+Iteration   6: 2.928 ms/op
+Iteration   7: 2.923 ms/op
+Iteration   8: 2.924 ms/op
+Iteration   9: 2.926 ms/op
+Iteration  10: 2.923 ms/op
+Iteration  11: 2.924 ms/op
+Iteration  12: 2.931 ms/op
+Iteration  13: 2.923 ms/op
+Iteration  14: 2.923 ms/op
+Iteration  15: 2.927 ms/op
+Iteration  16: 2.925 ms/op
+Iteration  17: 2.932 ms/op
+Iteration  18: 2.926 ms/op
+Iteration  19: 2.923 ms/op
+Iteration  20: 2.923 ms/op
+Iteration  21: 2.923 ms/op
+Iteration  22: 2.923 ms/op
+Iteration  23: 2.923 ms/op
+Iteration  24: 2.923 ms/op
+Iteration  25: 2.923 ms/op
+Iteration  26: 2.925 ms/op
+Iteration  27: 2.923 ms/op
+Iteration  28: 2.924 ms/op
+Iteration  29: 2.925 ms/op
+Iteration  30: 2.923 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.925 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (2.923, 2.925, 2.932), stdev = 0.002
+  CI (99.9%): [2.923, 2.926] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = shake_192s)
+
+# Run progress: 71.67% complete, ETA 00:22:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 4.353 ms/op
+# Warmup Iteration   2: 4.344 ms/op
+Iteration   1: 4.346 ms/op
+Iteration   2: 4.345 ms/op
+Iteration   3: 4.345 ms/op
+Iteration   4: 4.342 ms/op
+Iteration   5: 4.343 ms/op
+Iteration   6: 4.341 ms/op
+Iteration   7: 4.342 ms/op
+Iteration   8: 4.344 ms/op
+Iteration   9: 4.338 ms/op
+Iteration  10: 4.342 ms/op
+Iteration  11: 4.344 ms/op
+Iteration  12: 4.344 ms/op
+Iteration  13: 4.342 ms/op
+Iteration  14: 4.338 ms/op
+Iteration  15: 4.343 ms/op
+Iteration  16: 4.339 ms/op
+Iteration  17: 4.344 ms/op
+Iteration  18: 4.341 ms/op
+Iteration  19: 4.340 ms/op
+Iteration  20: 4.343 ms/op
+Iteration  21: 4.338 ms/op
+Iteration  22: 4.357 ms/op
+Iteration  23: 4.343 ms/op
+Iteration  24: 4.339 ms/op
+Iteration  25: 4.344 ms/op
+Iteration  26: 4.338 ms/op
+Iteration  27: 4.341 ms/op
+Iteration  28: 4.343 ms/op
+Iteration  29: 4.342 ms/op
+Iteration  30: 4.342 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  4.342 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (4.338, 4.342, 4.357), stdev = 0.003
+  CI (99.9%): [4.340, 4.345] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = shake_256s)
+
+# Run progress: 73.33% complete, ETA 00:22:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 6.437 ms/op
+# Warmup Iteration   2: 6.416 ms/op
+Iteration   1: 6.416 ms/op
+Iteration   2: 6.418 ms/op
+Iteration   3: 6.412 ms/op
+Iteration   4: 6.415 ms/op
+Iteration   5: 6.411 ms/op
+Iteration   6: 6.413 ms/op
+Iteration   7: 6.411 ms/op
+Iteration   8: 6.415 ms/op
+Iteration   9: 6.410 ms/op
+Iteration  10: 6.417 ms/op
+Iteration  11: 6.414 ms/op
+Iteration  12: 6.414 ms/op
+Iteration  13: 6.417 ms/op
+Iteration  14: 6.416 ms/op
+Iteration  15: 6.431 ms/op
+Iteration  16: 6.444 ms/op
+Iteration  17: 6.439 ms/op
+Iteration  18: 6.440 ms/op
+Iteration  19: 6.440 ms/op
+Iteration  20: 6.440 ms/op
+Iteration  21: 6.438 ms/op
+Iteration  22: 6.437 ms/op
+Iteration  23: 6.440 ms/op
+Iteration  24: 6.437 ms/op
+Iteration  25: 6.441 ms/op
+Iteration  26: 6.434 ms/op
+Iteration  27: 6.439 ms/op
+Iteration  28: 6.435 ms/op
+Iteration  29: 6.443 ms/op
+Iteration  30: 6.438 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  6.427 ±(99.9%) 0.009 ms/op [Average]
+  (min, avg, max) = (6.410, 6.427, 6.444), stdev = 0.013
+  CI (99.9%): [6.419, 6.436] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = haraka_192s)
+
+# Run progress: 75.00% complete, ETA 00:21:36
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.339 ms/op
+# Warmup Iteration   2: 0.338 ms/op
+Iteration   1: 0.338 ms/op
+Iteration   2: 0.338 ms/op
+Iteration   3: 0.338 ms/op
+Iteration   4: 0.338 ms/op
+Iteration   5: 0.338 ms/op
+Iteration   6: 0.338 ms/op
+Iteration   7: 0.338 ms/op
+Iteration   8: 0.338 ms/op
+Iteration   9: 0.337 ms/op
+Iteration  10: 0.338 ms/op
+Iteration  11: 0.338 ms/op
+Iteration  12: 0.338 ms/op
+Iteration  13: 0.338 ms/op
+Iteration  14: 0.337 ms/op
+Iteration  15: 0.338 ms/op
+Iteration  16: 0.338 ms/op
+Iteration  17: 0.338 ms/op
+Iteration  18: 0.338 ms/op
+Iteration  19: 0.338 ms/op
+Iteration  20: 0.339 ms/op
+Iteration  21: 0.338 ms/op
+Iteration  22: 0.338 ms/op
+Iteration  23: 0.337 ms/op
+Iteration  24: 0.337 ms/op
+Iteration  25: 0.337 ms/op
+Iteration  26: 0.337 ms/op
+Iteration  27: 0.337 ms/op
+Iteration  28: 0.338 ms/op
+Iteration  29: 0.339 ms/op
+Iteration  30: 0.338 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.338 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.337, 0.338, 0.339), stdev = 0.001
+  CI (99.9%): [0.338, 0.338] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = haraka_256s)
+
+# Run progress: 76.67% complete, ETA 00:20:02
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.484 ms/op
+# Warmup Iteration   2: 0.483 ms/op
+Iteration   1: 0.483 ms/op
+Iteration   2: 0.484 ms/op
+Iteration   3: 0.483 ms/op
+Iteration   4: 0.483 ms/op
+Iteration   5: 0.483 ms/op
+Iteration   6: 0.483 ms/op
+Iteration   7: 0.484 ms/op
+Iteration   8: 0.484 ms/op
+Iteration   9: 0.483 ms/op
+Iteration  10: 0.483 ms/op
+Iteration  11: 0.481 ms/op
+Iteration  12: 0.480 ms/op
+Iteration  13: 0.481 ms/op
+Iteration  14: 0.480 ms/op
+Iteration  15: 0.480 ms/op
+Iteration  16: 0.480 ms/op
+Iteration  17: 0.480 ms/op
+Iteration  18: 0.480 ms/op
+Iteration  19: 0.480 ms/op
+Iteration  20: 0.480 ms/op
+Iteration  21: 0.480 ms/op
+Iteration  22: 0.480 ms/op
+Iteration  23: 0.480 ms/op
+Iteration  24: 0.480 ms/op
+Iteration  25: 0.480 ms/op
+Iteration  26: 0.480 ms/op
+Iteration  27: 0.480 ms/op
+Iteration  28: 0.480 ms/op
+Iteration  29: 0.480 ms/op
+Iteration  30: 0.481 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.481 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.480, 0.481, 0.484), stdev = 0.001
+  CI (99.9%): [0.480, 0.482] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_128f)
+
+# Run progress: 78.33% complete, ETA 00:18:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.437 ms/op
+# Warmup Iteration   2: 2.403 ms/op
+Iteration   1: 2.405 ms/op
+Iteration   2: 2.405 ms/op
+Iteration   3: 2.406 ms/op
+Iteration   4: 2.405 ms/op
+Iteration   5: 2.404 ms/op
+Iteration   6: 2.405 ms/op
+Iteration   7: 2.407 ms/op
+Iteration   8: 2.401 ms/op
+Iteration   9: 2.402 ms/op
+Iteration  10: 2.403 ms/op
+Iteration  11: 2.403 ms/op
+Iteration  12: 2.400 ms/op
+Iteration  13: 2.401 ms/op
+Iteration  14: 2.401 ms/op
+Iteration  15: 2.401 ms/op
+Iteration  16: 2.403 ms/op
+Iteration  17: 2.403 ms/op
+Iteration  18: 2.404 ms/op
+Iteration  19: 2.406 ms/op
+Iteration  20: 2.407 ms/op
+Iteration  21: 2.403 ms/op
+Iteration  22: 2.402 ms/op
+Iteration  23: 2.403 ms/op
+Iteration  24: 2.412 ms/op
+Iteration  25: 2.412 ms/op
+Iteration  26: 2.403 ms/op
+Iteration  27: 2.407 ms/op
+Iteration  28: 2.403 ms/op
+Iteration  29: 2.409 ms/op
+Iteration  30: 2.404 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.404 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (2.400, 2.404, 2.412), stdev = 0.003
+  CI (99.9%): [2.402, 2.406] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_192f)
+
+# Run progress: 80.00% complete, ETA 00:16:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 4.217 ms/op
+# Warmup Iteration   2: 4.176 ms/op
+Iteration   1: 4.174 ms/op
+Iteration   2: 4.175 ms/op
+Iteration   3: 4.177 ms/op
+Iteration   4: 4.170 ms/op
+Iteration   5: 4.167 ms/op
+Iteration   6: 4.168 ms/op
+Iteration   7: 4.172 ms/op
+Iteration   8: 4.169 ms/op
+Iteration   9: 4.168 ms/op
+Iteration  10: 4.168 ms/op
+Iteration  11: 4.169 ms/op
+Iteration  12: 4.169 ms/op
+Iteration  13: 4.166 ms/op
+Iteration  14: 4.169 ms/op
+Iteration  15: 4.168 ms/op
+Iteration  16: 4.170 ms/op
+Iteration  17: 4.167 ms/op
+Iteration  18: 4.168 ms/op
+Iteration  19: 4.169 ms/op
+Iteration  20: 4.172 ms/op
+Iteration  21: 4.167 ms/op
+Iteration  22: 4.168 ms/op
+Iteration  23: 4.166 ms/op
+Iteration  24: 4.168 ms/op
+Iteration  25: 4.169 ms/op
+Iteration  26: 4.168 ms/op
+Iteration  27: 4.168 ms/op
+Iteration  28: 4.168 ms/op
+Iteration  29: 4.170 ms/op
+Iteration  30: 4.165 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  4.169 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (4.165, 4.169, 4.177), stdev = 0.003
+  CI (99.9%): [4.167, 4.171] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_256f)
+
+# Run progress: 81.67% complete, ETA 00:15:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 5.903 ms/op
+# Warmup Iteration   2: 5.869 ms/op
+Iteration   1: 5.868 ms/op
+Iteration   2: 5.868 ms/op
+Iteration   3: 5.866 ms/op
+Iteration   4: 5.865 ms/op
+Iteration   5: 5.866 ms/op
+Iteration   6: 5.865 ms/op
+Iteration   7: 5.866 ms/op
+Iteration   8: 5.868 ms/op
+Iteration   9: 5.865 ms/op
+Iteration  10: 5.865 ms/op
+Iteration  11: 5.863 ms/op
+Iteration  12: 5.864 ms/op
+Iteration  13: 5.861 ms/op
+Iteration  14: 5.860 ms/op
+Iteration  15: 5.861 ms/op
+Iteration  16: 5.862 ms/op
+Iteration  17: 5.863 ms/op
+Iteration  18: 5.862 ms/op
+Iteration  19: 5.862 ms/op
+Iteration  20: 5.860 ms/op
+Iteration  21: 5.859 ms/op
+Iteration  22: 5.865 ms/op
+Iteration  23: 5.862 ms/op
+Iteration  24: 5.861 ms/op
+Iteration  25: 5.860 ms/op
+Iteration  26: 5.861 ms/op
+Iteration  27: 5.861 ms/op
+Iteration  28: 5.861 ms/op
+Iteration  29: 5.861 ms/op
+Iteration  30: 5.862 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  5.863 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (5.859, 5.863, 5.868), stdev = 0.003
+  CI (99.9%): [5.861, 5.865] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_128s_simple)
+
+# Run progress: 83.33% complete, ETA 00:13:55
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.438 ms/op
+# Warmup Iteration   2: 0.435 ms/op
+Iteration   1: 0.433 ms/op
+Iteration   2: 0.432 ms/op
+Iteration   3: 0.434 ms/op
+Iteration   4: 0.432 ms/op
+Iteration   5: 0.430 ms/op
+Iteration   6: 0.431 ms/op
+Iteration   7: 0.434 ms/op
+Iteration   8: 0.432 ms/op
+Iteration   9: 0.432 ms/op
+Iteration  10: 0.433 ms/op
+Iteration  11: 0.430 ms/op
+Iteration  12: 0.432 ms/op
+Iteration  13: 0.429 ms/op
+Iteration  14: 0.430 ms/op
+Iteration  15: 0.430 ms/op
+Iteration  16: 0.429 ms/op
+Iteration  17: 0.430 ms/op
+Iteration  18: 0.430 ms/op
+Iteration  19: 0.430 ms/op
+Iteration  20: 0.430 ms/op
+Iteration  21: 0.432 ms/op
+Iteration  22: 0.431 ms/op
+Iteration  23: 0.431 ms/op
+Iteration  24: 0.430 ms/op
+Iteration  25: 0.430 ms/op
+Iteration  26: 0.429 ms/op
+Iteration  27: 0.433 ms/op
+Iteration  28: 0.431 ms/op
+Iteration  29: 0.433 ms/op
+Iteration  30: 0.433 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.431 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.429, 0.431, 0.434), stdev = 0.001
+  CI (99.9%): [0.430, 0.432] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_192s_simple)
+
+# Run progress: 85.00% complete, ETA 00:12:28
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.623 ms/op
+# Warmup Iteration   2: 0.620 ms/op
+Iteration   1: 0.620 ms/op
+Iteration   2: 0.619 ms/op
+Iteration   3: 0.619 ms/op
+Iteration   4: 0.619 ms/op
+Iteration   5: 0.619 ms/op
+Iteration   6: 0.620 ms/op
+Iteration   7: 0.620 ms/op
+Iteration   8: 0.619 ms/op
+Iteration   9: 0.620 ms/op
+Iteration  10: 0.620 ms/op
+Iteration  11: 0.618 ms/op
+Iteration  12: 0.619 ms/op
+Iteration  13: 0.637 ms/op
+Iteration  14: 0.618 ms/op
+Iteration  15: 0.619 ms/op
+Iteration  16: 0.618 ms/op
+Iteration  17: 0.619 ms/op
+Iteration  18: 0.619 ms/op
+Iteration  19: 0.619 ms/op
+Iteration  20: 0.618 ms/op
+Iteration  21: 0.618 ms/op
+Iteration  22: 0.618 ms/op
+Iteration  23: 0.617 ms/op
+Iteration  24: 0.617 ms/op
+Iteration  25: 0.618 ms/op
+Iteration  26: 0.617 ms/op
+Iteration  27: 0.618 ms/op
+Iteration  28: 0.617 ms/op
+Iteration  29: 0.618 ms/op
+Iteration  30: 0.619 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.619 ±(99.9%) 0.002 ms/op [Average]
+  (min, avg, max) = (0.617, 0.619, 0.637), stdev = 0.003
+  CI (99.9%): [0.617, 0.621] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_256s_simple)
+
+# Run progress: 86.67% complete, ETA 00:11:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.942 ms/op
+# Warmup Iteration   2: 0.936 ms/op
+Iteration   1: 0.934 ms/op
+Iteration   2: 0.939 ms/op
+Iteration   3: 0.943 ms/op
+Iteration   4: 0.939 ms/op
+Iteration   5: 0.939 ms/op
+Iteration   6: 0.942 ms/op
+Iteration   7: 0.941 ms/op
+Iteration   8: 0.941 ms/op
+Iteration   9: 0.935 ms/op
+Iteration  10: 0.941 ms/op
+Iteration  11: 0.947 ms/op
+Iteration  12: 0.942 ms/op
+Iteration  13: 0.943 ms/op
+Iteration  14: 0.941 ms/op
+Iteration  15: 0.938 ms/op
+Iteration  16: 0.940 ms/op
+Iteration  17: 0.941 ms/op
+Iteration  18: 0.933 ms/op
+Iteration  19: 0.937 ms/op
+Iteration  20: 0.929 ms/op
+Iteration  21: 0.936 ms/op
+Iteration  22: 0.931 ms/op
+Iteration  23: 0.934 ms/op
+Iteration  24: 0.934 ms/op
+Iteration  25: 0.934 ms/op
+Iteration  26: 0.958 ms/op
+Iteration  27: 0.938 ms/op
+Iteration  28: 0.936 ms/op
+Iteration  29: 0.934 ms/op
+Iteration  30: 0.936 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.939 ±(99.9%) 0.004 ms/op [Average]
+  (min, avg, max) = (0.929, 0.939, 0.958), stdev = 0.005
+  CI (99.9%): [0.935, 0.942] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = shake_192s_simple)
+
+# Run progress: 88.33% complete, ETA 00:09:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.054 ms/op
+# Warmup Iteration   2: 2.041 ms/op
+Iteration   1: 2.041 ms/op
+Iteration   2: 2.042 ms/op
+Iteration   3: 2.041 ms/op
+Iteration   4: 2.045 ms/op
+Iteration   5: 2.040 ms/op
+Iteration   6: 2.042 ms/op
+Iteration   7: 2.041 ms/op
+Iteration   8: 2.041 ms/op
+Iteration   9: 2.042 ms/op
+Iteration  10: 2.041 ms/op
+Iteration  11: 2.041 ms/op
+Iteration  12: 2.041 ms/op
+Iteration  13: 2.041 ms/op
+Iteration  14: 2.041 ms/op
+Iteration  15: 2.041 ms/op
+Iteration  16: 2.040 ms/op
+Iteration  17: 2.041 ms/op
+Iteration  18: 2.041 ms/op
+Iteration  19: 2.041 ms/op
+Iteration  20: 2.039 ms/op
+Iteration  21: 2.039 ms/op
+Iteration  22: 2.040 ms/op
+Iteration  23: 2.039 ms/op
+Iteration  24: 2.040 ms/op
+Iteration  25: 2.039 ms/op
+Iteration  26: 2.039 ms/op
+Iteration  27: 2.039 ms/op
+Iteration  28: 2.040 ms/op
+Iteration  29: 2.039 ms/op
+Iteration  30: 2.039 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  2.040 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (2.039, 2.040, 2.045), stdev = 0.001
+  CI (99.9%): [2.040, 2.041] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = shake_256s_simple)
+
+# Run progress: 90.00% complete, ETA 00:08:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 3.357 ms/op
+# Warmup Iteration   2: 3.351 ms/op
+Iteration   1: 3.352 ms/op
+Iteration   2: 3.349 ms/op
+Iteration   3: 3.350 ms/op
+Iteration   4: 3.347 ms/op
+Iteration   5: 3.349 ms/op
+Iteration   6: 3.347 ms/op
+Iteration   7: 3.356 ms/op
+Iteration   8: 3.352 ms/op
+Iteration   9: 3.360 ms/op
+Iteration  10: 3.364 ms/op
+Iteration  11: 3.351 ms/op
+Iteration  12: 3.361 ms/op
+Iteration  13: 3.352 ms/op
+Iteration  14: 3.355 ms/op
+Iteration  15: 3.363 ms/op
+Iteration  16: 3.358 ms/op
+Iteration  17: 3.346 ms/op
+Iteration  18: 3.356 ms/op
+Iteration  19: 3.347 ms/op
+Iteration  20: 3.351 ms/op
+Iteration  21: 3.346 ms/op
+Iteration  22: 3.351 ms/op
+Iteration  23: 3.345 ms/op
+Iteration  24: 3.365 ms/op
+Iteration  25: 3.356 ms/op
+Iteration  26: 3.364 ms/op
+Iteration  27: 3.356 ms/op
+Iteration  28: 3.367 ms/op
+Iteration  29: 3.365 ms/op
+Iteration  30: 3.358 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  3.355 ±(99.9%) 0.004 ms/op [Average]
+  (min, avg, max) = (3.345, 3.355, 3.367), stdev = 0.007
+  CI (99.9%): [3.350, 3.359] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = haraka_192s_simple)
+
+# Run progress: 91.67% complete, ETA 00:07:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.158 ms/op
+# Warmup Iteration   2: 0.160 ms/op
+Iteration   1: 0.160 ms/op
+Iteration   2: 0.161 ms/op
+Iteration   3: 0.159 ms/op
+Iteration   4: 0.161 ms/op
+Iteration   5: 0.160 ms/op
+Iteration   6: 0.160 ms/op
+Iteration   7: 0.161 ms/op
+Iteration   8: 0.161 ms/op
+Iteration   9: 0.161 ms/op
+Iteration  10: 0.160 ms/op
+Iteration  11: 0.161 ms/op
+Iteration  12: 0.160 ms/op
+Iteration  13: 0.160 ms/op
+Iteration  14: 0.160 ms/op
+Iteration  15: 0.161 ms/op
+Iteration  16: 0.161 ms/op
+Iteration  17: 0.160 ms/op
+Iteration  18: 0.161 ms/op
+Iteration  19: 0.160 ms/op
+Iteration  20: 0.161 ms/op
+Iteration  21: 0.159 ms/op
+Iteration  22: 0.160 ms/op
+Iteration  23: 0.159 ms/op
+Iteration  24: 0.161 ms/op
+Iteration  25: 0.160 ms/op
+Iteration  26: 0.161 ms/op
+Iteration  27: 0.161 ms/op
+Iteration  28: 0.161 ms/op
+Iteration  29: 0.160 ms/op
+Iteration  30: 0.159 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.160 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (0.159, 0.160, 0.161), stdev = 0.001
+  CI (99.9%): [0.160, 0.161] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = haraka_256s_simple)
+
+# Run progress: 93.33% complete, ETA 00:05:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.234 ms/op
+# Warmup Iteration   2: 0.258 ms/op
+Iteration   1: 0.264 ms/op
+Iteration   2: 0.262 ms/op
+Iteration   3: 0.266 ms/op
+Iteration   4: 0.262 ms/op
+Iteration   5: 0.263 ms/op
+Iteration   6: 0.265 ms/op
+Iteration   7: 0.265 ms/op
+Iteration   8: 0.257 ms/op
+Iteration   9: 0.242 ms/op
+Iteration  10: 0.241 ms/op
+Iteration  11: 0.241 ms/op
+Iteration  12: 0.242 ms/op
+Iteration  13: 0.240 ms/op
+Iteration  14: 0.241 ms/op
+Iteration  15: 0.240 ms/op
+Iteration  16: 0.242 ms/op
+Iteration  17: 0.243 ms/op
+Iteration  18: 0.242 ms/op
+Iteration  19: 0.239 ms/op
+Iteration  20: 0.239 ms/op
+Iteration  21: 0.240 ms/op
+Iteration  22: 0.240 ms/op
+Iteration  23: 0.240 ms/op
+Iteration  24: 0.241 ms/op
+Iteration  25: 0.239 ms/op
+Iteration  26: 0.239 ms/op
+Iteration  27: 0.238 ms/op
+Iteration  28: 0.236 ms/op
+Iteration  29: 0.238 ms/op
+Iteration  30: 0.239 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  0.246 ±(99.9%) 0.007 ms/op [Average]
+  (min, avg, max) = (0.236, 0.246, 0.266), stdev = 0.011
+  CI (99.9%): [0.239, 0.253] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_128f_simple)
+
+# Run progress: 95.00% complete, ETA 00:04:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.172 ms/op
+# Warmup Iteration   2: 1.154 ms/op
+Iteration   1: 1.153 ms/op
+Iteration   2: 1.154 ms/op
+Iteration   3: 1.154 ms/op
+Iteration   4: 1.153 ms/op
+Iteration   5: 1.154 ms/op
+Iteration   6: 1.153 ms/op
+Iteration   7: 1.153 ms/op
+Iteration   8: 1.154 ms/op
+Iteration   9: 1.153 ms/op
+Iteration  10: 1.154 ms/op
+Iteration  11: 1.154 ms/op
+Iteration  12: 1.154 ms/op
+Iteration  13: 1.154 ms/op
+Iteration  14: 1.153 ms/op
+Iteration  15: 1.153 ms/op
+Iteration  16: 1.152 ms/op
+Iteration  17: 1.152 ms/op
+Iteration  18: 1.153 ms/op
+Iteration  19: 1.153 ms/op
+Iteration  20: 1.154 ms/op
+Iteration  21: 1.154 ms/op
+Iteration  22: 1.154 ms/op
+Iteration  23: 1.153 ms/op
+Iteration  24: 1.153 ms/op
+Iteration  25: 1.153 ms/op
+Iteration  26: 1.154 ms/op
+Iteration  27: 1.157 ms/op
+Iteration  28: 1.157 ms/op
+Iteration  29: 1.155 ms/op
+Iteration  30: 1.155 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.154 ±(99.9%) 0.001 ms/op [Average]
+  (min, avg, max) = (1.152, 1.154, 1.157), stdev = 0.001
+  CI (99.9%): [1.153, 1.154] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_192f_simple)
+
+# Run progress: 96.67% complete, ETA 00:02:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 2.002 ms/op
+# Warmup Iteration   2: 1.953 ms/op
+Iteration   1: 1.953 ms/op
+Iteration   2: 1.965 ms/op
+Iteration   3: 1.964 ms/op
+Iteration   4: 1.949 ms/op
+Iteration   5: 1.967 ms/op
+Iteration   6: 1.967 ms/op
+Iteration   7: 1.965 ms/op
+Iteration   8: 1.958 ms/op
+Iteration   9: 1.954 ms/op
+Iteration  10: 1.957 ms/op
+Iteration  11: 1.965 ms/op
+Iteration  12: 1.952 ms/op
+Iteration  13: 1.944 ms/op
+Iteration  14: 1.937 ms/op
+Iteration  15: 1.970 ms/op
+Iteration  16: 1.943 ms/op
+Iteration  17: 1.950 ms/op
+Iteration  18: 1.953 ms/op
+Iteration  19: 1.962 ms/op
+Iteration  20: 1.965 ms/op
+Iteration  21: 1.966 ms/op
+Iteration  22: 1.957 ms/op
+Iteration  23: 1.962 ms/op
+Iteration  24: 1.969 ms/op
+Iteration  25: 1.950 ms/op
+Iteration  26: 1.957 ms/op
+Iteration  27: 1.951 ms/op
+Iteration  28: 1.961 ms/op
+Iteration  29: 1.962 ms/op
+Iteration  30: 1.956 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.958 ±(99.9%) 0.006 ms/op [Average]
+  (min, avg, max) = (1.937, 1.958, 1.970), stdev = 0.008
+  CI (99.9%): [1.952, 1.963] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 90 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify
+# Parameters: (hashingProvider = java, sphincsplus_parameter = sha2_256f_simple)
+
+# Run progress: 98.33% complete, ETA 00:01:22
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.808 ms/op
+# Warmup Iteration   2: 1.803 ms/op
+Iteration   1: 1.795 ms/op
+Iteration   2: 1.797 ms/op
+Iteration   3: 1.796 ms/op
+Iteration   4: 1.800 ms/op
+Iteration   5: 1.808 ms/op
+Iteration   6: 1.778 ms/op
+Iteration   7: 1.793 ms/op
+Iteration   8: 1.791 ms/op
+Iteration   9: 1.807 ms/op
+Iteration  10: 1.798 ms/op
+Iteration  11: 1.804 ms/op
+Iteration  12: 1.813 ms/op
+Iteration  13: 1.802 ms/op
+Iteration  14: 1.796 ms/op
+Iteration  15: 1.797 ms/op
+Iteration  16: 1.794 ms/op
+Iteration  17: 1.797 ms/op
+Iteration  18: 1.802 ms/op
+Iteration  19: 1.805 ms/op
+Iteration  20: 1.799 ms/op
+Iteration  21: 1.791 ms/op
+Iteration  22: 1.816 ms/op
+Iteration  23: 1.791 ms/op
+Iteration  24: 1.788 ms/op
+Iteration  25: 1.806 ms/op
+Iteration  26: 1.802 ms/op
+Iteration  27: 1.806 ms/op
+Iteration  28: 1.803 ms/op
+Iteration  29: 1.807 ms/op
+Iteration  30: 1.795 ms/op
+
+
+Result "com.sap.pq_sig_benchmark.verify.SPHINCSPlusVerificationBenchmark.verify":
+  1.799 ±(99.9%) 0.005 ms/op [Average]
+  (min, avg, max) = (1.778, 1.799, 1.816), stdev = 0.008
+  CI (99.9%): [1.794, 1.805] (assumes normal distribution)
+
+
+# Run complete. Total time: 01:22:15
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                (hashingProvider)  (sphincsplus_parameter)  Mode  Cnt   Score    Error  Units
+SPHINCSPlusVerificationBenchmark.verify                 bc                sha2_128s  avgt   30   1.516 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc                sha2_192s  avgt   30   2.975 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc                sha2_256s  avgt   30   5.680 ±  0.004  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc               shake_192s  avgt   30   3.223 ±  0.005  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc               shake_256s  avgt   30   4.183 ±  0.006  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc              haraka_192s  avgt   30   7.170 ±  0.004  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc              haraka_256s  avgt   30   9.546 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc                sha2_128f  avgt   30   4.908 ±  0.003  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc                sha2_192f  avgt   30   8.795 ±  0.007  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc                sha2_256f  avgt   30  12.144 ±  0.004  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc         sha2_128s_simple  avgt   30   0.773 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc         sha2_192s_simple  avgt   30   1.375 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc         sha2_256s_simple  avgt   30   2.097 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc        shake_192s_simple  avgt   30   1.471 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc        shake_256s_simple  avgt   30   2.244 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc       haraka_192s_simple  avgt   30   3.137 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc       haraka_256s_simple  avgt   30   4.936 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc         sha2_128f_simple  avgt   30   2.324 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc         sha2_192f_simple  avgt   30   4.250 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                 bc         sha2_256f_simple  avgt   30   3.947 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni               shake_192s  avgt   30   1.547 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni               shake_256s  avgt   30   2.157 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni              haraka_192s  avgt   30   0.376 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni              haraka_256s  avgt   30   0.566 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni        shake_192s_simple  avgt   30   0.810 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni        shake_256s_simple  avgt   30   1.194 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni       haraka_192s_simple  avgt   30   0.247 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify                jni       haraka_256s_simple  avgt   30   0.330 ±  0.003  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java                sha2_128s  avgt   30   0.870 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java                sha2_192s  avgt   30   1.491 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java                sha2_256s  avgt   30   2.925 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java               shake_192s  avgt   30   4.342 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java               shake_256s  avgt   30   6.427 ±  0.009  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java              haraka_192s  avgt   30   0.338 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java              haraka_256s  avgt   30   0.481 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java                sha2_128f  avgt   30   2.404 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java                sha2_192f  avgt   30   4.169 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java                sha2_256f  avgt   30   5.863 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java         sha2_128s_simple  avgt   30   0.431 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java         sha2_192s_simple  avgt   30   0.619 ±  0.002  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java         sha2_256s_simple  avgt   30   0.939 ±  0.004  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java        shake_192s_simple  avgt   30   2.040 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java        shake_256s_simple  avgt   30   3.355 ±  0.004  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java       haraka_192s_simple  avgt   30   0.160 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java       haraka_256s_simple  avgt   30   0.246 ±  0.007  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java         sha2_128f_simple  avgt   30   1.154 ±  0.001  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java         sha2_192f_simple  avgt   30   1.958 ±  0.006  ms/op
+SPHINCSPlusVerificationBenchmark.verify               java         sha2_256f_simple  avgt   30   1.799 ±  0.005  ms/op
+
+Benchmark result is saved to jmh-result.csv

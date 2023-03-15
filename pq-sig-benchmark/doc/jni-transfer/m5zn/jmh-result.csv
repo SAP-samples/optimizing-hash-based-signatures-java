@@ -1,0 +1,8 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit"
+"org.example.JniTransferBenchmark.testByteArrayCritical","avgt",1,1000,56.183492,0.098340,"ns/op"
+"org.example.JniTransferBenchmark.testByteArrayElements","avgt",1,1000,84.791136,0.154143,"ns/op"
+"org.example.JniTransferBenchmark.testByteArrayRegion","avgt",1,1000,45.625643,0.290156,"ns/op"
+"org.example.JniTransferBenchmark.testDirectByteBuffer","avgt",1,1000,49.646371,0.109975,"ns/op"
+"org.example.JniTransferBenchmark.testNettyPooledByteBuf","avgt",1,1000,22.568382,0.065436,"ns/op"
+"org.example.JniTransferBenchmark.testNettyUnpooledByteBuf","avgt",1,1000,22.551283,0.050530,"ns/op"
+"org.example.JniTransferBenchmark.testUnsafe","avgt",1,1000,20.236342,0.049563,"ns/op"

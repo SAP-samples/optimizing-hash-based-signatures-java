@@ -1,0 +1,57 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: optimizing-hash-based-signatures-java
+Upstream-Contact: Tim Rausch <tim.rausch@sap.com>
+Source: <https://github.com/sap-samples/optimizing-hash-based-signatures-java>
+Disclaimer: The code in this project may include calls to APIs ("API Calls") of
+ SAP or third-party products or services developed outside of this project
+ ("External Products").
+ "APIs" means application programming interfaces, as well as their respective
+ specifications and implementing code that allows software to communicate with
+ other software.
+ API Calls to External Products are not licensed under the open source license
+ that governs this project. The use of such API Calls and related External
+ Products are subject to applicable additional agreements with the relevant
+ provider of the External Products. In no event shall the open source license
+ that governs this project grant any rights in or to any External Products,or
+ alter, expand or supersede any terms of the applicable additional agreements.
+ If you have a valid license agreement with SAP for the use of a particular SAP
+ External Product, then you may make use of any API Calls included in this
+ project's code for that SAP External Product, subject to the terms of such
+ license agreement. If you do not have a valid license agreement for the use of
+ a particular SAP External Product, then you may only make use of any API Calls
+ in this project for that SAP External Product for your internal, non-productive
+ and non-commercial test and evaluation of such API Calls. Nothing herein grants
+ you any rights to use or access any SAP External Product, or provide any third
+ parties the right to use of access any SAP External Product, through API Calls.
+
+Files: *
+Copyright: 2023 SAP SE or an SAP affiliate company and optimizing-hash-based-signatures-java contributors
+License: Apache-2.0
+
+Files: bcpqc/*
+Copyright: 2000-2021 The Legion of the Bouncy Castle Inc. (https://www.bouncycastle.org)
+           2023 SAP SE or an SAP affiliate company and optimizing-hash-based-signatures-java contributors
+License: MIT
+
+Files: jdk-patch/jdk.patch
+Copyright: 1996, 2021, Oracle and/or its affiliates
+           2019, 2021, Intel Corporation
+           2000-2021 The Legion of the Bouncy Castle Inc. (https://www.bouncycastle.org)
+           2023 SAP SE or an SAP affiliate company and optimizing-hash-based-signatures-java contributors
+License: GPL-2.0-only with Classpath-exception-2.0 and MIT
+
+Files: jni-hash/src/native/src/haraka jni-hash/src/main/java/org/example/jnihash/haraka
+Copyright: 2020-2021 Lena Heimberger
+           2023 SAP SE or an SAP affiliate company and optimizing-hash-based-signatures-java contributors
+License: MIT
+
+Files: jni-hash/src/native/src/custom_fips202
+Copyright: Ronny Van Keer
+           Gilles Van Assche, Daniel J. Bernstein, and Peter Schwabe
+           Andreas Hülsing and Joost Rijneveld
+License: CC0-1.0
+
+
+
+
+

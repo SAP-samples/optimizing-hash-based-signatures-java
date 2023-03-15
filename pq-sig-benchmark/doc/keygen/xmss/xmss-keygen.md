@@ -1,0 +1,2 @@
+
+java --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED -jar target/benchmarks.jar -f 1 -i 10 -wi 2 -r 20s -to 90min -rf csv  -p xmss_parameter=SHA2_10_256,SHA2_16_256,SHA2_10_192,SHA2_16_192,SHAKE256_10_256,SHAKE256_16_256,SHAKE256_10_192,SHAKE256_16_192 XMSSKeyGenerationBenchmark | tee xmss-keygen.log; sudo systemctl poweroff

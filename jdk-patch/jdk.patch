@@ -1,0 +1,3283 @@
+diff --git a/src/hotspot/cpu/x86/assembler_x86.cpp b/src/hotspot/cpu/x86/assembler_x86.cpp
+index efe407ee3de..c1dd77309b9 100644
+--- a/src/hotspot/cpu/x86/assembler_x86.cpp
++++ b/src/hotspot/cpu/x86/assembler_x86.cpp
+@@ -5143,6 +5143,14 @@ void Assembler::punpckldq(XMMRegister dst, XMMRegister src) {
+   emit_int16(0x62, (0xC0 | encode));
+ }
+ 
++void Assembler::punpckhdq(XMMRegister dst, XMMRegister src) {
++  NOT_LP64(assert(VM_Version::supports_sse2(), ""));
++  InstructionAttr attributes(AVX_128bit, /* rex_w */ false, /* legacy_mode */ false, /* no_mask_reg */ true, /* uses_vl */ true);
++  int encode = simd_prefix_and_encode(dst, dst, src, VEX_SIMD_66, VEX_OPCODE_0F, &attributes);
++  emit_int16(0x6A, (0xC0 | encode));
++}
++
++
+ void Assembler::punpcklqdq(XMMRegister dst, XMMRegister src) {
+   NOT_LP64(assert(VM_Version::supports_sse2(), ""));
+   InstructionAttr attributes(AVX_128bit, /* rex_w */ VM_Version::supports_evex(), /* legacy_mode */ false, /* no_mask_reg */ true, /* uses_vl */ true);
+@@ -5151,6 +5159,15 @@ void Assembler::punpcklqdq(XMMRegister dst, XMMRegister src) {
+   emit_int16(0x6C, (0xC0 | encode));
+ }
+ 
++void Assembler::punpckhqdq(XMMRegister dst, XMMRegister src) {
++  NOT_LP64(assert(VM_Version::supports_sse2(), ""));
++  InstructionAttr attributes(AVX_128bit, /* rex_w */ VM_Version::supports_evex(), /* legacy_mode */ false, /* no_mask_reg */ true, /* uses_vl */ true);
++  attributes.set_rex_vex_w_reverted();
++  int encode = simd_prefix_and_encode(dst, dst, src, VEX_SIMD_66, VEX_OPCODE_0F, &attributes);
++  emit_int16(0x6D, (0xC0 | encode));
++}
++
++
+ void Assembler::push(int32_t imm32) {
+   // in 64bits we push 64bits onto the stack but only
+   // take a 32bit immediate
+diff --git a/src/hotspot/cpu/x86/assembler_x86.hpp b/src/hotspot/cpu/x86/assembler_x86.hpp
+index 1ba76f0d761..7b9a2d11fae 100644
+--- a/src/hotspot/cpu/x86/assembler_x86.hpp
++++ b/src/hotspot/cpu/x86/assembler_x86.hpp
+@@ -1933,9 +1933,16 @@ private:
+   void punpckldq(XMMRegister dst, XMMRegister src);
+   void punpckldq(XMMRegister dst, Address src);
+ 
++  // Interleave High Doublewords
++  void punpckhdq(XMMRegister dst, XMMRegister src);
++
++
+   // Interleave Low Quadwords
+   void punpcklqdq(XMMRegister dst, XMMRegister src);
+ 
++  // Interleave High Quadwords
++  void punpckhqdq(XMMRegister dst, XMMRegister src);
++
+ #ifndef _LP64 // no 32bit push/pop on amd64
+   void pushl(Address src);
+ #endif
+diff --git a/src/hotspot/cpu/x86/macroAssembler_x86_aes.cpp b/src/hotspot/cpu/x86/macroAssembler_x86_aes.cpp
+index 776eebaa684..f89a2fb5a41 100644
+--- a/src/hotspot/cpu/x86/macroAssembler_x86_aes.cpp
++++ b/src/hotspot/cpu/x86/macroAssembler_x86_aes.cpp
+@@ -90,186 +90,13 @@ void MacroAssembler::aesecb_encrypt(Register src_addr, Register dest_addr, Regis
+ 
+     xorptr(pos, pos);
+ 
+-    // Calculate number of rounds based on key length(128, 192, 256):44 for 10-rounds, 52 for 12-rounds, 60 for 14-rounds
+-    movl(rounds, Address(key, arrayOopDesc::length_offset_in_bytes() - arrayOopDesc::base_offset_in_bytes(T_INT)));
+-
+-    // Load Key shuf mask
+-    const XMMRegister xmm_key_shuf_mask = xmm31;  // used temporarily to swap key bytes up front
+-    movdqu(xmm_key_shuf_mask, ExternalAddress(StubRoutines::x86::key_shuffle_mask_addr()));
+-
+-    // Load and shuffle key based on number of rounds
+-    ev_load_key(xmm8, key, 0 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm9, key, 1 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm10, key, 2 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm23, key, 3 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm12, key, 4 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm13, key, 5 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm14, key, 6 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm15, key, 7 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm16, key, 8 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm17, key, 9 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm24, key, 10 * 16, xmm_key_shuf_mask);
+-    cmpl(rounds, 52);
+-    jcc(Assembler::greaterEqual, KEY_192);
+-    jmp(Loop_start);
+-
+-    bind(KEY_192);
+-    ev_load_key(xmm19, key, 11 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm20, key, 12 * 16, xmm_key_shuf_mask);
+-    cmpl(rounds, 60);
+-    jcc(Assembler::equal, KEY_256);
+-    jmp(Loop_start);
+-
+-    bind(KEY_256);
+-    ev_load_key(xmm21, key, 13 * 16, xmm_key_shuf_mask);
+-    ev_load_key(xmm22, key, 14 * 16, xmm_key_shuf_mask);
+-
+-    bind(Loop_start);
+-    movq(rbx, len);
+-    // Divide length by 16 to convert it to number of blocks
+-    shrq(len, 4);
+-    shlq(rbx, 60);
+-    jcc(Assembler::equal, NO_PARTS);
+-    addq(len, 1);
+-    // Check if number of blocks is greater than or equal to 32
+-    // If true, 512 bytes are processed at a time (code marked by label LOOP)
+-    // If not, 16 bytes are processed (code marked by REMAINDER label)
+-    bind(NO_PARTS);
+-    movq(rbx, len);
+-    shrq(len, 5);
+-    jcc(Assembler::equal, REMAINDER);
+-    movl(r13, len);
+-    // Compute number of blocks that will be processed 512 bytes at a time
+-    // Subtract this from the total number of blocks which will then be processed by REMAINDER loop
+-    shlq(r13, 5);
+-    subq(rbx, r13);
+-    //Begin processing 512 bytes
+-    bind(LOOP);
+-    // Move 64 bytes of PT data into a zmm register, as a result 512 bytes of PT loaded in zmm0-7
+-    evmovdquq(xmm0, Address(src_addr, pos, Address::times_1, 0 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm1, Address(src_addr, pos, Address::times_1, 1 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm2, Address(src_addr, pos, Address::times_1, 2 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm3, Address(src_addr, pos, Address::times_1, 3 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm4, Address(src_addr, pos, Address::times_1, 4 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm5, Address(src_addr, pos, Address::times_1, 5 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm6, Address(src_addr, pos, Address::times_1, 6 * 64), Assembler::AVX_512bit);
+-    evmovdquq(xmm7, Address(src_addr, pos, Address::times_1, 7 * 64), Assembler::AVX_512bit);
+-    // Xor with the first round key
+-    evpxorq(xmm0, xmm0, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm1, xmm1, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm2, xmm2, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm3, xmm3, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm4, xmm4, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm5, xmm5, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm6, xmm6, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm7, xmm7, xmm8, Assembler::AVX_512bit);
+-    // 9 Aes encode round operations
+-    roundEnc(xmm9,  7);
+-    roundEnc(xmm10, 7);
+-    roundEnc(xmm23, 7);
+-    roundEnc(xmm12, 7);
+-    roundEnc(xmm13, 7);
+-    roundEnc(xmm14, 7);
+-    roundEnc(xmm15, 7);
+-    roundEnc(xmm16, 7);
+-    roundEnc(xmm17, 7);
+-    cmpl(rounds, 52);
+-    jcc(Assembler::aboveEqual, AES192);
+-    // Aesenclast round operation for keysize = 128
+-    lastroundEnc(xmm24, 7);
+-    jmp(END_LOOP);
+-    //Additional 2 rounds of Aesenc operation for keysize = 192
+-    bind(AES192);
+-    roundEnc(xmm24, 7);
+-    roundEnc(xmm19, 7);
+-    cmpl(rounds, 60);
+-    jcc(Assembler::aboveEqual, AES256);
+-    // Aesenclast round for keysize = 192
+-    lastroundEnc(xmm20, 7);
+-    jmp(END_LOOP);
+-    // 2 rounds of Aesenc operation and Aesenclast for keysize = 256
+-    bind(AES256);
+-    roundEnc(xmm20, 7);
+-    roundEnc(xmm21, 7);
+-    lastroundEnc(xmm22, 7);
++    const XMMRegister xmm_s0 = xmm0;
++    const XMMRegister xmm_s1 = xmm1;
+ 
+-    bind(END_LOOP);
+-    // Move 512 bytes of CT to destination
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 0 * 64), xmm0, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 1 * 64), xmm1, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 2 * 64), xmm2, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 3 * 64), xmm3, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 4 * 64), xmm4, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 5 * 64), xmm5, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 6 * 64), xmm6, Assembler::AVX_512bit);
+-    evmovdquq(Address(dest_addr, pos, Address::times_1, 7 * 64), xmm7, Assembler::AVX_512bit);
++    movdqu(xmm_s0, Address(src_addr, 0));
++    movdqu(Address(dest_addr, 0), xmm_s0);
+ 
+-    addq(pos, 512);
+-    decq(len);
+-    jcc(Assembler::notEqual, LOOP);
+-
+-    bind(REMAINDER);
+-    vzeroupper();
+-    cmpq(rbx, 0);
+-    jcc(Assembler::equal, END);
+-    // Process 16 bytes at a time
+-    bind(LOOP2);
+-    movdqu(xmm1, Address(src_addr, pos, Address::times_1, 0));
+-    vpxor(xmm1, xmm1, xmm8, Assembler::AVX_128bit);
+-    // xmm2 contains shuffled key for Aesenclast operation.
+-    vmovdqu(xmm2, xmm24);
+-
+-    vaesenc(xmm1, xmm1, xmm9, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm10, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm23, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm12, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm13, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm14, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm15, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm16, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm17, Assembler::AVX_128bit);
+ 
+-    cmpl(rounds, 52);
+-    jcc(Assembler::below, LAST2);
+-    vmovdqu(xmm2, xmm20);
+-    vaesenc(xmm1, xmm1, xmm24, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm19, Assembler::AVX_128bit);
+-    cmpl(rounds, 60);
+-    jcc(Assembler::below, LAST2);
+-    vmovdqu(xmm2, xmm22);
+-    vaesenc(xmm1, xmm1, xmm20, Assembler::AVX_128bit);
+-    vaesenc(xmm1, xmm1, xmm21, Assembler::AVX_128bit);
+-
+-    bind(LAST2);
+-    // Aesenclast round
+-    vaesenclast(xmm1, xmm1, xmm2, Assembler::AVX_128bit);
+-    // Write 16 bytes of CT to destination
+-    movdqu(Address(dest_addr, pos, Address::times_1, 0), xmm1);
+-    addq(pos, 16);
+-    decq(rbx);
+-    jcc(Assembler::notEqual, LOOP2);
+-
+-    bind(END);
+-    // Zero out the round keys
+-    evpxorq(xmm8, xmm8, xmm8, Assembler::AVX_512bit);
+-    evpxorq(xmm9, xmm9, xmm9, Assembler::AVX_512bit);
+-    evpxorq(xmm10, xmm10, xmm10, Assembler::AVX_512bit);
+-    evpxorq(xmm23, xmm23, xmm23, Assembler::AVX_512bit);
+-    evpxorq(xmm12, xmm12, xmm12, Assembler::AVX_512bit);
+-    evpxorq(xmm13, xmm13, xmm13, Assembler::AVX_512bit);
+-    evpxorq(xmm14, xmm14, xmm14, Assembler::AVX_512bit);
+-    evpxorq(xmm15, xmm15, xmm15, Assembler::AVX_512bit);
+-    evpxorq(xmm16, xmm16, xmm16, Assembler::AVX_512bit);
+-    evpxorq(xmm17, xmm17, xmm17, Assembler::AVX_512bit);
+-    evpxorq(xmm24, xmm24, xmm24, Assembler::AVX_512bit);
+-    cmpl(rounds, 44);
+-    jcc(Assembler::belowEqual, EXIT);
+-    evpxorq(xmm19, xmm19, xmm19, Assembler::AVX_512bit);
+-    evpxorq(xmm20, xmm20, xmm20, Assembler::AVX_512bit);
+-    cmpl(rounds, 52);
+-    jcc(Assembler::belowEqual, EXIT);
+-    evpxorq(xmm21, xmm21, xmm21, Assembler::AVX_512bit);
+-    evpxorq(xmm22, xmm22, xmm22, Assembler::AVX_512bit);
+     bind(EXIT);
+     pop(rbx);
+     pop(rax); // return length
+diff --git a/src/hotspot/cpu/x86/stubGenerator_x86_64.cpp b/src/hotspot/cpu/x86/stubGenerator_x86_64.cpp
+index 8e6257cb786..d3f6112f49a 100644
+--- a/src/hotspot/cpu/x86/stubGenerator_x86_64.cpp
++++ b/src/hotspot/cpu/x86/stubGenerator_x86_64.cpp
+@@ -3495,6 +3495,20 @@ class StubGenerator: public StubCodeGenerator {
+     __ BIND(next_block);          // next instruction
+   }
+ 
++  #define AES2(s0, s1, rc, rci) \
++    __ aesenc(s0, Address(rc, rci * 16)); \
++    __ aesenc(s1, Address(rc, (rci + 1) * 16)); \
++    __ aesenc(s0, Address(rc, (rci + 2) * 16)); \
++    __ aesenc(s1, Address(rc, (rci + 3) * 16));
++
++  #define MIX2(s0, s1, tmp) \
++    __ movdqu(tmp, s0); \
++    __ punpckldq(s0, s1); \
++    __ punpckhdq(tmp, s1); \
++    __ movdqu(s1, tmp);
++
++
++
+   // Arguments:
+   //
+   // Inputs:
+@@ -3512,10 +3526,9 @@ class StubGenerator: public StubCodeGenerator {
+     const Register from        = c_rarg0;  // source array address
+     const Register to          = c_rarg1;  // destination array address
+     const Register key         = c_rarg2;  // key array address
+-    const Register keylen      = rax;
+ 
+-    const XMMRegister xmm_result = xmm0;
+-    const XMMRegister xmm_key_shuf_mask = xmm1;
++    const XMMRegister xmm_s0 = xmm0;
++    const XMMRegister xmm_s1 = xmm1;
+     // On win64 xmm6-xmm15 must be preserved so don't use them.
+     const XMMRegister xmm_temp1  = xmm2;
+     const XMMRegister xmm_temp2  = xmm3;
+@@ -3524,63 +3537,34 @@ class StubGenerator: public StubCodeGenerator {
+ 
+     __ enter(); // required for proper stackwalking of RuntimeStub frame
+ 
+-    // keylen could be only {11, 13, 15} * 4 = {44, 52, 60}
+-    __ movl(keylen, Address(key, arrayOopDesc::length_offset_in_bytes() - arrayOopDesc::base_offset_in_bytes(T_INT)));
+-
+-    __ movdqu(xmm_key_shuf_mask, ExternalAddress(StubRoutines::x86::key_shuffle_mask_addr()));
+-    __ movdqu(xmm_result, Address(from, 0));  // get 16 bytes of input
+-
+-    // For encryption, the java expanded key ordering is just what we need
+-    // we don't know if the key is aligned, hence not using load-execute form
+-
+-    load_key(xmm_temp1, key, 0x00, xmm_key_shuf_mask);
+-    __ pxor(xmm_result, xmm_temp1);
+-
+-    load_key(xmm_temp1, key, 0x10, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0x20, xmm_key_shuf_mask);
+-    load_key(xmm_temp3, key, 0x30, xmm_key_shuf_mask);
+-    load_key(xmm_temp4, key, 0x40, xmm_key_shuf_mask);
+ 
+-    __ aesenc(xmm_result, xmm_temp1);
+-    __ aesenc(xmm_result, xmm_temp2);
+-    __ aesenc(xmm_result, xmm_temp3);
+-    __ aesenc(xmm_result, xmm_temp4);
++    __ movdqu(xmm_s0, Address(from, 0));  // get 16 bytes of input
++    __ movdqu(xmm_s1, Address(from, 16));  // get 16 bytes of input
+ 
+-    load_key(xmm_temp1, key, 0x50, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0x60, xmm_key_shuf_mask);
+-    load_key(xmm_temp3, key, 0x70, xmm_key_shuf_mask);
+-    load_key(xmm_temp4, key, 0x80, xmm_key_shuf_mask);
++    __ movdqu(xmm_temp2, xmm_s0);
++    __ movdqu(xmm_temp3, xmm_s1);
+ 
+-    __ aesenc(xmm_result, xmm_temp1);
+-    __ aesenc(xmm_result, xmm_temp2);
+-    __ aesenc(xmm_result, xmm_temp3);
+-    __ aesenc(xmm_result, xmm_temp4);
++    AES2(xmm_s0, xmm_s1, to, 0);
++    MIX2(xmm_s0, xmm_s1, xmm_temp1);
+ 
+-    load_key(xmm_temp1, key, 0x90, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0xa0, xmm_key_shuf_mask);
++    AES2(xmm_s0, xmm_s1, to, 4);
++    MIX2(xmm_s0, xmm_s1, xmm_temp1);
+ 
+-    __ cmpl(keylen, 44);
+-    __ jccb(Assembler::equal, L_doLast);
++    AES2(xmm_s0, xmm_s1, to, 8);
++    MIX2(xmm_s0, xmm_s1, xmm_temp1);
+ 
+-    __ aesenc(xmm_result, xmm_temp1);
+-    __ aesenc(xmm_result, xmm_temp2);
++    AES2(xmm_s0, xmm_s1, to, 12);
++    MIX2(xmm_s0, xmm_s1, xmm_temp1);
+ 
+-    load_key(xmm_temp1, key, 0xb0, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0xc0, xmm_key_shuf_mask);
++    AES2(xmm_s0, xmm_s1, to, 16);
++    MIX2(xmm_s0, xmm_s1, xmm_temp1);
+ 
+-    __ cmpl(keylen, 52);
+-    __ jccb(Assembler::equal, L_doLast);
++    __ pxor(xmm_s0, xmm_temp2);
++    __ pxor(xmm_s1, xmm_temp3);
+ 
+-    __ aesenc(xmm_result, xmm_temp1);
+-    __ aesenc(xmm_result, xmm_temp2);
++    __ movdqu(Address(from, 0), xmm_s0);        // store the result
++    __ movdqu(Address(from, 16), xmm_s1);
+ 
+-    load_key(xmm_temp1, key, 0xd0, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0xe0, xmm_key_shuf_mask);
+-
+-    __ BIND(L_doLast);
+-    __ aesenc(xmm_result, xmm_temp1);
+-    __ aesenclast(xmm_result, xmm_temp2);
+-    __ movdqu(Address(to, 0), xmm_result);        // store the result
+     __ xorptr(rax, rax); // return 0
+     __ leave(); // required for proper stackwalking of RuntimeStub frame
+     __ ret(0);
+@@ -3588,6 +3572,46 @@ class StubGenerator: public StubCodeGenerator {
+     return start;
+   }
+ 
++  #undef AES2
++  #undef MIX2
++
++  #define AES4(s0, s1, s2, s3, rc, rci) \
++    __ aesenc(s0, Address(rc, rci * 16)); \
++    __ aesenc(s1, Address(rc, (rci + 1) * 16)); \
++    __ aesenc(s2, Address(rc, (rci + 2) * 16)); \
++    __ aesenc(s3, Address(rc, (rci + 3) * 16)); \
++    __ aesenc(s0, Address(rc, (rci + 4) * 16)); \
++    __ aesenc(s1, Address(rc, (rci + 5) * 16)); \
++    __ aesenc(s2, Address(rc, (rci + 6) * 16)); \
++    __ aesenc(s3, Address(rc, (rci + 7) * 16));
++
++  /*
++    Permutation in Haraka reference implementation:
++
++    tmp  = _mm_unpacklo_epi32(s0, s1); \
++    s0 = _mm_unpackhi_epi32(s0, s1); \
++    s1 = _mm_unpacklo_epi32(s2, s3); \
++    s2 = _mm_unpackhi_epi32(s2, s3); \
++    s3 = _mm_unpacklo_epi32(s0, s2); \
++    s0 = _mm_unpackhi_epi32(s0, s2); \
++    s2 = _mm_unpackhi_epi32(s1, tmp); \
++    s1 = _mm_unpacklo_epi32(s1, tmp);
++    */
++
++  #define MIX4(s0, s1, s2, s3, tmp)  \
++    __ movdqu(tmp, s0); \
++    __ punpckldq(tmp, s1); \
++    __ punpckhdq(s0, s1); \
++    __ movdqu(s1, s2); \
++    __ punpckldq(s1, s3); \
++    __ punpckhdq(s2, s3); \
++    __ movdqu(s3, s0); \
++    __ punpckldq(s3, s2); \
++    __ punpckhdq(s0, s2); \
++    __ movdqu(s2, s1); \
++    __ punpckhdq(s2, tmp); \
++    __ punpckldq(s1, tmp);
++
+ 
+   // Arguments:
+   //
+@@ -3606,76 +3630,45 @@ class StubGenerator: public StubCodeGenerator {
+     const Register from        = c_rarg0;  // source array address
+     const Register to          = c_rarg1;  // destination array address
+     const Register key         = c_rarg2;  // key array address
+-    const Register keylen      = rax;
++    //const Register keylen      = rax;
+ 
+-    const XMMRegister xmm_result = xmm0;
+-    const XMMRegister xmm_key_shuf_mask = xmm1;
++    const XMMRegister xmm_s0 = xmm0;
++    const XMMRegister xmm_s1 = xmm1;
+     // On win64 xmm6-xmm15 must be preserved so don't use them.
+-    const XMMRegister xmm_temp1  = xmm2;
+-    const XMMRegister xmm_temp2  = xmm3;
+-    const XMMRegister xmm_temp3  = xmm4;
+-    const XMMRegister xmm_temp4  = xmm5;
++    const XMMRegister xmm_s2  = xmm2;
++    const XMMRegister xmm_s3  = xmm3;
++    const XMMRegister xmm_temp1  = xmm4;
++    const XMMRegister xmm_temp2  = xmm5;
+ 
+     __ enter(); // required for proper stackwalking of RuntimeStub frame
+ 
+-    // keylen could be only {11, 13, 15} * 4 = {44, 52, 60}
+-    __ movl(keylen, Address(key, arrayOopDesc::length_offset_in_bytes() - arrayOopDesc::base_offset_in_bytes(T_INT)));
+-
+-    __ movdqu(xmm_key_shuf_mask, ExternalAddress(StubRoutines::x86::key_shuffle_mask_addr()));
+-    __ movdqu(xmm_result, Address(from, 0));
+-
+-    // for decryption java expanded key ordering is rotated one position from what we want
+-    // so we start from 0x10 here and hit 0x00 last
+-    // we don't know if the key is aligned, hence not using load-execute form
+-    load_key(xmm_temp1, key, 0x10, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0x20, xmm_key_shuf_mask);
+-    load_key(xmm_temp3, key, 0x30, xmm_key_shuf_mask);
+-    load_key(xmm_temp4, key, 0x40, xmm_key_shuf_mask);
+-
+-    __ pxor  (xmm_result, xmm_temp1);
+-    __ aesdec(xmm_result, xmm_temp2);
+-    __ aesdec(xmm_result, xmm_temp3);
+-    __ aesdec(xmm_result, xmm_temp4);
+-
+-    load_key(xmm_temp1, key, 0x50, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0x60, xmm_key_shuf_mask);
+-    load_key(xmm_temp3, key, 0x70, xmm_key_shuf_mask);
+-    load_key(xmm_temp4, key, 0x80, xmm_key_shuf_mask);
+-
+-    __ aesdec(xmm_result, xmm_temp1);
+-    __ aesdec(xmm_result, xmm_temp2);
+-    __ aesdec(xmm_result, xmm_temp3);
+-    __ aesdec(xmm_result, xmm_temp4);
+-
+-    load_key(xmm_temp1, key, 0x90, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0xa0, xmm_key_shuf_mask);
+-    load_key(xmm_temp3, key, 0x00, xmm_key_shuf_mask);
++    __ movdqu(xmm_s0, Address(from, 0));
++    __ movdqu(xmm_s1, Address(from, 16));
++    __ movdqu(xmm_s2, Address(from, 32));
++    __ movdqu(xmm_s3, Address(from, 48));
+ 
+-    __ cmpl(keylen, 44);
+-    __ jccb(Assembler::equal, L_doLast);
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 0)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
+ 
+-    __ aesdec(xmm_result, xmm_temp1);
+-    __ aesdec(xmm_result, xmm_temp2);
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 8)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
+ 
+-    load_key(xmm_temp1, key, 0xb0, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0xc0, xmm_key_shuf_mask);
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 16)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
+ 
+-    __ cmpl(keylen, 52);
+-    __ jccb(Assembler::equal, L_doLast);
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 24)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
+ 
+-    __ aesdec(xmm_result, xmm_temp1);
+-    __ aesdec(xmm_result, xmm_temp2);
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 32)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
+ 
+-    load_key(xmm_temp1, key, 0xd0, xmm_key_shuf_mask);
+-    load_key(xmm_temp2, key, 0xe0, xmm_key_shuf_mask);
++    // We don't XOR or truncate here because the full output is required for HarakaS
+ 
+-    __ BIND(L_doLast);
+-    __ aesdec(xmm_result, xmm_temp1);
+-    __ aesdec(xmm_result, xmm_temp2);
++    __ movdqu(Address(from, 0), xmm_s0);
++    __ movdqu(Address(from, 16), xmm_s1);
++    __ movdqu(Address(from, 32), xmm_s2);
++    __ movdqu(Address(from, 48), xmm_s3);
+ 
+-    // for decryption the aesdeclast operation is always on key+0x00
+-    __ aesdeclast(xmm_result, xmm_temp3);
+-    __ movdqu(Address(to, 0), xmm_result);  // store the result
+     __ xorptr(rax, rax); // return 0
+     __ leave(); // required for proper stackwalking of RuntimeStub frame
+     __ ret(0);
+@@ -3683,7 +3676,6 @@ class StubGenerator: public StubCodeGenerator {
+     return start;
+   }
+ 
+-
+   // Arguments:
+   //
+   // Inputs:
+@@ -4137,13 +4129,60 @@ class StubGenerator: public StubCodeGenerator {
+     const Register key = c_rarg2;  // key array address
+     const Register len = c_rarg3;  // src len (must be multiple of blocksize 16)
+     __ enter(); // required for proper stackwalking of RuntimeStub frame
+-    __ aesecb_encrypt(from, to, key, len);
++    const XMMRegister xmm_s0 = xmm0;
++    const XMMRegister xmm_s1 = xmm1;
++    // On win64 xmm6-xmm15 must be preserved so don't use them.
++    const XMMRegister xmm_s2  = xmm2;
++    const XMMRegister xmm_s3  = xmm3;
++    const XMMRegister xmm_temp1  = xmm4;
++    const XMMRegister xmm_temp2  = xmm5;
++
++    __ movdqu(xmm_s0, Address(from, 0));
++    __ movdqu(xmm_s1, Address(from, 16));
++    __ movdqu(xmm_s2, Address(from, 32));
++    __ movdqu(xmm_s3, Address(from, 48));
++
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 0)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
++
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 8)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
++
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 16)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
++
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 24)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
++
++    AES4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, to, 32)
++    MIX4(xmm_s0, xmm_s1, xmm_s2, xmm_s3, xmm_temp1)
++
++    __ movdqu(xmm_temp1, Address(from, 0));
++    __ movdqu(xmm_temp2, Address(from, 16));
++    __ pxor(xmm_s0, xmm_temp1);
++    __ pxor(xmm_s1, xmm_temp2);
++
++    __ movdqu(xmm_temp1, Address(from, 32));
++    __ movdqu(xmm_temp2, Address(from, 48));
++    __ pxor(xmm_s2, xmm_temp1);
++    __ pxor(xmm_s3, xmm_temp2);
++
++    __ punpckhqdq(xmm_s0, xmm_s1);
++    __ punpcklqdq(xmm_s2, xmm_s3);
++
++    __ movdqu(Address(from, 0), xmm_s0);
++    __ movdqu(Address(from, 16), xmm_s2);
++
+     __ vzeroupper();
+     __ leave(); // required for proper stackwalking of RuntimeStub frame
+     __ ret(0);
+     return start;
+  }
+ 
++   #undef AES4
++   #undef MIX4
++
++
+   address generate_electronicCodeBook_decryptAESCrypt() {
+     __ align(CodeEntryAlignment);
+     StubCodeMark mark(this, "StubRoutines", "electronicCodeBook_decryptAESCrypt");
+@@ -7740,10 +7779,11 @@ address generate_avx_ghash_processBlocks() {
+       StubRoutines::x86::_key_shuffle_mask_addr = generate_key_shuffle_mask();  // needed by the others
+       StubRoutines::_aescrypt_encryptBlock = generate_aescrypt_encryptBlock();
+       StubRoutines::_aescrypt_decryptBlock = generate_aescrypt_decryptBlock();
++      // Used to implement Haraka
++      StubRoutines::_electronicCodeBook_encryptAESCrypt = generate_electronicCodeBook_encryptAESCrypt();
+       StubRoutines::_cipherBlockChaining_encryptAESCrypt = generate_cipherBlockChaining_encryptAESCrypt();
+       if (VM_Version::supports_avx512_vaes() &&  VM_Version::supports_avx512vl() && VM_Version::supports_avx512dq() ) {
+         StubRoutines::_cipherBlockChaining_decryptAESCrypt = generate_cipherBlockChaining_decryptVectorAESCrypt();
+-        StubRoutines::_electronicCodeBook_encryptAESCrypt = generate_electronicCodeBook_encryptAESCrypt();
+         StubRoutines::_electronicCodeBook_decryptAESCrypt = generate_electronicCodeBook_decryptAESCrypt();
+         StubRoutines::x86::_counter_mask_addr = counter_mask_addr();
+         StubRoutines::x86::_ghash_poly512_addr = ghash_polynomial512_addr();
+diff --git a/src/hotspot/share/classfile/vmIntrinsics.cpp b/src/hotspot/share/classfile/vmIntrinsics.cpp
+index cc3dc1ebdcc..68b401b857a 100644
+--- a/src/hotspot/share/classfile/vmIntrinsics.cpp
++++ b/src/hotspot/share/classfile/vmIntrinsics.cpp
+@@ -426,13 +426,13 @@ bool vmIntrinsics::disabled_by_jvm_flags(vmIntrinsics::ID id) {
+     break;
+   case vmIntrinsics::_aescrypt_encryptBlock:
+   case vmIntrinsics::_aescrypt_decryptBlock:
+-    if (!UseAESIntrinsics) return true;
+-    break;
++    return false;
+   case vmIntrinsics::_cipherBlockChaining_encryptAESCrypt:
+   case vmIntrinsics::_cipherBlockChaining_decryptAESCrypt:
+     if (!UseAESIntrinsics) return true;
+     break;
+   case vmIntrinsics::_electronicCodeBook_encryptAESCrypt:
++    return false;
+   case vmIntrinsics::_electronicCodeBook_decryptAESCrypt:
+     if (!UseAESIntrinsics) return true;
+     break;
+diff --git a/src/java.base/share/classes/com/sun/crypto/provider/AESCrypt.java b/src/java.base/share/classes/com/sun/crypto/provider/AESCrypt.java
+index 7d903892b17..9fb529073e0 100644
+--- a/src/java.base/share/classes/com/sun/crypto/provider/AESCrypt.java
++++ b/src/java.base/share/classes/com/sun/crypto/provider/AESCrypt.java
+@@ -43,33 +43,225 @@ import java.util.Arrays;
+ import jdk.internal.vm.annotation.IntrinsicCandidate;
+ 
+ /**
+- * Rijndael --pronounced Reindaal-- is a symmetric cipher with a 128-bit
+- * block size and variable key-size (128-, 192- and 256-bit).
++ * Re-purposed class to calculate Haraka256 hashes and he Haraka512 permutation. Incorporates code from BouncyCastle's
++ * Haraka implementation.
+  * <p>
+- * Rijndael was designed by <a href="mailto:rijmen@esat.kuleuven.ac.be">Vincent
+- * Rijmen</a> and <a href="mailto:Joan.Daemen@village.uunet.be">Joan Daemen</a>.
++ * The Java implementation is replaced with a compiler intrinsic at runtime. As this not always happen (especially for
++ * the first calls), we provide a working (but slower) Java implementation here.
+  */
+-final class AESCrypt extends SymmetricCipher implements AESConstants
+-{
++public final class AESCrypt extends SymmetricCipher implements AESConstants {
+     private boolean ROUNDS_12 = false;
+     private boolean ROUNDS_14 = false;
+ 
+-    /** Session and Sub keys */
+-    private int[][] sessionK = null;
+-    private int[] K = null;
++    /**
++     * Session and Sub keys
++     */
++    private int[][] sessionK = new int[][]{
++            new int[(14 + 1) * 4],
++            new int[(14 + 1) * 4]
++    };
++    private int[] K = new int[(14 + 1) * 4];
+ 
+-    /** Cipher encryption/decryption key */
++    /**
++     * Cipher encryption/decryption key
++     */
+     // skip re-generating Session and Sub keys if the cipher key is
+     // the same
+     private byte[] lastKey = null;
+ 
+-    /** ROUNDS * 4 */
++    /**
++     * ROUNDS * 4
++     */
+     private int limit = 0;
+ 
+-    AESCrypt() {
++    public AESCrypt() {
+         // empty
+     }
+ 
++    static final boolean isKeySizeValid(int len) {
++        return false;
++    }
++
++    private static void brAesCtBitsliceSbox(int[] q) {
++        /*
++         * This S-box implementation is a straightforward translation of
++         * the circuit described by Boyar and Peralta in "A new
++         * combinational logic minimization technique with applications
++         * to cryptology" (https://eprint.iacr.org/2009/191.pdf).
++         *
++         * Note that variables x* (input) and s* (output) are numbered
++         * in "reverse" order (x0 is the high bit, x7 is the low bit).
++         */
++
++        int x0, x1, x2, x3, x4, x5, x6, x7;
++        int y1, y2, y3, y4, y5, y6, y7, y8, y9;
++        int y10, y11, y12, y13, y14, y15, y16, y17, y18, y19;
++        int y20, y21;
++        int z0, z1, z2, z3, z4, z5, z6, z7, z8, z9;
++        int z10, z11, z12, z13, z14, z15, z16, z17;
++        int t0, t1, t2, t3, t4, t5, t6, t7, t8, t9;
++        int t10, t11, t12, t13, t14, t15, t16, t17, t18, t19;
++        int t20, t21, t22, t23, t24, t25, t26, t27, t28, t29;
++        int t30, t31, t32, t33, t34, t35, t36, t37, t38, t39;
++        int t40, t41, t42, t43, t44, t45, t46, t47, t48, t49;
++        int t50, t51, t52, t53, t54, t55, t56, t57, t58, t59;
++        int t60, t61, t62, t63, t64, t65, t66, t67;
++        int s0, s1, s2, s3, s4, s5, s6, s7;
++
++        x0 = q[7];
++        x1 = q[6];
++        x2 = q[5];
++        x3 = q[4];
++        x4 = q[3];
++        x5 = q[2];
++        x6 = q[1];
++        x7 = q[0];
++
++        /*
++         * Top linear transformation.
++         */
++        y14 = x3 ^ x5;
++        y13 = x0 ^ x6;
++        y9 = x0 ^ x3;
++        y8 = x0 ^ x5;
++        t0 = x1 ^ x2;
++        y1 = t0 ^ x7;
++        y4 = y1 ^ x3;
++        y12 = y13 ^ y14;
++        y2 = y1 ^ x0;
++        y5 = y1 ^ x6;
++        y3 = y5 ^ y8;
++        t1 = x4 ^ y12;
++        y15 = t1 ^ x5;
++        y20 = t1 ^ x1;
++        y6 = y15 ^ x7;
++        y10 = y15 ^ t0;
++        y11 = y20 ^ y9;
++        y7 = x7 ^ y11;
++        y17 = y10 ^ y11;
++        y19 = y10 ^ y8;
++        y16 = t0 ^ y11;
++        y21 = y13 ^ y16;
++        y18 = x0 ^ y16;
++
++        /*
++         * Non-linear section.
++         */
++        t2 = y12 & y15;
++        t3 = y3 & y6;
++        t4 = t3 ^ t2;
++        t5 = y4 & x7;
++        t6 = t5 ^ t2;
++        t7 = y13 & y16;
++        t8 = y5 & y1;
++        t9 = t8 ^ t7;
++        t10 = y2 & y7;
++        t11 = t10 ^ t7;
++        t12 = y9 & y11;
++        t13 = y14 & y17;
++        t14 = t13 ^ t12;
++        t15 = y8 & y10;
++        t16 = t15 ^ t12;
++        t17 = t4 ^ t14;
++        t18 = t6 ^ t16;
++        t19 = t9 ^ t14;
++        t20 = t11 ^ t16;
++        t21 = t17 ^ y20;
++        t22 = t18 ^ y19;
++        t23 = t19 ^ y21;
++        t24 = t20 ^ y18;
++
++        t25 = t21 ^ t22;
++        t26 = t21 & t23;
++        t27 = t24 ^ t26;
++        t28 = t25 & t27;
++        t29 = t28 ^ t22;
++        t30 = t23 ^ t24;
++        t31 = t22 ^ t26;
++        t32 = t31 & t30;
++        t33 = t32 ^ t24;
++        t34 = t23 ^ t33;
++        t35 = t27 ^ t33;
++        t36 = t24 & t35;
++        t37 = t36 ^ t34;
++        t38 = t27 ^ t36;
++        t39 = t29 & t38;
++        t40 = t25 ^ t39;
++
++        t41 = t40 ^ t37;
++        t42 = t29 ^ t33;
++        t43 = t29 ^ t40;
++        t44 = t33 ^ t37;
++        t45 = t42 ^ t41;
++        z0 = t44 & y15;
++        z1 = t37 & y6;
++        z2 = t33 & x7;
++        z3 = t43 & y16;
++        z4 = t40 & y1;
++        z5 = t29 & y7;
++        z6 = t42 & y11;
++        z7 = t45 & y17;
++        z8 = t41 & y10;
++        z9 = t44 & y12;
++        z10 = t37 & y3;
++        z11 = t33 & y4;
++        z12 = t43 & y13;
++        z13 = t40 & y5;
++        z14 = t29 & y2;
++        z15 = t42 & y9;
++        z16 = t45 & y14;
++        z17 = t41 & y8;
++
++        /*
++         * Bottom linear transformation.
++         */
++        t46 = z15 ^ z16;
++        t47 = z10 ^ z11;
++        t48 = z5 ^ z13;
++        t49 = z9 ^ z10;
++        t50 = z2 ^ z12;
++        t51 = z2 ^ z5;
++        t52 = z7 ^ z8;
++        t53 = z0 ^ z3;
++        t54 = z6 ^ z7;
++        t55 = z16 ^ z17;
++        t56 = z12 ^ t48;
++        t57 = t50 ^ t53;
++        t58 = z4 ^ t46;
++        t59 = z3 ^ t54;
++        t60 = t46 ^ t57;
++        t61 = z14 ^ t57;
++        t62 = t52 ^ t58;
++        t63 = t49 ^ t58;
++        t64 = z4 ^ t59;
++        t65 = t61 ^ t62;
++        t66 = z1 ^ t63;
++        s0 = t59 ^ t63;
++        s6 = t56 ^ ~t62;
++        s7 = t48 ^ ~t60;
++        t67 = t64 ^ t65;
++        s3 = t53 ^ t66;
++        s4 = t51 ^ t66;
++        s5 = t47 ^ t65;
++        s1 = t64 ^ ~s3;
++        s2 = t55 ^ ~t67;
++
++        q[7] = s0;
++        q[6] = s1;
++        q[5] = s2;
++        q[4] = s3;
++        q[3] = s4;
++        q[2] = s5;
++        q[1] = s6;
++        q[0] = s7;
++    }
++
++    protected static void xor(byte[] x, int xOff, byte[] y, int yOff, byte[] z, int zOff, int zLen) {
++        for (int i = 0; i < zLen; i++) {
++            z[zOff + i] = (byte) (x[xOff + i] ^ y[yOff + i]);
++        }
++    }
++
+     /**
+      * Returns this cipher's block size.
+      *
+@@ -79,632 +271,585 @@ final class AESCrypt extends SymmetricCipher implements AESConstants
+         return AES_BLOCK_SIZE;
+     }
+ 
+-    void init(boolean decrypting, String algorithm, byte[] key)
++    public void init(boolean decrypting, String algorithm, byte[] key)
+             throws InvalidKeyException {
+-        if (!algorithm.equalsIgnoreCase("AES")
+-                    && !algorithm.equalsIgnoreCase("Rijndael")) {
+-            throw new InvalidKeyException
+-                ("Wrong algorithm: AES or Rijndael required");
+-        }
+-        if (!isKeySizeValid(key.length)) {
+-            throw new InvalidKeyException("Invalid AES key length: " +
+-                key.length + " bytes");
++    }
++
++    /**
++     * Implements the Haraka256 hash (with XOR)
++     *
++     * @param in        Input data to be hashed. Output will be written back to this buffer.
++     * @param inOffset  ignored
++     * @param rc        Haraka round constants
++     * @param outOffset ignored
++     */
++    public void encryptBlock(byte[] in, int inOffset,
++                             byte[] rc, int outOffset) {
++        // Array bound checks are done in caller code, i.e.
++        // FeedbackCipher.encrypt/decrypt(...) to improve performance.
++        implEncryptBlock(in, inOffset, rc, outOffset);
++    }
++
++    @IntrinsicCandidate
++    private void implEncryptBlock(byte[] in, int inOffset,
++                                  byte[] rc, int outOffset) {
++        int[][] haraka256_rc = new int[10][8];
++        for (int i = 0; i < 10; ++i) {
++            interleaveConstant32(haraka256_rc[i], rc, i << 5);
+         }
+ 
+-        if (!MessageDigest.isEqual(key, lastKey)) {
+-            // re-generate session key 'sessionK' when cipher key changes
+-            makeSessionKey(key);
+-            if (lastKey != null) {
+-                Arrays.fill(lastKey, (byte)0);
++        int[] q = new int[8];
++        int tmp_q, i, j;
++        interleaveConstant32(q, in, 0);
++        for (i = 0; i < 5; ++i) {
++            for (j = 0; j < 2; ++j) {
++                brAesCtBitsliceSbox(q);
++                shiftRows32(q);
++                mixColumns32(q);
++                addRoundKey32(q, haraka256_rc[(i << 1) + j]);
++            }
++            for (j = 0; j < 8; j++) {
++                tmp_q = q[j];
++                q[j] = (tmp_q & 0x81818181) |
++                        (tmp_q & 0x02020202) << 1 |
++                        (tmp_q & 0x04040404) << 2 |
++                        (tmp_q & 0x08080808) << 3 |
++                        (tmp_q & 0x10101010) >>> 3 |
++                        (tmp_q & 0x20202020) >>> 2 |
++                        (tmp_q & 0x40404040) >>> 1;
+             }
+-            lastKey = key.clone();  // save cipher key
+         }
++        brAesCtOrtho(q);
++        byte[] s = new byte[32];
++        for (i = 0; i < 4; i++) {
++            brEnc32Le(s, q[i << 1], i << 2);
++            brEnc32Le(s, q[(i << 1) + 1], (i << 2) + 16);
++        }
++        xor(s, 0, in, 0, in, 0, 32);
+ 
+-        // set sub key to the corresponding session Key
+-        this.K = sessionK[(decrypting? 1:0)];
+     }
+ 
++
+     /**
+-     * Expand an int[(ROUNDS+1)][4] into int[(ROUNDS+1)*4].
+-     * For decryption round keys, need to rotate right by 4 ints.
+-     * @param kr The round keys for encryption or decryption.
+-     * @param decrypting True if 'kr' is for decryption and false otherwise.
++     * Implements the Haraka512 permutation (without XOR or truncation)
++     *
++     * @param in        Input data to be hashed. Output will be written back to this buffer.
++     * @param inOffset  ignored
++     * @param rc        Haraka round constants
++     * @param outOffset ignored
+      */
+-    private static final int[] expandToSubKey(int[][] kr, boolean decrypting) {
+-        int total = kr.length;
+-        int[] expK = new int[total*4];
+-        if (decrypting) {
+-            // decrypting, rotate right by 4 ints
+-            // i.e. i==0
+-            for(int j=0; j<4; j++) {
+-                expK[j] = kr[total-1][j];
+-            }
+-            for(int i=1; i<total; i++) {
+-                for(int j=0; j<4; j++) {
+-                    expK[i*4 + j] = kr[i-1][j];
+-                }
+-            }
+-        } else {
+-            // encrypting, straight expansion
+-            for(int i=0; i<total; i++) {
+-                for(int j=0; j<4; j++) {
+-                    expK[i*4 + j] = kr[i][j];
+-                }
+-            }
+-        }
+-        return expK;
++    public void decryptBlock(byte[] in, int inOffset,
++                             byte[] rc, int outOffset) {
++        // Array bound checks are done in caller code, i.e.
++        // FeedbackCipher.encrypt/decrypt(...) to improve performance.
++        implDecryptBlock(in, inOffset, rc, outOffset);
+     }
+ 
+-    private static int[]
+-        alog = new int[256],
+-        log  = new int[256];
+-
+-    private static final byte[]
+-        S  = new byte[256],
+-        Si = new byte[256];
+-
+-    private static final int[]
+-        T1 = new int[256],
+-        T2 = new int[256],
+-        T3 = new int[256],
+-        T4 = new int[256],
+-        T5 = new int[256],
+-        T6 = new int[256],
+-        T7 = new int[256],
+-        T8 = new int[256];
+-
+-    private static final int[]
+-        U1 = new int[256],
+-        U2 = new int[256],
+-        U3 = new int[256],
+-        U4 = new int[256];
+-
+-    private static final byte[] rcon = new byte[30];
+-
+-
+-    // Static code - to intialise S-boxes and T-boxes
+-    static
+-    {
+-        int ROOT = 0x11B;
+-        int i, j = 0;
+-
+-        //
+-        // produce log and alog tables, needed for multiplying in the
+-        // field GF(2^m) (generator = 3)
+-        //
+-        alog[0] = 1;
+-        for (i = 1; i < 256; i++)
+-        {
+-            j = (alog[i-1] << 1) ^ alog[i-1];
+-            if ((j & 0x100) != 0) {
+-                j ^= ROOT;
+-            }
+-            alog[i] = j;
+-        }
+-        for (i = 1; i < 255; i++) {
+-            log[alog[i]] = i;
+-        }
+-        byte[][] A = new byte[][]
+-        {
+-            {1, 1, 1, 1, 1, 0, 0, 0},
+-            {0, 1, 1, 1, 1, 1, 0, 0},
+-            {0, 0, 1, 1, 1, 1, 1, 0},
+-            {0, 0, 0, 1, 1, 1, 1, 1},
+-            {1, 0, 0, 0, 1, 1, 1, 1},
+-            {1, 1, 0, 0, 0, 1, 1, 1},
+-            {1, 1, 1, 0, 0, 0, 1, 1},
+-            {1, 1, 1, 1, 0, 0, 0, 1}
+-        };
+-        byte[] B = new byte[] { 0, 1, 1, 0, 0, 0, 1, 1};
+-
+-        //
+-        // substitution box based on F^{-1}(x)
+-        //
+-        int t;
+-        byte[][] box = new byte[256][8];
+-        box[1][7] = 1;
+-        for (i = 2; i < 256; i++) {
+-            j = alog[255 - log[i]];
+-            for (t = 0; t < 8; t++) {
+-                box[i][t] = (byte)((j >>> (7 - t)) & 0x01);
+-            }
+-        }
+-        //
+-        // affine transform:  box[i] <- B + A*box[i]
+-        //
+-        byte[][] cox = new byte[256][8];
+-        for (i = 0; i < 256; i++) {
+-            for (t = 0; t < 8; t++) {
+-                cox[i][t] = B[t];
+-                for (j = 0; j < 8; j++) {
+-                    cox[i][t] ^= A[t][j] * box[i][j];
+-                }
+-            }
+-        }
+-        //
+-        // S-boxes and inverse S-boxes
+-        //
+-        for (i = 0; i < 256; i++) {
+-            S[i] = (byte)(cox[i][0] << 7);
+-            for (t = 1; t < 8; t++) {
+-                    S[i] ^= cox[i][t] << (7-t);
+-            }
+-            Si[S[i] & 0xFF] = (byte) i;
++
++    @IntrinsicCandidate
++    private void implDecryptBlock(byte[] in, int inOffset,
++                                  byte[] rc, int outOffset) {
++
++        long[][] haraka512_rc = new long[10][8];
++        for (int i = 0; i < 10; ++i) {
++            interleaveConstant(haraka512_rc[i], rc, i << 6);
+         }
+-        //
+-        // T-boxes
+-        //
+-        byte[][] G = new byte[][] {
+-            {2, 1, 1, 3},
+-            {3, 2, 1, 1},
+-            {1, 3, 2, 1},
+-            {1, 1, 3, 2}
+-        };
+-        byte[][] AA = new byte[4][8];
+-        for (i = 0; i < 4; i++) {
+-            for (j = 0; j < 4; j++) AA[i][j] = G[i][j];
+-            AA[i][i+4] = 1;
++
++        int[] w = new int[16];
++        long[] q = new long[8];
++        long tmp_q;
++        int i, j;
++        brRangeDec32Le(in, w, 0);
++        for (i = 0; i < 4; ++i) {
++            brAesCt64InterleaveIn(q, i, w, i << 2);
+         }
+-        byte pivot, tmp;
+-        byte[][] iG = new byte[4][4];
+-        for (i = 0; i < 4; i++) {
+-            pivot = AA[i][i];
+-            if (pivot == 0) {
+-                t = i + 1;
+-                while ((AA[t][i] == 0) && (t < 4)) {
+-                    t++;
+-                }
+-                if (t == 4) {
+-                    throw new RuntimeException("G matrix is not invertible");
+-                }
+-                else {
+-                    for (j = 0; j < 8; j++) {
+-                        tmp = AA[i][j];
+-                        AA[i][j] = AA[t][j];
+-                        AA[t][j] = tmp;
+-                    }
+-                    pivot = AA[i][i];
+-                }
++        brAesCt64Ortho(q);
++        for (i = 0; i < 5; ++i) {
++            for (j = 0; j < 2; ++j) {
++                brAesCt64BitsliceSbox(q);
++                shiftRows(q);
++                mixColumns(q);
++                addRoundKey(q, haraka512_rc[(i << 1) + j]);
+             }
+             for (j = 0; j < 8; j++) {
+-                if (AA[i][j] != 0) {
+-                    AA[i][j] = (byte)
+-                        alog[(255 + log[AA[i][j] & 0xFF] - log[pivot & 0xFF])
+-                        % 255];
+-                }
+-            }
+-            for (t = 0; t < 4; t++) {
+-                if (i != t) {
+-                    for (j = i+1; j < 8; j++) {
+-                        AA[t][j] ^= mul(AA[i][j], AA[t][i]);
+-                    }
+-                    AA[t][i] = 0;
+-                }
++                tmp_q = q[j];
++                q[j] = (tmp_q & 0x0001000100010001L) << 5 |
++                        (tmp_q & 0x0002000200020002L) << 12 |
++                        (tmp_q & 0x0004000400040004L) >>> 1 |
++                        (tmp_q & 0x0008000800080008L) << 6 |
++                        (tmp_q & 0x0020002000200020L) << 9 |
++                        (tmp_q & 0x0040004000400040L) >>> 4 |
++                        (tmp_q & 0x0080008000800080L) << 3 |
++                        (tmp_q & 0x2100210021002100L) >>> 5 |
++                        (tmp_q & 0x0210021002100210L) << 2 |
++                        (tmp_q & 0x0800080008000800L) << 4 |
++                        (tmp_q & 0x1000100010001000L) >>> 12 |
++                        (tmp_q & 0x4000400040004000L) >>> 10 |
++                        (tmp_q & 0x8400840084008400L) >>> 3;
+             }
+         }
++        brAesCt64Ortho(q);
+         for (i = 0; i < 4; i++) {
+-            for (j = 0; j < 4; j++) {
+-                iG[i][j] = AA[i][j + 4];
++            brAesCt64InterleaveOut(w, q, i);
++        }
++        for (i = 0; i < 16; ++i) {
++            for (j = 0; j < 4; ++j) {
++                in[(i << 2) + j] = (byte) ((w[i] >>> (j << 3)) & 0xFF);
+             }
+         }
++    }
+ 
+-        int s;
+-        for (t = 0; t < 256; t++) {
+-            s = S[t];
+-            T1[t] = mul4(s, G[0]);
+-            T2[t] = mul4(s, G[1]);
+-            T3[t] = mul4(s, G[2]);
+-            T4[t] = mul4(s, G[3]);
+-
+-            s = Si[t];
+-            T5[t] = mul4(s, iG[0]);
+-            T6[t] = mul4(s, iG[1]);
+-            T7[t] = mul4(s, iG[2]);
+-            T8[t] = mul4(s, iG[3]);
+-
+-            U1[t] = mul4(t, iG[0]);
+-            U2[t] = mul4(t, iG[1]);
+-            U3[t] = mul4(t, iG[2]);
+-            U4[t] = mul4(t, iG[3]);
++    protected void interleaveConstant32(int[] output, byte[] input, int startPos) {
++        for (int i = 0; i < 4; ++i) {
++            output[i << 1] = brDec32Le(input, startPos + (i << 2));
++            output[(i << 1) + 1] = brDec32Le(input, startPos + (i << 2) + 16);
+         }
+-        //
+-        // round constants
+-        //
+-        rcon[0] = 1;
+-        int r = 1;
+-        for (t = 1; t < 30; t++) {
+-            r = mul(2, r);
+-            rcon[t] = (byte) r;
+-        }
+-        log = null;
+-        alog = null;
++        brAesCtOrtho(output);
+     }
+ 
+-    // multiply two elements of GF(2^m)
+-    private static final int mul (int a, int b) {
+-        return (a != 0 && b != 0) ?
+-            alog[(log[a & 0xFF] + log[b & 0xFF]) % 255] :
+-            0;
++    private int brDec32Le(byte[] input, int startPos) {
++        return (input[startPos] & 0xFF) | ((input[startPos + 1] << 8) & 0xFF00) | (((int) input[startPos + 2] << 16) & 0xFF0000) | ((int) input[startPos + 3] << 24);
+     }
+ 
+-    // convenience method used in generating Transposition boxes
+-    private static final int mul4 (int a, byte[] b) {
+-        if (a == 0) return 0;
+-        a = log[a & 0xFF];
+-        int a0 = (b[0] != 0) ? alog[(a + log[b[0] & 0xFF]) % 255] & 0xFF : 0;
+-        int a1 = (b[1] != 0) ? alog[(a + log[b[1] & 0xFF]) % 255] & 0xFF : 0;
+-        int a2 = (b[2] != 0) ? alog[(a + log[b[2] & 0xFF]) % 255] & 0xFF : 0;
+-        int a3 = (b[3] != 0) ? alog[(a + log[b[3] & 0xFF]) % 255] & 0xFF : 0;
+-        return a0 << 24 | a1 << 16 | a2 << 8 | a3;
++    private void brAesCt64Ortho(long[] q) {
++        Swapn(q, 1, 0, 1);
++        Swapn(q, 1, 2, 3);
++        Swapn(q, 1, 4, 5);
++        Swapn(q, 1, 6, 7);
++
++        Swapn(q, 2, 0, 2);
++        Swapn(q, 2, 1, 3);
++        Swapn(q, 2, 4, 6);
++        Swapn(q, 2, 5, 7);
++
++        Swapn(q, 4, 0, 4);
++        Swapn(q, 4, 1, 5);
++        Swapn(q, 4, 2, 6);
++        Swapn(q, 4, 3, 7);
+     }
+ 
+-    // check if the specified length (in bytes) is a valid keysize for AES
+-    static final boolean isKeySizeValid(int len) {
+-        for (int i = 0; i < AES_KEYSIZES.length; i++) {
+-            if (len == AES_KEYSIZES[i]) {
+-                return true;
+-            }
+-        }
+-        return false;
++    private void brAesCtOrtho(int[] q) {
++        Swapn32(q, 1, 0, 1);
++        Swapn32(q, 1, 2, 3);
++        Swapn32(q, 1, 4, 5);
++        Swapn32(q, 1, 6, 7);
++
++        Swapn32(q, 2, 0, 2);
++        Swapn32(q, 2, 1, 3);
++        Swapn32(q, 2, 4, 6);
++        Swapn32(q, 2, 5, 7);
++
++        Swapn32(q, 4, 0, 4);
++        Swapn32(q, 4, 1, 5);
++        Swapn32(q, 4, 2, 6);
++        Swapn32(q, 4, 3, 7);
+     }
+ 
+-    /**
+-     * Encrypt exactly one block of plaintext.
+-     */
+-    void encryptBlock(byte[] in, int inOffset,
+-                      byte[] out, int outOffset) {
+-        // Array bound checks are done in caller code, i.e.
+-        // FeedbackCipher.encrypt/decrypt(...) to improve performance.
+-        implEncryptBlock(in, inOffset, out, outOffset);
++    private void Swapn32(int[] q, int s, int pos1, int pos2) {
++        int cl = 0, ch = 0;
++        switch (s) {
++            case 1:
++                cl = 0x55555555;
++                ch = 0xAAAAAAAA;
++                break;
++            case 2:
++                cl = 0x33333333;
++                ch = 0xCCCCCCCC;
++                break;
++            case 4:
++                cl = 0x0F0F0F0F;
++                ch = 0xF0F0F0F0;
++                break;
++        }
++        int a = q[pos1], b = q[pos2];
++        q[pos1] = (a & cl) | ((b & cl) << s);
++        q[pos2] = ((a & ch) >>> s) | (b & ch);
+     }
+ 
+-    // Encryption operation. Possibly replaced with a compiler intrinsic.
+-    @IntrinsicCandidate
+-    private void implEncryptBlock(byte[] in, int inOffset,
+-                                  byte[] out, int outOffset)
+-    {
+-        int keyOffset = 0;
+-        int t0   = ((in[inOffset++]       ) << 24 |
+-                    (in[inOffset++] & 0xFF) << 16 |
+-                    (in[inOffset++] & 0xFF) <<  8 |
+-                    (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-        int t1   = ((in[inOffset++]       ) << 24 |
+-                    (in[inOffset++] & 0xFF) << 16 |
+-                    (in[inOffset++] & 0xFF) <<  8 |
+-                    (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-        int t2   = ((in[inOffset++]       ) << 24 |
+-                    (in[inOffset++] & 0xFF) << 16 |
+-                    (in[inOffset++] & 0xFF) <<  8 |
+-                    (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-        int t3   = ((in[inOffset++]       ) << 24 |
+-                    (in[inOffset++] & 0xFF) << 16 |
+-                    (in[inOffset++] & 0xFF) <<  8 |
+-                    (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-
+-        // apply round transforms
+-        while( keyOffset < limit )
+-        {
+-            int a0, a1, a2;
+-            a0 = T1[(t0 >>> 24)       ] ^
+-                 T2[(t1 >>> 16) & 0xFF] ^
+-                 T3[(t2 >>>  8) & 0xFF] ^
+-                 T4[(t3       ) & 0xFF] ^ K[keyOffset++];
+-            a1 = T1[(t1 >>> 24)       ] ^
+-                 T2[(t2 >>> 16) & 0xFF] ^
+-                 T3[(t3 >>>  8) & 0xFF] ^
+-                 T4[(t0       ) & 0xFF] ^ K[keyOffset++];
+-            a2 = T1[(t2 >>> 24)       ] ^
+-                 T2[(t3 >>> 16) & 0xFF] ^
+-                 T3[(t0 >>>  8) & 0xFF] ^
+-                 T4[(t1       ) & 0xFF] ^ K[keyOffset++];
+-            t3 = T1[(t3 >>> 24)       ] ^
+-                 T2[(t0 >>> 16) & 0xFF] ^
+-                 T3[(t1 >>>  8) & 0xFF] ^
+-                 T4[(t2       ) & 0xFF] ^ K[keyOffset++];
+-            t0 = a0; t1 = a1; t2 = a2;
++    private void Swapn(long[] q, int s, int pos1, int pos2) {
++        long cl = 0, ch = 0;
++        switch (s) {
++            case 1:
++                cl = 0x5555555555555555L;
++                ch = 0xAAAAAAAAAAAAAAAAL;
++                break;
++            case 2:
++                cl = 0x3333333333333333L;
++                ch = 0xCCCCCCCCCCCCCCCCL;
++                break;
++            case 4:
++                cl = 0x0F0F0F0F0F0F0F0FL;
++                ch = 0xF0F0F0F0F0F0F0F0L;
++                break;
++            default:
++                return;
+         }
+-
+-        // last round is special
+-        int tt = K[keyOffset++];
+-        out[outOffset++] = (byte)(S[(t0 >>> 24)       ] ^ (tt >>> 24));
+-        out[outOffset++] = (byte)(S[(t1 >>> 16) & 0xFF] ^ (tt >>> 16));
+-        out[outOffset++] = (byte)(S[(t2 >>>  8) & 0xFF] ^ (tt >>>  8));
+-        out[outOffset++] = (byte)(S[(t3       ) & 0xFF] ^ (tt       ));
+-        tt = K[keyOffset++];
+-        out[outOffset++] = (byte)(S[(t1 >>> 24)       ] ^ (tt >>> 24));
+-        out[outOffset++] = (byte)(S[(t2 >>> 16) & 0xFF] ^ (tt >>> 16));
+-        out[outOffset++] = (byte)(S[(t3 >>>  8) & 0xFF] ^ (tt >>>  8));
+-        out[outOffset++] = (byte)(S[(t0       ) & 0xFF] ^ (tt       ));
+-        tt = K[keyOffset++];
+-        out[outOffset++] = (byte)(S[(t2 >>> 24)       ] ^ (tt >>> 24));
+-        out[outOffset++] = (byte)(S[(t3 >>> 16) & 0xFF] ^ (tt >>> 16));
+-        out[outOffset++] = (byte)(S[(t0 >>>  8) & 0xFF] ^ (tt >>>  8));
+-        out[outOffset++] = (byte)(S[(t1       ) & 0xFF] ^ (tt       ));
+-        tt = K[keyOffset++];
+-        out[outOffset++] = (byte)(S[(t3 >>> 24)       ] ^ (tt >>> 24));
+-        out[outOffset++] = (byte)(S[(t0 >>> 16) & 0xFF] ^ (tt >>> 16));
+-        out[outOffset++] = (byte)(S[(t1 >>>  8) & 0xFF] ^ (tt >>>  8));
+-        out[outOffset  ] = (byte)(S[(t2       ) & 0xFF] ^ (tt       ));
++        long a = q[pos1], b = q[pos2];
++        q[pos1] = (a & cl) | ((b & cl) << s);
++        q[pos2] = ((a & ch) >>> s) | (b & ch);
+     }
+ 
+-    /**
+-     * Decrypt exactly one block of plaintext.
+-     */
+-    void decryptBlock(byte[] in, int inOffset,
+-                      byte[] out, int outOffset) {
+-        // Array bound checks are done in caller code, i.e.
+-        // FeedbackCipher.encrypt/decrypt(...) to improve performance.
+-        implDecryptBlock(in, inOffset, out, outOffset);
++    private void brAesCt64BitsliceSbox(long[] q) {
++        /*
++         * This S-box implementation is a straightforward translation of
++         * the circuit described by Boyar and Peralta in "A new
++         * combinational logic minimization technique with applications
++         * to cryptology" (https://eprint.iacr.org/2009/191.pdf).
++         *
++         * Note that variables x* (input) and s* (output) are numbered
++         * in "reverse" order (x0 is the high bit, x7 is the low bit).
++         */
++
++        long x0, x1, x2, x3, x4, x5, x6, x7;
++        long y1, y2, y3, y4, y5, y6, y7, y8, y9;
++        long y10, y11, y12, y13, y14, y15, y16, y17, y18, y19;
++        long y20, y21;
++        long z0, z1, z2, z3, z4, z5, z6, z7, z8, z9;
++        long z10, z11, z12, z13, z14, z15, z16, z17;
++        long t0, t1, t2, t3, t4, t5, t6, t7, t8, t9;
++        long t10, t11, t12, t13, t14, t15, t16, t17, t18, t19;
++        long t20, t21, t22, t23, t24, t25, t26, t27, t28, t29;
++        long t30, t31, t32, t33, t34, t35, t36, t37, t38, t39;
++        long t40, t41, t42, t43, t44, t45, t46, t47, t48, t49;
++        long t50, t51, t52, t53, t54, t55, t56, t57, t58, t59;
++        long t60, t61, t62, t63, t64, t65, t66, t67;
++        long s0, s1, s2, s3, s4, s5, s6, s7;
++
++        x0 = q[7];
++        x1 = q[6];
++        x2 = q[5];
++        x3 = q[4];
++        x4 = q[3];
++        x5 = q[2];
++        x6 = q[1];
++        x7 = q[0];
++
++        /*
++         * Top linear transformation.
++         */
++        y14 = x3 ^ x5;
++        y13 = x0 ^ x6;
++        y9 = x0 ^ x3;
++        y8 = x0 ^ x5;
++        t0 = x1 ^ x2;
++        y1 = t0 ^ x7;
++        y4 = y1 ^ x3;
++        y12 = y13 ^ y14;
++        y2 = y1 ^ x0;
++        y5 = y1 ^ x6;
++        y3 = y5 ^ y8;
++        t1 = x4 ^ y12;
++        y15 = t1 ^ x5;
++        y20 = t1 ^ x1;
++        y6 = y15 ^ x7;
++        y10 = y15 ^ t0;
++        y11 = y20 ^ y9;
++        y7 = x7 ^ y11;
++        y17 = y10 ^ y11;
++        y19 = y10 ^ y8;
++        y16 = t0 ^ y11;
++        y21 = y13 ^ y16;
++        y18 = x0 ^ y16;
++
++        /*
++         * Non-linear section.
++         */
++        t2 = y12 & y15;
++        t3 = y3 & y6;
++        t4 = t3 ^ t2;
++        t5 = y4 & x7;
++        t6 = t5 ^ t2;
++        t7 = y13 & y16;
++        t8 = y5 & y1;
++        t9 = t8 ^ t7;
++        t10 = y2 & y7;
++        t11 = t10 ^ t7;
++        t12 = y9 & y11;
++        t13 = y14 & y17;
++        t14 = t13 ^ t12;
++        t15 = y8 & y10;
++        t16 = t15 ^ t12;
++        t17 = t4 ^ t14;
++        t18 = t6 ^ t16;
++        t19 = t9 ^ t14;
++        t20 = t11 ^ t16;
++        t21 = t17 ^ y20;
++        t22 = t18 ^ y19;
++        t23 = t19 ^ y21;
++        t24 = t20 ^ y18;
++
++        t25 = t21 ^ t22;
++        t26 = t21 & t23;
++        t27 = t24 ^ t26;
++        t28 = t25 & t27;
++        t29 = t28 ^ t22;
++        t30 = t23 ^ t24;
++        t31 = t22 ^ t26;
++        t32 = t31 & t30;
++        t33 = t32 ^ t24;
++        t34 = t23 ^ t33;
++        t35 = t27 ^ t33;
++        t36 = t24 & t35;
++        t37 = t36 ^ t34;
++        t38 = t27 ^ t36;
++        t39 = t29 & t38;
++        t40 = t25 ^ t39;
++
++        t41 = t40 ^ t37;
++        t42 = t29 ^ t33;
++        t43 = t29 ^ t40;
++        t44 = t33 ^ t37;
++        t45 = t42 ^ t41;
++        z0 = t44 & y15;
++        z1 = t37 & y6;
++        z2 = t33 & x7;
++        z3 = t43 & y16;
++        z4 = t40 & y1;
++        z5 = t29 & y7;
++        z6 = t42 & y11;
++        z7 = t45 & y17;
++        z8 = t41 & y10;
++        z9 = t44 & y12;
++        z10 = t37 & y3;
++        z11 = t33 & y4;
++        z12 = t43 & y13;
++        z13 = t40 & y5;
++        z14 = t29 & y2;
++        z15 = t42 & y9;
++        z16 = t45 & y14;
++        z17 = t41 & y8;
++
++        /*
++         * Bottom linear transformation.
++         */
++        t46 = z15 ^ z16;
++        t47 = z10 ^ z11;
++        t48 = z5 ^ z13;
++        t49 = z9 ^ z10;
++        t50 = z2 ^ z12;
++        t51 = z2 ^ z5;
++        t52 = z7 ^ z8;
++        t53 = z0 ^ z3;
++        t54 = z6 ^ z7;
++        t55 = z16 ^ z17;
++        t56 = z12 ^ t48;
++        t57 = t50 ^ t53;
++        t58 = z4 ^ t46;
++        t59 = z3 ^ t54;
++        t60 = t46 ^ t57;
++        t61 = z14 ^ t57;
++        t62 = t52 ^ t58;
++        t63 = t49 ^ t58;
++        t64 = z4 ^ t59;
++        t65 = t61 ^ t62;
++        t66 = z1 ^ t63;
++        s0 = t59 ^ t63;
++        s6 = t56 ^ ~t62;
++        s7 = t48 ^ ~t60;
++        t67 = t64 ^ t65;
++        s3 = t53 ^ t66;
++        s4 = t51 ^ t66;
++        s5 = t47 ^ t65;
++        s1 = t64 ^ ~s3;
++        s2 = t55 ^ ~t67;
++
++        q[7] = s0;
++        q[6] = s1;
++        q[5] = s2;
++        q[4] = s3;
++        q[3] = s4;
++        q[2] = s5;
++        q[1] = s6;
++        q[0] = s7;
+     }
+ 
+-    // Decrypt operation. Possibly replaced with a compiler intrinsic.
+-    @IntrinsicCandidate
+-    private void implDecryptBlock(byte[] in, int inOffset,
+-                                  byte[] out, int outOffset)
+-    {
+-        int keyOffset = 4;
+-        int t0 = ((in[inOffset++]       ) << 24 |
+-                  (in[inOffset++] & 0xFF) << 16 |
+-                  (in[inOffset++] & 0xFF) <<  8 |
+-                  (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-        int t1 = ((in[inOffset++]       ) << 24 |
+-                  (in[inOffset++] & 0xFF) << 16 |
+-                  (in[inOffset++] & 0xFF) <<  8 |
+-                  (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-        int t2 = ((in[inOffset++]       ) << 24 |
+-                  (in[inOffset++] & 0xFF) << 16 |
+-                  (in[inOffset++] & 0xFF) <<  8 |
+-                  (in[inOffset++] & 0xFF)        ) ^ K[keyOffset++];
+-        int t3 = ((in[inOffset++]       ) << 24 |
+-                  (in[inOffset++] & 0xFF) << 16 |
+-                  (in[inOffset++] & 0xFF) <<  8 |
+-                  (in[inOffset  ] & 0xFF)        ) ^ K[keyOffset++];
+-
+-        int a0, a1, a2;
+-        if(ROUNDS_12)
+-        {
+-            a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-                 T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-            a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-                 T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-            a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-                 T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-            t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-                 T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-            t0 = T5[(a0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-                 T7[(a2>>> 8)&0xFF] ^ T8[(a1     )&0xFF] ^ K[keyOffset++];
+-            t1 = T5[(a1>>>24)     ] ^ T6[(a0>>>16)&0xFF] ^
+-                 T7[(t3>>> 8)&0xFF] ^ T8[(a2     )&0xFF] ^ K[keyOffset++];
+-            t2 = T5[(a2>>>24)     ] ^ T6[(a1>>>16)&0xFF] ^
+-                 T7[(a0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-            t3 = T5[(t3>>>24)     ] ^ T6[(a2>>>16)&0xFF] ^
+-                 T7[(a1>>> 8)&0xFF] ^ T8[(a0     )&0xFF] ^ K[keyOffset++];
+-
+-            if(ROUNDS_14)
+-            {
+-                a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-                     T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-                a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-                     T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-                a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-                     T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-                t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-                     T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-                t0 = T5[(a0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-                     T7[(a2>>> 8)&0xFF] ^ T8[(a1     )&0xFF] ^ K[keyOffset++];
+-                t1 = T5[(a1>>>24)     ] ^ T6[(a0>>>16)&0xFF] ^
+-                     T7[(t3>>> 8)&0xFF] ^ T8[(a2     )&0xFF] ^ K[keyOffset++];
+-                t2 = T5[(a2>>>24)     ] ^ T6[(a1>>>16)&0xFF] ^
+-                     T7[(a0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-                t3 = T5[(t3>>>24)     ] ^ T6[(a2>>>16)&0xFF] ^
+-                     T7[(a1>>> 8)&0xFF] ^ T8[(a0     )&0xFF] ^ K[keyOffset++];
+-            }
++    private void shiftRows(long[] q) {
++        long x;
++        for (int i = 0; i < q.length; i++) {
++            x = q[i];
++            q[i] = (x & 0x000000000000FFFFL)
++                    | ((x & 0x00000000FFF00000L) >>> 4)
++                    | ((x & 0x00000000000F0000L) << 12)
++                    | ((x & 0x0000FF0000000000L) >>> 8)
++                    | ((x & 0x000000FF00000000L) << 8)
++                    | ((x & 0xF000000000000000L) >>> 12)
++                    | ((x & 0x0FFF000000000000L) << 4);
+         }
+-        a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-        a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-        a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-             T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-             T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-        t0 = T5[(a0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(a2>>> 8)&0xFF] ^ T8[(a1     )&0xFF] ^ K[keyOffset++];
+-        t1 = T5[(a1>>>24)     ] ^ T6[(a0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(a2     )&0xFF] ^ K[keyOffset++];
+-        t2 = T5[(a2>>>24)     ] ^ T6[(a1>>>16)&0xFF] ^
+-             T7[(a0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(a2>>>16)&0xFF] ^
+-             T7[(a1>>> 8)&0xFF] ^ T8[(a0     )&0xFF] ^ K[keyOffset++];
+-        a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-        a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-        a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-             T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-             T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-        t0 = T5[(a0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(a2>>> 8)&0xFF] ^ T8[(a1     )&0xFF] ^ K[keyOffset++];
+-        t1 = T5[(a1>>>24)     ] ^ T6[(a0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(a2     )&0xFF] ^ K[keyOffset++];
+-        t2 = T5[(a2>>>24)     ] ^ T6[(a1>>>16)&0xFF] ^
+-             T7[(a0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(a2>>>16)&0xFF] ^
+-             T7[(a1>>> 8)&0xFF] ^ T8[(a0     )&0xFF] ^ K[keyOffset++];
+-        a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-        a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-        a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-             T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-             T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-        t0 = T5[(a0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(a2>>> 8)&0xFF] ^ T8[(a1     )&0xFF] ^ K[keyOffset++];
+-        t1 = T5[(a1>>>24)     ] ^ T6[(a0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(a2     )&0xFF] ^ K[keyOffset++];
+-        t2 = T5[(a2>>>24)     ] ^ T6[(a1>>>16)&0xFF] ^
+-             T7[(a0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(a2>>>16)&0xFF] ^
+-             T7[(a1>>> 8)&0xFF] ^ T8[(a0     )&0xFF] ^ K[keyOffset++];
+-        a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-        a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-        a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-             T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-             T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-        t0 = T5[(a0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(a2>>> 8)&0xFF] ^ T8[(a1     )&0xFF] ^ K[keyOffset++];
+-        t1 = T5[(a1>>>24)     ] ^ T6[(a0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(a2     )&0xFF] ^ K[keyOffset++];
+-        t2 = T5[(a2>>>24)     ] ^ T6[(a1>>>16)&0xFF] ^
+-             T7[(a0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(a2>>>16)&0xFF] ^
+-             T7[(a1>>> 8)&0xFF] ^ T8[(a0     )&0xFF] ^ K[keyOffset++];
+-        a0 = T5[(t0>>>24)     ] ^ T6[(t3>>>16)&0xFF] ^
+-             T7[(t2>>> 8)&0xFF] ^ T8[(t1     )&0xFF] ^ K[keyOffset++];
+-        a1 = T5[(t1>>>24)     ] ^ T6[(t0>>>16)&0xFF] ^
+-             T7[(t3>>> 8)&0xFF] ^ T8[(t2     )&0xFF] ^ K[keyOffset++];
+-        a2 = T5[(t2>>>24)     ] ^ T6[(t1>>>16)&0xFF] ^
+-             T7[(t0>>> 8)&0xFF] ^ T8[(t3     )&0xFF] ^ K[keyOffset++];
+-        t3 = T5[(t3>>>24)     ] ^ T6[(t2>>>16)&0xFF] ^
+-             T7[(t1>>> 8)&0xFF] ^ T8[(t0     )&0xFF] ^ K[keyOffset++];
+-
+-        t1 = K[0];
+-        out[outOffset++] = (byte)(Si[(a0 >>> 24)       ] ^ (t1 >>> 24));
+-        out[outOffset++] = (byte)(Si[(t3 >>> 16) & 0xFF] ^ (t1 >>> 16));
+-        out[outOffset++] = (byte)(Si[(a2 >>>  8) & 0xFF] ^ (t1 >>>  8));
+-        out[outOffset++] = (byte)(Si[(a1       ) & 0xFF] ^ (t1       ));
+-        t1 = K[1];
+-        out[outOffset++] = (byte)(Si[(a1 >>> 24)       ] ^ (t1 >>> 24));
+-        out[outOffset++] = (byte)(Si[(a0 >>> 16) & 0xFF] ^ (t1 >>> 16));
+-        out[outOffset++] = (byte)(Si[(t3 >>>  8) & 0xFF] ^ (t1 >>>  8));
+-        out[outOffset++] = (byte)(Si[(a2       ) & 0xFF] ^ (t1       ));
+-        t1 = K[2];
+-        out[outOffset++] = (byte)(Si[(a2 >>> 24)       ] ^ (t1 >>> 24));
+-        out[outOffset++] = (byte)(Si[(a1 >>> 16) & 0xFF] ^ (t1 >>> 16));
+-        out[outOffset++] = (byte)(Si[(a0 >>>  8) & 0xFF] ^ (t1 >>>  8));
+-        out[outOffset++] = (byte)(Si[(t3       ) & 0xFF] ^ (t1       ));
+-        t1 = K[3];
+-        out[outOffset++] = (byte)(Si[(t3 >>> 24)       ] ^ (t1 >>> 24));
+-        out[outOffset++] = (byte)(Si[(a2 >>> 16) & 0xFF] ^ (t1 >>> 16));
+-        out[outOffset++] = (byte)(Si[(a1 >>>  8) & 0xFF] ^ (t1 >>>  8));
+-        out[outOffset  ] = (byte)(Si[(a0       ) & 0xFF] ^ (t1       ));
+     }
+ 
+-    /**
+-     * Expand a user-supplied key material into a session key.
+-     *
+-     * @param k The 128/192/256-bit cipher key to use.
+-     * @exception InvalidKeyException  If the key is invalid.
+-     */
+-    private void makeSessionKey(byte[] k) throws InvalidKeyException {
+-        if (k == null) {
+-            throw new InvalidKeyException("Empty key");
+-        }
+-        if (!isKeySizeValid(k.length)) {
+-             throw new InvalidKeyException("Invalid AES key length: " +
+-                                           k.length + " bytes");
+-        }
+-        int ROUNDS          = getRounds(k.length);
+-        int ROUND_KEY_COUNT = (ROUNDS + 1) * 4;
++    private void mixColumns(long[] q) {
++        long q0, q1, q2, q3, q4, q5, q6, q7;
++        long r0, r1, r2, r3, r4, r5, r6, r7;
++
++        q0 = q[0];
++        q1 = q[1];
++        q2 = q[2];
++        q3 = q[3];
++        q4 = q[4];
++        q5 = q[5];
++        q6 = q[6];
++        q7 = q[7];
++        r0 = (q0 >>> 16) | (q0 << 48);
++        r1 = (q1 >>> 16) | (q1 << 48);
++        r2 = (q2 >>> 16) | (q2 << 48);
++        r3 = (q3 >>> 16) | (q3 << 48);
++        r4 = (q4 >>> 16) | (q4 << 48);
++        r5 = (q5 >>> 16) | (q5 << 48);
++        r6 = (q6 >>> 16) | (q6 << 48);
++        r7 = (q7 >>> 16) | (q7 << 48);
++
++        q[0] = q7 ^ r7 ^ r0 ^ rotr32(q0 ^ r0);
++        q[1] = q0 ^ r0 ^ q7 ^ r7 ^ r1 ^ rotr32(q1 ^ r1);
++        q[2] = q1 ^ r1 ^ r2 ^ rotr32(q2 ^ r2);
++        q[3] = q2 ^ r2 ^ q7 ^ r7 ^ r3 ^ rotr32(q3 ^ r3);
++        q[4] = q3 ^ r3 ^ q7 ^ r7 ^ r4 ^ rotr32(q4 ^ r4);
++        q[5] = q4 ^ r4 ^ r5 ^ rotr32(q5 ^ r5);
++        q[6] = q5 ^ r5 ^ r6 ^ rotr32(q6 ^ r6);
++        q[7] = q6 ^ r6 ^ r7 ^ rotr32(q7 ^ r7);
++    }
+ 
+-        int BC = 4;
+-        int[][] Ke = new int[ROUNDS + 1][4]; // encryption round keys
+-        int[][] Kd = new int[ROUNDS + 1][4]; // decryption round keys
++    private long rotr32(long x) {
++        return (x << 32) | (x >>> 32);
++    }
+ 
+-        int KC = k.length/4; // keylen in 32-bit elements
++    private void addRoundKey(long[] q, long[] sk) {
++        q[0] ^= sk[0];
++        q[1] ^= sk[1];
++        q[2] ^= sk[2];
++        q[3] ^= sk[3];
++        q[4] ^= sk[4];
++        q[5] ^= sk[5];
++        q[6] ^= sk[6];
++        q[7] ^= sk[7];
++    }
+ 
+-        int[] tk = new int[KC];
+-        int i, j;
++    private void brAesCt64InterleaveOut(int[] w, long[] q, int pos) {
++        long x0, x1, x2, x3;
++
++        x0 = q[pos] & 0x00FF00FF00FF00FFL;
++        x1 = q[pos + 4] & 0x00FF00FF00FF00FFL;
++        x2 = (q[pos] >>> 8) & 0x00FF00FF00FF00FFL;
++        x3 = (q[pos + 4] >>> 8) & 0x00FF00FF00FF00FFL;
++        x0 |= (x0 >>> 8);
++        x1 |= (x1 >>> 8);
++        x2 |= (x2 >>> 8);
++        x3 |= (x3 >>> 8);
++        x0 &= 0x0000FFFF0000FFFFL;
++        x1 &= 0x0000FFFF0000FFFFL;
++        x2 &= 0x0000FFFF0000FFFFL;
++        x3 &= 0x0000FFFF0000FFFFL;
++        pos <<= 2;
++        w[pos] = (int) (x0 | (x0 >>> 16));
++        w[pos + 1] = (int) (x1 | (x1 >>> 16));
++        w[pos + 2] = (int) (x2 | (x2 >>> 16));
++        w[pos + 3] = (int) (x3 | (x3 >>> 16));
++    }
+ 
+-        // copy user material bytes into temporary ints
+-        for (i = 0, j = 0; i < KC; i++, j+=4) {
+-            tk[i] = (k[j]       ) << 24 |
+-                    (k[j+1] & 0xFF) << 16 |
+-                    (k[j+2] & 0xFF) <<  8 |
+-                    (k[j+3] & 0xFF);
+-        }
++    private void mixColumns32(int[] q) {
++        int q0, q1, q2, q3, q4, q5, q6, q7;
++        int r0, r1, r2, r3, r4, r5, r6, r7;
++
++        q0 = q[0];
++        q1 = q[1];
++        q2 = q[2];
++        q3 = q[3];
++        q4 = q[4];
++        q5 = q[5];
++        q6 = q[6];
++        q7 = q[7];
++        r0 = (q0 >>> 8) | (q0 << 24);
++        r1 = (q1 >>> 8) | (q1 << 24);
++        r2 = (q2 >>> 8) | (q2 << 24);
++        r3 = (q3 >>> 8) | (q3 << 24);
++        r4 = (q4 >>> 8) | (q4 << 24);
++        r5 = (q5 >>> 8) | (q5 << 24);
++        r6 = (q6 >>> 8) | (q6 << 24);
++        r7 = (q7 >>> 8) | (q7 << 24);
++
++        q[0] = q7 ^ r7 ^ r0 ^ rotr16(q0 ^ r0);
++        q[1] = q0 ^ r0 ^ q7 ^ r7 ^ r1 ^ rotr16(q1 ^ r1);
++        q[2] = q1 ^ r1 ^ r2 ^ rotr16(q2 ^ r2);
++        q[3] = q2 ^ r2 ^ q7 ^ r7 ^ r3 ^ rotr16(q3 ^ r3);
++        q[4] = q3 ^ r3 ^ q7 ^ r7 ^ r4 ^ rotr16(q4 ^ r4);
++        q[5] = q4 ^ r4 ^ r5 ^ rotr16(q5 ^ r5);
++        q[6] = q5 ^ r5 ^ r6 ^ rotr16(q6 ^ r6);
++        q[7] = q6 ^ r6 ^ r7 ^ rotr16(q7 ^ r7);
++    }
+ 
+-        // copy values into round key arrays
+-        int t = 0;
+-        for (j = 0; (j < KC) && (t < ROUND_KEY_COUNT); j++, t++) {
+-            Ke[t / 4][t % 4] = tk[j];
+-            Kd[ROUNDS - (t / 4)][t % 4] = tk[j];
+-        }
+-        int tt, rconpointer = 0;
+-        while (t < ROUND_KEY_COUNT) {
+-            // extrapolate using phi (the round key evolution function)
+-            tt = tk[KC - 1];
+-            tk[0] ^= (S[(tt >>> 16) & 0xFF]       ) << 24 ^
+-                     (S[(tt >>>  8) & 0xFF] & 0xFF) << 16 ^
+-                     (S[(tt       ) & 0xFF] & 0xFF) <<  8 ^
+-                     (S[(tt >>> 24)       ] & 0xFF)       ^
+-                     (rcon[rconpointer++]         ) << 24;
+-            if (KC != 8)
+-                for (i = 1, j = 0; i < KC; i++, j++) tk[i] ^= tk[j];
+-            else {
+-                for (i = 1, j = 0; i < KC / 2; i++, j++) tk[i] ^= tk[j];
+-                tt = tk[KC / 2 - 1];
+-                tk[KC / 2] ^= (S[(tt       ) & 0xFF] & 0xFF)       ^
+-                              (S[(tt >>>  8) & 0xFF] & 0xFF) <<  8 ^
+-                              (S[(tt >>> 16) & 0xFF] & 0xFF) << 16 ^
+-                              (S[(tt >>> 24)       ]       ) << 24;
+-                for (j = KC / 2, i = j + 1; i < KC; i++, j++) tk[i] ^= tk[j];
+-            }
+-            // copy values into round key arrays
+-            for (j = 0; (j < KC) && (t < ROUND_KEY_COUNT); j++, t++) {
+-                Ke[t / 4][t % 4] = tk[j];
+-                Kd[ROUNDS - (t / 4)][t % 4] = tk[j];
+-            }
+-        }
+-        for (int r = 1; r < ROUNDS; r++) {
+-            // inverse MixColumn where needed
+-            for (j = 0; j < BC; j++) {
+-                tt = Kd[r][j];
+-                Kd[r][j] = U1[(tt >>> 24) & 0xFF] ^
+-                           U2[(tt >>> 16) & 0xFF] ^
+-                           U3[(tt >>>  8) & 0xFF] ^
+-                           U4[ tt         & 0xFF];
+-            }
+-        }
++    private void addRoundKey32(int[] q, int[] sk) {
++        q[0] ^= sk[0];
++        q[1] ^= sk[1];
++        q[2] ^= sk[2];
++        q[3] ^= sk[3];
++        q[4] ^= sk[4];
++        q[5] ^= sk[5];
++        q[6] ^= sk[6];
++        q[7] ^= sk[7];
++    }
+ 
+-        // assemble the encryption (Ke) and decryption (Kd) round keys
+-        // and expand them into arrays of ints.
+-        int[] expandedKe = expandToSubKey(Ke, false); // decrypting==false
+-        int[] expandedKd = expandToSubKey(Kd, true);  // decrypting==true
+-        Arrays.fill(tk, 0);
+-        for (int[] ia: Ke) {
+-            Arrays.fill(ia, 0);
+-        }
+-        for (int[] ia: Kd) {
+-            Arrays.fill(ia, 0);
++    private void shiftRows32(int[] q) {
++        int x;
++        for (int i = 0; i < 8; i++) {
++            x = q[i];
++            q[i] = (x & 0x000000FF)
++                    | ((x & 0x0000FC00) >>> 2) | ((x & 0x00000300) << 6)
++                    | ((x & 0x00F00000) >>> 4) | ((x & 0x000F0000) << 4)
++                    | ((x & 0xC0000000) >>> 6) | ((x & 0x3F000000) << 2);
+         }
+-        ROUNDS_12 = (ROUNDS>=12);
+-        ROUNDS_14 = (ROUNDS==14);
+-        limit = ROUNDS*4;
+-
+-        // store the expanded sub keys into 'sessionK'
+-        if (sessionK != null) {
+-            // erase the previous values in sessionK
+-            Arrays.fill(sessionK[0], 0);
+-            Arrays.fill(sessionK[1], 0);
++    }
++
++    private int rotr16(int x) {
++        return (x << 16) | (x >>> 16);
++    }
++
++    private void brEnc32Le(byte[] dst, int x, int startPos) {
++        for (int i = 0; i < 4; ++i) {
++            dst[startPos + i] = (byte) (x >> (i << 3));
+         }
+-        sessionK = new int[][] { expandedKe, expandedKd };
+     }
+ 
++    private void brAesCt64InterleaveIn(long[] q, int qPos, int[] w, int startPos) {
++        long x0, x1, x2, x3;
++        x0 = w[startPos] & 0x00000000FFFFFFFFL;
++        x1 = w[startPos + 1] & 0x00000000FFFFFFFFL;
++        x2 = w[startPos + 2] & 0x00000000FFFFFFFFL;
++        x3 = w[startPos + 3] & 0x00000000FFFFFFFFL;
++        x0 |= x0 << 16;
++        x1 |= x1 << 16;
++        x2 |= x2 << 16;
++        x3 |= x3 << 16;
++        x0 &= 0x0000FFFF0000FFFFL;
++        x1 &= 0x0000FFFF0000FFFFL;
++        x2 &= 0x0000FFFF0000FFFFL;
++        x3 &= 0x0000FFFF0000FFFFL;
++        x0 |= x0 << 8;
++        x1 |= x1 << 8;
++        x2 |= x2 << 8;
++        x3 |= x3 << 8;
++        x0 &= 0x00FF00FF00FF00FFL;
++        x1 &= 0x00FF00FF00FF00FFL;
++        x2 &= 0x00FF00FF00FF00FFL;
++        x3 &= 0x00FF00FF00FF00FFL;
++        q[qPos] = x0 | (x2 << 8);
++        q[qPos + 4] = x1 | (x3 << 8);
++    }
+ 
+-    /**
+-     * Return The number of rounds for a given Rijndael keysize.
+-     *
+-     * @param keySize  The size of the user key material in bytes.
+-     *                 MUST be one of (16, 24, 32).
+-     * @return         The number of rounds.
+-     */
+-    private static int getRounds(int keySize) {
+-        return (keySize >> 2) + 6;
++    protected void interleaveConstant(long[] output, byte[] input, int startPos) {
++        int[] tmp_32_constant = new int[16];
++        int i;
++        brRangeDec32Le(input, tmp_32_constant, startPos);
++        for (i = 0; i < 4; ++i) {
++            brAesCt64InterleaveIn(output, i, tmp_32_constant, i << 2);
++        }
++        brAesCt64Ortho(output);
++    }
++
++    private void brRangeDec32Le(byte[] input, int[] output, int inputPos) {
++        int tmp;
++        for (int i = 0; i < output.length; ++i) {
++            tmp = inputPos + (i << 2);
++            output[i] = (input[tmp] & 0xFF) | ((input[tmp + 1] << 8) & 0xFF00) | (((int) input[tmp + 2] << 16) & 0xFF0000) | ((int) input[tmp + 3] << 24);
++        }
+     }
++
+ }
+diff --git a/src/java.base/share/classes/com/sun/crypto/provider/ElectronicCodeBook.java b/src/java.base/share/classes/com/sun/crypto/provider/ElectronicCodeBook.java
+index c2085816453..bb8244da643 100644
+--- a/src/java.base/share/classes/com/sun/crypto/provider/ElectronicCodeBook.java
++++ b/src/java.base/share/classes/com/sun/crypto/provider/ElectronicCodeBook.java
+@@ -43,10 +43,13 @@ import jdk.internal.vm.annotation.IntrinsicCandidate;
+  * @author Gigi Ankeny
+  */
+ 
+-final class ElectronicCodeBook extends FeedbackCipher {
++public final class ElectronicCodeBook extends FeedbackCipher {
+ 
+-    ElectronicCodeBook(SymmetricCipher embeddedCipher) {
++    AESCrypt aesCrypt;
++
++    public ElectronicCodeBook(SymmetricCipher embeddedCipher) {
+         super(embeddedCipher);
++        this.aesCrypt = (AESCrypt) embeddedCipher;
+     }
+ 
+     /**
+@@ -91,43 +94,40 @@ final class ElectronicCodeBook extends FeedbackCipher {
+      */
+     void init(boolean decrypting, String algorithm, byte[] key, byte[] iv)
+             throws InvalidKeyException {
+-        if ((key == null) || (iv != null)) {
+-            throw new InvalidKeyException("Internal error");
+-        }
+-        embeddedCipher.init(decrypting, algorithm, key);
+     }
+ 
+     @IntrinsicCandidate
+     private int implECBEncrypt(byte [] in, int inOff, int len, byte[] out, int outOff) {
+-        for (int i = len; i >= blockSize; i -= blockSize) {
+-            embeddedCipher.encryptBlock(in, inOff, out, outOff);
+-            inOff += blockSize;
+-            outOff += blockSize;
++        byte[] buf = new byte[64];
++        System.arraycopy(in, 0, buf, 0, 64);
++        this.aesCrypt.decryptBlock(buf, 0, out, 0);
++
++        for (int i = 8; i < 56; i++) {
++            buf[i] ^= in[i];
+         }
++
++        System.arraycopy(buf, 8, in, 0, 4);
++        System.arraycopy(buf, 12, in, 4, 4);
++        System.arraycopy(buf, 24, in, 8, 4);
++        System.arraycopy(buf, 28, in, 12, 4);
++        System.arraycopy(buf, 32, in, 16, 4);
++        System.arraycopy(buf, 36, in, 20, 4);
++        System.arraycopy(buf, 48, in, 24, 4);
++        System.arraycopy(buf, 52, in, 28, 4);
++
+         return len;
+     }
+ 
+     /**
+-     * Performs encryption operation.
+-     *
+-     * <p>The input plain text <code>in</code>, starting at
+-     * <code>inOff</code> and ending at * <code>(inOff + len - 1)</code>,
+-     * is encrypted. The result is stored in <code>out</code>, starting at
+-     * <code>outOff</code>.
++     * Calculates a Haraka512 hash
+      *
+-     * @param in the buffer with the input data to be encrypted
+-     * @param inOff the offset in <code>plain</code>
+-     * @param len the length of the input data
+-     * @param out the buffer for the result
+-     * @param outOff the offset in <code>cipher</code>
+-     * @exception ProviderException if <code>len</code> is not
+-     * a multiple of the block size
+-     * @return the length of the encrypted data
++     * @param in data input/digest output
++     * @param inOff ignored
++     * @param len ignored
++     * @param out round constants
++     * @param outOff ignored
+      */
+-    int encrypt(byte[] in, int inOff, int len, byte[] out, int outOff) {
+-        ArrayUtil.blockSizeCheck(len, blockSize);
+-        ArrayUtil.nullAndBoundsCheck(in, inOff, len);
+-        ArrayUtil.nullAndBoundsCheck(out, outOff, len);
++    public int encrypt(byte[] in, int inOff, int len, byte[] out, int outOff) {
+         return implECBEncrypt(in, inOff, len, out, outOff);
+     }
+ 
+diff --git a/src/java.base/share/classes/sun/security/provider/ByteArrayAccess.java b/src/java.base/share/classes/sun/security/provider/ByteArrayAccess.java
+index 2fda4ba2d81..000f44e0917 100644
+--- a/src/java.base/share/classes/sun/security/provider/ByteArrayAccess.java
++++ b/src/java.base/share/classes/sun/security/provider/ByteArrayAccess.java
+@@ -43,7 +43,7 @@ import java.nio.ByteOrder;
+  * @since   1.6
+  * @author  Andreas Sterbenz
+  */
+-final class ByteArrayAccess {
++public final class ByteArrayAccess {
+ 
+     private ByteArrayAccess() {
+         // empty
+@@ -72,7 +72,7 @@ final class ByteArrayAccess {
+     /**
+      * int[] to byte[] conversion, little endian byte order.
+      */
+-    static void i2bLittle(int[] in, int inOfs, byte[] out, int outOfs, int len) {
++    public static void i2bLittle(int[] in, int inOfs, byte[] out, int outOfs, int len) {
+         len += outOfs;
+         while (outOfs < len) {
+             LE.INT_ARRAY.set(out, outOfs, in[inOfs++]);
+@@ -81,14 +81,14 @@ final class ByteArrayAccess {
+     }
+ 
+     // Store one 32-bit value into out[outOfs..outOfs+3] in little endian order.
+-    static void i2bLittle4(int val, byte[] out, int outOfs) {
++    public static void i2bLittle4(int val, byte[] out, int outOfs) {
+         LE.INT_ARRAY.set(out, outOfs, val);
+     }
+ 
+     /**
+      * byte[] to int[] conversion, big endian byte order.
+      */
+-    static void b2iBig(byte[] in, int inOfs, int[] out, int outOfs, int len) {
++    public static void b2iBig(byte[] in, int inOfs, int[] out, int outOfs, int len) {
+         len += inOfs;
+         while (inOfs < len) {
+             out[outOfs++] = (int) BE.INT_ARRAY.get(in, inOfs);
+@@ -97,7 +97,7 @@ final class ByteArrayAccess {
+     }
+ 
+     // Special optimization of b2iBig(in, inOfs, out, 0, 64)
+-    static void b2iBig64(byte[] in, int inOfs, int[] out) {
++    public static void b2iBig64(byte[] in, int inOfs, int[] out) {
+         out[ 0] = (int) BE.INT_ARRAY.get(in, inOfs     );
+         out[ 1] = (int) BE.INT_ARRAY.get(in, inOfs +  4);
+         out[ 2] = (int) BE.INT_ARRAY.get(in, inOfs +  8);
+@@ -119,7 +119,7 @@ final class ByteArrayAccess {
+     /**
+      * int[] to byte[] conversion, big endian byte order.
+      */
+-    static void i2bBig(int[] in, int inOfs, byte[] out, int outOfs, int len) {
++    public static void i2bBig(int[] in, int inOfs, byte[] out, int outOfs, int len) {
+         len += outOfs;
+         while (outOfs < len) {
+             BE.INT_ARRAY.set(out, outOfs, in[inOfs++]);
+@@ -128,14 +128,14 @@ final class ByteArrayAccess {
+     }
+ 
+     // Store one 32-bit value into out[outOfs..outOfs+3] in big endian order.
+-    static void i2bBig4(int val, byte[] out, int outOfs) {
++    public static void i2bBig4(int val, byte[] out, int outOfs) {
+         BE.INT_ARRAY.set(out, outOfs, val);
+     }
+ 
+     /**
+      * byte[] to long[] conversion, big endian byte order.
+      */
+-    static void b2lBig(byte[] in, int inOfs, long[] out, int outOfs, int len) {
++    public static void b2lBig(byte[] in, int inOfs, long[] out, int outOfs, int len) {
+         len += inOfs;
+         while (inOfs < len) {
+             out[outOfs++] = (long) BE.LONG_ARRAY.get(in, inOfs);
+@@ -144,7 +144,7 @@ final class ByteArrayAccess {
+     }
+ 
+     // Special optimization of b2lBig(in, inOfs, out, 0, 128)
+-    static void b2lBig128(byte[] in, int inOfs, long[] out) {
++    public static void b2lBig128(byte[] in, int inOfs, long[] out) {
+         out[ 0] = (long) BE.LONG_ARRAY.get(in, inOfs      );
+         out[ 1] = (long) BE.LONG_ARRAY.get(in, inOfs +   8);
+         out[ 2] = (long) BE.LONG_ARRAY.get(in, inOfs +  16);
+@@ -166,7 +166,7 @@ final class ByteArrayAccess {
+     /**
+      * long[] to byte[] conversion, big endian byte order.
+      */
+-    static void l2bBig(long[] in, int inOfs, byte[] out, int outOfs, int len) {
++    public static void l2bBig(long[] in, int inOfs, byte[] out, int outOfs, int len) {
+         len += outOfs;
+         while (outOfs < len) {
+             BE.LONG_ARRAY.set(out, outOfs, in[inOfs++]);
+@@ -177,7 +177,7 @@ final class ByteArrayAccess {
+     /**
+      * byte[] to long[] conversion, little endian byte order
+      */
+-    static void b2lLittle(byte[] in, int inOfs, long[] out, int outOfs, int len) {
++    public static void b2lLittle(byte[] in, int inOfs, long[] out, int outOfs, int len) {
+         len += inOfs;
+         while (inOfs < len) {
+             out[outOfs++] = (long) LE.LONG_ARRAY.get(in, inOfs);
+@@ -189,7 +189,7 @@ final class ByteArrayAccess {
+     /**
+      * long[] to byte[] conversion, little endian byte order
+      */
+-    static void l2bLittle(long[] in, int inOfs, byte[] out, int outOfs, int len) {
++    public static void l2bLittle(long[] in, int inOfs, byte[] out, int outOfs, int len) {
+         len += outOfs;
+         while (outOfs < len) {
+             LE.LONG_ARRAY.set(out, outOfs, in[inOfs++]);
+diff --git a/src/java.base/share/classes/sun/security/provider/DigestBase.java b/src/java.base/share/classes/sun/security/provider/DigestBase.java
+index dbe59396ac0..ed367c74c88 100644
+--- a/src/java.base/share/classes/sun/security/provider/DigestBase.java
++++ b/src/java.base/share/classes/sun/security/provider/DigestBase.java
+@@ -40,17 +40,17 @@ import jdk.internal.vm.annotation.IntrinsicCandidate;
+  * implementation of an algorithm based on a compression function (as all
+  * commonly used algorithms are). The individual digest subclasses only need to
+  * implement the following methods:
+- *
+- *  . abstract void implCompress(byte[] b, int ofs);
+- *  . abstract void implDigest(byte[] out, int ofs);
+- *  . abstract void implReset();
+- *
++ * <p>
++ * . abstract void implCompress(byte[] b, int ofs);
++ * . abstract void implDigest(byte[] out, int ofs);
++ * . abstract void implReset();
++ * <p>
+  * See the inline documentation for details.
+  *
+- * @since   1.5
+- * @author  Andreas Sterbenz
++ * @author Andreas Sterbenz
++ * @since 1.5
+  */
+-abstract class DigestBase extends MessageDigestSpi implements Cloneable {
++public abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+ 
+     // one element byte array, temporary storage for update(byte)
+     private byte[] oneByte;
+@@ -102,7 +102,7 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+     }
+ 
+     // array update. See JCA doc.
+-    protected final void engineUpdate(byte[] b, int ofs, int len) {
++    public final void engineUpdate(byte[] b, int ofs, int len) {
+         if (len == 0) {
+             return;
+         }
+@@ -138,7 +138,7 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+     }
+ 
+     // compress complete blocks
+-    private int implCompressMultiBlock(byte[] b, int ofs, int limit) {
++    public int implCompressMultiBlock(byte[] b, int ofs, int limit) {
+         implCompressMultiBlockCheck(b, ofs, limit);
+         return implCompressMultiBlock0(b, ofs, limit);
+     }
+@@ -154,24 +154,24 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+     private void implCompressMultiBlockCheck(byte[] b, int ofs, int limit) {
+         if (limit < 0) {
+             return;  // not an error because implCompressMultiBlockImpl won't execute if limit < 0
+-                     // and an exception is thrown if ofs < 0.
++            // and an exception is thrown if ofs < 0.
+         }
+ 
+         Objects.requireNonNull(b);
+         Preconditions.checkIndex(ofs, b.length, Preconditions.AIOOBE_FORMATTER);
+ 
+-        int endIndex = (limit / blockSize) * blockSize  + blockSize - 1;
++        int endIndex = (limit / blockSize) * blockSize + blockSize - 1;
+         if (endIndex >= b.length) {
+             throw new ArrayIndexOutOfBoundsException(endIndex);
+         }
+     }
+ 
+     // reset this object. See JCA doc.
+-    protected final void engineReset() {
+-        if (bytesProcessed == 0) {
+-            // already reset, ignore
+-            return;
+-        }
++    public final void engineReset() {
++        //if (bytesProcessed == 0) {
++        // already reset, ignore
++        //    return;
++        //}
+         implReset();
+         bufOfs = 0;
+         bytesProcessed = 0;
+@@ -179,7 +179,7 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+     }
+ 
+     // return the digest. See JCA doc.
+-    protected final byte[] engineDigest() {
++    public final byte[] engineDigest() {
+         byte[] b = new byte[digestLength];
+         try {
+             engineDigest(b, 0, b.length);
+@@ -190,11 +190,11 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+     }
+ 
+     // return the digest in the specified array. See JCA doc.
+-    protected final int engineDigest(byte[] out, int ofs, int len)
++    public final int engineDigest(byte[] out, int ofs, int len)
+             throws DigestException {
+         if (len < digestLength) {
+             throw new DigestException("Length must be at least "
+-                + digestLength + " for " + algorithm + "digests");
++                    + digestLength + " for " + algorithm + "digests");
+         }
+         if ((ofs < 0) || (len < 0) || (ofs > out.length - len)) {
+             throw new DigestException("Buffer too short to store digest");
+@@ -211,27 +211,45 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+      * Core compression function. Processes blockSize bytes at a time
+      * and updates the state of this object.
+      */
+-    abstract void implCompress(byte[] b, int ofs);
++    public abstract void implCompress(byte[] b, int ofs);
+ 
+     /**
+      * Return the digest. Subclasses do not need to reset() themselves,
+      * DigestBase calls implReset() when necessary.
+      */
+-    abstract void implDigest(byte[] out, int ofs);
++    public abstract void implDigest(byte[] out, int ofs);
++
++    public abstract void implDigest(byte[] out, int ofs, int len);
+ 
+     /**
+      * Reset subclass specific state to their initial values. DigestBase
+      * calls this method when necessary.
+      */
+-    abstract void implReset();
++    public abstract void implReset();
+ 
+-    public Object clone() throws CloneNotSupportedException {
+-        DigestBase copy = (DigestBase) super.clone();
++    public DigestBase clone() {
++        DigestBase copy;
++        try {
++            copy = (DigestBase) super.clone();
++        } catch (CloneNotSupportedException e) {
++            throw new RuntimeException(e);
++        }
+         copy.buffer = copy.buffer.clone();
+         copy.oneByte = null;
+         return copy;
+     }
+ 
++    public void resetTo(DigestBase d) {
++        if (getClass() != d.getClass()) {
++            throw new IllegalArgumentException("Wrong digest type given");
++        }
++        this.buffer = d.buffer.clone();
++        this.oneByte = null;
++        this.bufOfs = d.bufOfs;
++        this.bytesProcessed = d.bytesProcessed;
++    }
++
++
+     // padding used for the MD5, and SHA-* message digests
+     static final byte[] padding;
+ 
+@@ -240,6 +258,6 @@ abstract class DigestBase extends MessageDigestSpi implements Cloneable {
+         // and an additional 8 bytes for the high 8 bytes of the 16
+         // byte bit counter in SHA-384/512
+         padding = new byte[136];
+-        padding[0] = (byte)0x80;
++        padding[0] = (byte) 0x80;
+     }
+ }
+diff --git a/src/java.base/share/classes/sun/security/provider/MD2.java b/src/java.base/share/classes/sun/security/provider/MD2.java
+index 1d89328ef73..9bd0e2c3027 100644
+--- a/src/java.base/share/classes/sun/security/provider/MD2.java
++++ b/src/java.base/share/classes/sun/security/provider/MD2.java
+@@ -58,7 +58,7 @@ public final class MD2 extends DigestBase {
+         cBytes = new byte[16];
+     }
+ 
+-    public Object clone() throws CloneNotSupportedException {
++    public MD2 clone() {
+         MD2 copy = (MD2) super.clone();
+         copy.X = copy.X.clone();
+         copy.C = copy.C.clone();
+@@ -67,13 +67,13 @@ public final class MD2 extends DigestBase {
+     }
+ 
+     // reset state and checksum
+-    void implReset() {
++    public void implReset() {
+         Arrays.fill(X, 0);
+         Arrays.fill(C, 0);
+     }
+ 
+     // finish the digest
+-    void implDigest(byte[] out, int ofs) {
++    public void implDigest(byte[] out, int ofs) {
+         int padValue = 16 - ((int)bytesProcessed & 15);
+         engineUpdate(PADDING[padValue], 0, padValue);
+         for (int i = 0; i < 16; i++) {
+@@ -86,7 +86,7 @@ public final class MD2 extends DigestBase {
+     }
+ 
+     // one iteration of the compression function
+-    void implCompress(byte[] b, int ofs) {
++    public void implCompress(byte[] b, int ofs) {
+         for (int i = 0; i < 16; i++) {
+             int k = b[ofs + i] & 0xff;
+             X[16 + i] = k;
+@@ -144,4 +144,8 @@ public final class MD2 extends DigestBase {
+         }
+     }
+ 
++    public void implDigest(byte[] out, int ofs, int len){
++        throw new RuntimeException("Not implemented");
++    }
++
+ }
+diff --git a/src/java.base/share/classes/sun/security/provider/MD4.java b/src/java.base/share/classes/sun/security/provider/MD4.java
+index ba9e7675bce..17290e1b141 100644
+--- a/src/java.base/share/classes/sun/security/provider/MD4.java
++++ b/src/java.base/share/classes/sun/security/provider/MD4.java
+@@ -96,7 +96,7 @@ public final class MD4 extends DigestBase {
+     }
+ 
+     // clone this object
+-    public Object clone() throws CloneNotSupportedException {
++    public MD4 clone() {
+         MD4 copy = (MD4) super.clone();
+         copy.state = copy.state.clone();
+         return copy;
+@@ -105,7 +105,7 @@ public final class MD4 extends DigestBase {
+     /**
+      * Reset the state of this object.
+      */
+-    void implReset() {
++    public void implReset() {
+         // Load magic initialization constants.
+         resetHashes();
+     }
+@@ -122,7 +122,7 @@ public final class MD4 extends DigestBase {
+      * to the digest, the count is added to the digest, and the resulting
+      * digest is stored.
+      */
+-    void implDigest(byte[] out, int ofs) {
++    public void implDigest(byte[] out, int ofs) {
+         long bitsProcessed = bytesProcessed << 3;
+ 
+         int index = (int)bytesProcessed & 0x3f;
+@@ -156,7 +156,7 @@ public final class MD4 extends DigestBase {
+      * transformation operation. It consumes sixteen
+      * bytes from the buffer, beginning at the specified offset.
+      */
+-    void implCompress(byte[] buf, int ofs) {
++    public void implCompress(byte[] buf, int ofs) {
+         int x0 = (int) LE.INT_ARRAY.get(buf, ofs);
+         int x1 = (int) LE.INT_ARRAY.get(buf, ofs + 4);
+         int x2 = (int) LE.INT_ARRAY.get(buf, ofs + 8);
+@@ -239,4 +239,8 @@ public final class MD4 extends DigestBase {
+         state[3] += d;
+     }
+ 
++    public void implDigest(byte[] out, int ofs, int len){
++        throw new RuntimeException("Not implemented");
++    }
++
+ }
+diff --git a/src/java.base/share/classes/sun/security/provider/MD5.java b/src/java.base/share/classes/sun/security/provider/MD5.java
+index 130f4f8b66e..f9defb9759a 100644
+--- a/src/java.base/share/classes/sun/security/provider/MD5.java
++++ b/src/java.base/share/classes/sun/security/provider/MD5.java
+@@ -76,7 +76,7 @@ public final class MD5 extends DigestBase {
+     }
+ 
+     // clone this object
+-    public Object clone() throws CloneNotSupportedException {
++    public MD5 clone() {
+         MD5 copy = (MD5) super.clone();
+         copy.state = copy.state.clone();
+         return copy;
+@@ -85,7 +85,7 @@ public final class MD5 extends DigestBase {
+     /**
+      * Reset the state of this object.
+      */
+-    void implReset() {
++    public void implReset() {
+         // Load magic initialization constants.
+         state[0] = 0x67452301;
+         state[1] = 0xefcdab89;
+@@ -98,7 +98,7 @@ public final class MD5 extends DigestBase {
+      * to the digest, the count is added to the digest, and the resulting
+      * digest is stored.
+      */
+-    void implDigest(byte[] out, int ofs) {
++    public void implDigest(byte[] out, int ofs) {
+         long bitsProcessed = bytesProcessed << 3;
+ 
+         int index = (int)bytesProcessed & 0x3f;
+@@ -143,7 +143,7 @@ public final class MD5 extends DigestBase {
+      * transformation operation. It consumes sixteen
+      * bytes from the buffer, beginning at the specified offset.
+      */
+-    void implCompress(byte[] buf, int ofs) {
++    public void implCompress(byte[] buf, int ofs) {
+         implCompressCheck(buf, ofs);
+         implCompress0(buf, ofs);
+     }
+@@ -263,5 +263,8 @@ public final class MD5 extends DigestBase {
+         state[2] += c;
+         state[3] += d;
+     }
++    public void implDigest(byte[] out, int ofs, int len){
++        throw new RuntimeException("Not implemented");
++    }
+ 
+ }
+diff --git a/src/java.base/share/classes/sun/security/provider/SHA.java b/src/java.base/share/classes/sun/security/provider/SHA.java
+index fcc7ca91b7e..edcd3d64a61 100644
+--- a/src/java.base/share/classes/sun/security/provider/SHA.java
++++ b/src/java.base/share/classes/sun/security/provider/SHA.java
+@@ -70,7 +70,7 @@ public final class SHA extends DigestBase {
+     /*
+      * Clones this object.
+      */
+-    public Object clone() throws CloneNotSupportedException {
++    public SHA clone() {
+         SHA copy = (SHA) super.clone();
+         copy.state = copy.state.clone();
+         copy.W = null;
+@@ -80,7 +80,7 @@ public final class SHA extends DigestBase {
+     /**
+      * Resets the buffers and hash value to start a new hash.
+      */
+-    void implReset() {
++    public void implReset() {
+         // Load magic initialization constants.
+         resetHashes();
+         // clear out old data
+@@ -100,7 +100,7 @@ public final class SHA extends DigestBase {
+     /**
+      * Computes the final hash and copies the 20 bytes to the output array.
+      */
+-    void implDigest(byte[] out, int ofs) {
++    public void implDigest(byte[] out, int ofs) {
+         long bitsProcessed = bytesProcessed << 3;
+ 
+         int index = (int)bytesProcessed & 0x3f;
+@@ -127,7 +127,7 @@ public final class SHA extends DigestBase {
+      * the back of Applied Cryptography, Compact implementation of
+      * "old" NIST Secure Hash Algorithm.
+      */
+-    void implCompress(byte[] buf, int ofs) {
++    public void implCompress(byte[] buf, int ofs) {
+         implCompressCheck(buf, ofs);
+         implCompress0(buf, ofs);
+     }
+@@ -214,5 +214,8 @@ public final class SHA extends DigestBase {
+         state[3] += d;
+         state[4] += e;
+     }
++    public void implDigest(byte[] out, int ofs, int len){
++        throw new RuntimeException("Not implemented");
++    }
+ 
+ }
+diff --git a/src/java.base/share/classes/sun/security/provider/SHA2.java b/src/java.base/share/classes/sun/security/provider/SHA2.java
+index 88eadb2694b..bc1ec22c0d7 100644
+--- a/src/java.base/share/classes/sun/security/provider/SHA2.java
++++ b/src/java.base/share/classes/sun/security/provider/SHA2.java
+@@ -30,6 +30,7 @@ import java.util.Objects;
+ 
+ import jdk.internal.util.Preconditions;
+ import jdk.internal.vm.annotation.IntrinsicCandidate;
++
+ import static sun.security.provider.ByteArrayAccess.*;
+ 
+ /**
+@@ -41,41 +42,38 @@ import static sun.security.provider.ByteArrayAccess.*;
+  * through Java Cryptography Architecture (JCA), as a pluggable
+  * MessageDigest implementation.
+  *
+- * @since       1.4.2
+- * @author      Valerie Peng
+- * @author      Andreas Sterbenz
++ * @author Valerie Peng
++ * @author Andreas Sterbenz
++ * @since 1.4.2
+  */
+-abstract class SHA2 extends DigestBase {
++public abstract class SHA2 extends DigestBase {
+ 
+     private static final int ITERATION = 64;
+     // Constants for each round
+     private static final int[] ROUND_CONSTS = {
+-        0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
+-        0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+-        0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
+-        0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+-        0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc,
+-        0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+-        0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7,
+-        0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+-        0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
+-        0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+-        0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3,
+-        0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+-        0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5,
+-        0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+-        0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
+-        0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
++            0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
++            0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
++            0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,
++            0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
++            0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc,
++            0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
++            0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7,
++            0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
++            0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,
++            0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
++            0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3,
++            0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
++            0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5,
++            0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
++            0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,
++            0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+     };
+-
+-    // buffer used by implCompress()
+-    private int[] W;
+-
+-    // state of this object
+-    private int[] state;
+-
+     // initial state value. different between SHA-224 and SHA-256
+     private final int[] initialHashes;
++    // state of this object
++    public int[] state;
++    // buffer used by implCompress()
++    private int[] W;
+ 
+     /**
+      * Creates a new SHA object.
+@@ -90,7 +88,7 @@ abstract class SHA2 extends DigestBase {
+     /**
+      * Resets the buffers and hash value to start a new hash.
+      */
+-    void implReset() {
++    public void implReset() {
+         resetHashes();
+         if (W != null) {
+             Arrays.fill(W, 0);
+@@ -101,24 +99,28 @@ abstract class SHA2 extends DigestBase {
+         System.arraycopy(initialHashes, 0, state, 0, state.length);
+     }
+ 
+-    void implDigest(byte[] out, int ofs) {
++    public void implDigest(byte[] out, int ofs) {
++        this.implDigest(out, ofs, engineGetDigestLength());
++    }
++
++    public void implDigest(byte[] out, int ofs, int digestLength) {
+         long bitsProcessed = bytesProcessed << 3;
+ 
+-        int index = (int)bytesProcessed & 0x3f;
++        int index = (int) bytesProcessed & 0x3f;
+         int padLen = (index < 56) ? (56 - index) : (120 - index);
+         engineUpdate(padding, 0, padLen);
+ 
+-        i2bBig4((int)(bitsProcessed >>> 32), buffer, 56);
+-        i2bBig4((int)bitsProcessed, buffer, 60);
++        i2bBig4((int) (bitsProcessed >>> 32), buffer, 56);
++        i2bBig4((int) bitsProcessed, buffer, 60);
+         implCompress(buffer, 0);
+ 
+-        i2bBig(state, 0, out, ofs, engineGetDigestLength());
++        i2bBig(state, 0, out, ofs, digestLength);
+     }
+ 
+     /**
+      * Process the current block to update the state variable state.
+      */
+-    void implCompress(byte[] buf, int ofs) {
++    public void implCompress(byte[] buf, int ofs) {
+         implCompressCheck(buf, ofs);
+         implCompress0(buf, ofs);
+     }
+@@ -156,17 +158,17 @@ abstract class SHA2 extends DigestBase {
+ 
+             // delta0(x) = S(x, 7) ^ S(x, 18) ^ R(x, 3)
+             int delta0_W_t15 =
+-                    ((W_t15 >>>  7) | (W_t15 << 25)) ^
+-                    ((W_t15 >>> 18) | (W_t15 << 14)) ^
+-                     (W_t15 >>>  3);
++                    ((W_t15 >>> 7) | (W_t15 << 25)) ^
++                            ((W_t15 >>> 18) | (W_t15 << 14)) ^
++                            (W_t15 >>> 3);
+ 
+             // delta1(x) = S(x, 17) ^ S(x, 19) ^ R(x, 10)
+             int delta1_W_t2 =
+                     ((W_t2 >>> 17) | (W_t2 << 15)) ^
+-                    ((W_t2 >>> 19) | (W_t2 << 13)) ^
+-                     (W_t2 >>> 10);
++                            ((W_t2 >>> 19) | (W_t2 << 13)) ^
++                            (W_t2 >>> 10);
+ 
+-            W[t] = delta0_W_t15 + delta1_W_t2 + W[t-7] + W[t-16];
++            W[t] = delta0_W_t15 + delta1_W_t2 + W[t - 7] + W[t - 16];
+         }
+ 
+         int a = state[0];
+@@ -184,15 +186,15 @@ abstract class SHA2 extends DigestBase {
+ 
+             // sigma0(x) = S(x,2) xor S(x,13) xor S(x,22)
+             int sigma0_a =
+-                    ((a >>>  2) | (a << 30)) ^
+-                    ((a >>> 13) | (a << 19)) ^
+-                    ((a >>> 22) | (a << 10));
++                    ((a >>> 2) | (a << 30)) ^
++                            ((a >>> 13) | (a << 19)) ^
++                            ((a >>> 22) | (a << 10));
+ 
+             // sigma1(x) = S(x,6) xor S(x,11) xor S(x,25)
+             int sigma1_e =
+-                    ((e >>>  6) | (e << 26)) ^
+-                    ((e >>> 11) | (e << 21)) ^
+-                    ((e >>> 25) | (e <<  7));
++                    ((e >>> 6) | (e << 26)) ^
++                            ((e >>> 11) | (e << 21)) ^
++                            ((e >>> 25) | (e << 7));
+ 
+             // ch(x,y,z) = (x and y) xor ((complement x) and z)
+             int ch_efg = (e & f) ^ ((~e) & g);
+@@ -222,20 +224,27 @@ abstract class SHA2 extends DigestBase {
+         state[7] += h;
+     }
+ 
+-    public Object clone() throws CloneNotSupportedException {
++    public SHA2 clone() {
+         SHA2 copy = (SHA2) super.clone();
+         copy.state = copy.state.clone();
+         copy.W = null;
+         return copy;
+     }
+ 
++    public void resetTo(DigestBase d){
++        super.resetTo(d);
++
++        this.state = ((SHA2) d).state.clone();
++        this.W = null;
++    }
++
+     /**
+      * SHA-224 implementation class.
+      */
+     public static final class SHA224 extends SHA2 {
+         private static final int[] INITIAL_HASHES = {
+-            0xc1059ed8, 0x367cd507, 0x3070dd17, 0xf70e5939,
+-            0xffc00b31, 0x68581511, 0x64f98fa7, 0xbefa4fa4
++                0xc1059ed8, 0x367cd507, 0x3070dd17, 0xf70e5939,
++                0xffc00b31, 0x68581511, 0x64f98fa7, 0xbefa4fa4
+         };
+ 
+         public SHA224() {
+@@ -248,8 +257,8 @@ abstract class SHA2 extends DigestBase {
+      */
+     public static final class SHA256 extends SHA2 {
+         private static final int[] INITIAL_HASHES = {
+-            0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+-            0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
++                0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
++                0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19
+         };
+ 
+         public SHA256() {
+diff --git a/src/java.base/share/classes/sun/security/provider/SHA3.java b/src/java.base/share/classes/sun/security/provider/SHA3.java
+index fb21e3ceb6e..f59d894442b 100644
+--- a/src/java.base/share/classes/sun/security/provider/SHA3.java
++++ b/src/java.base/share/classes/sun/security/provider/SHA3.java
+@@ -62,8 +62,8 @@ abstract class SHA3 extends DigestBase {
+         0x8000000000008080L, 0x80000001L, 0x8000000080008008L,
+     };
+ 
+-    private final byte suffix;
+-    private byte[] state = new byte[WIDTH];
++    protected final byte suffix;
++    protected byte[] state = new byte[WIDTH];
+     private long[] lanes = new long[DM*DM];
+ 
+     /**
+@@ -82,7 +82,7 @@ abstract class SHA3 extends DigestBase {
+      * Core compression function. Processes blockSize bytes at a time
+      * and updates the state of this object.
+      */
+-    void implCompress(byte[] b, int ofs) {
++    public void implCompress(byte[] b, int ofs) {
+         implCompressCheck(b, ofs);
+         implCompress0(b, ofs);
+     }
+@@ -99,20 +99,25 @@ abstract class SHA3 extends DigestBase {
+      * Return the digest. Subclasses do not need to reset() themselves,
+      * DigestBase calls implReset() when necessary.
+      */
+-    void implDigest(byte[] out, int ofs) {
++    public void implDigest(byte[] out, int ofs) {
++        implDigest(out, ofs, engineGetDigestLength());
++    }
++
++    public void implDigest(byte[] out, int ofs, int len){
+         int numOfPadding =
+-            setPaddingBytes(suffix, buffer, (int)(bytesProcessed % buffer.length));
++                setPaddingBytes(suffix, buffer, (int)(bytesProcessed % buffer.length));
+         if (numOfPadding < 1) {
+             throw new ProviderException("Incorrect pad size: " + numOfPadding);
+         }
+         implCompress(buffer, 0);
+-        System.arraycopy(state, 0, out, ofs, engineGetDigestLength());
++        System.arraycopy(state, 0, out, ofs, len);
+     }
+ 
++
+     /**
+      * Resets the internal state to start a new hash.
+      */
+-    void implReset() {
++    public void implReset() {
+         Arrays.fill(state, (byte)0);
+         Arrays.fill(lanes, 0L);
+     }
+@@ -122,7 +127,7 @@ abstract class SHA3 extends DigestBase {
+      * pad10*1 algorithm (section 5.1) and the 2-bit suffix "01" required
+      * for SHA-3 hash (section 6.1).
+      */
+-    private static int setPaddingBytes(byte suffix, byte[] in, int len) {
++    protected static int setPaddingBytes(byte suffix, byte[] in, int len) {
+         if (len != in.length) {
+             // erase leftover values
+             Arrays.fill(in, len, in.length, (byte)0);
+@@ -266,7 +271,7 @@ abstract class SHA3 extends DigestBase {
+         lanes2Bytes(lanes, state);
+     }
+ 
+-    public Object clone() throws CloneNotSupportedException {
++    public SHA3 clone() {
+         SHA3 copy = (SHA3) super.clone();
+         copy.state = copy.state.clone();
+         copy.lanes = new long[DM*DM];
+@@ -308,4 +313,5 @@ abstract class SHA3 extends DigestBase {
+             super("SHA3-512", 64, (byte)0x06, 128);
+         }
+     }
++
+ }
+diff --git a/src/java.base/share/classes/sun/security/provider/SHA5.java b/src/java.base/share/classes/sun/security/provider/SHA5.java
+index 7ad8289a65a..7914e38e1df 100644
+--- a/src/java.base/share/classes/sun/security/provider/SHA5.java
++++ b/src/java.base/share/classes/sun/security/provider/SHA5.java
+@@ -30,13 +30,14 @@ import java.util.Objects;
+ 
+ import jdk.internal.util.Preconditions;
+ import jdk.internal.vm.annotation.IntrinsicCandidate;
++
+ import static sun.security.provider.ByteArrayAccess.*;
+ 
+ /**
+  * This class implements the Secure Hash Algorithm SHA-384 and SHA-512
+  * developed by the National Institute of Standards and Technology along
+  * with the National Security Agency.
+- *
++ * <p>
+  * The two algorithms are almost identical. This file contains a base
+  * class SHA5 and two nested static subclasses as the classes to be used
+  * by the JCA framework.
+@@ -45,53 +46,50 @@ import static sun.security.provider.ByteArrayAccess.*;
+  * through Java Cryptography Architecture (JCA), as a pluggable
+  * MessageDigest implementation.
+  *
+- * @since       1.4.2
+- * @author      Valerie Peng
+- * @author      Andreas Sterbenz
++ * @author Valerie Peng
++ * @author Andreas Sterbenz
++ * @since 1.4.2
+  */
+-abstract class SHA5 extends DigestBase {
++public abstract class SHA5 extends DigestBase {
+ 
+     private static final int ITERATION = 80;
+     // Constants for each round/iteration
+     private static final long[] ROUND_CONSTS = {
+-        0x428A2F98D728AE22L, 0x7137449123EF65CDL, 0xB5C0FBCFEC4D3B2FL,
+-        0xE9B5DBA58189DBBCL, 0x3956C25BF348B538L, 0x59F111F1B605D019L,
+-        0x923F82A4AF194F9BL, 0xAB1C5ED5DA6D8118L, 0xD807AA98A3030242L,
+-        0x12835B0145706FBEL, 0x243185BE4EE4B28CL, 0x550C7DC3D5FFB4E2L,
+-        0x72BE5D74F27B896FL, 0x80DEB1FE3B1696B1L, 0x9BDC06A725C71235L,
+-        0xC19BF174CF692694L, 0xE49B69C19EF14AD2L, 0xEFBE4786384F25E3L,
+-        0x0FC19DC68B8CD5B5L, 0x240CA1CC77AC9C65L, 0x2DE92C6F592B0275L,
+-        0x4A7484AA6EA6E483L, 0x5CB0A9DCBD41FBD4L, 0x76F988DA831153B5L,
+-        0x983E5152EE66DFABL, 0xA831C66D2DB43210L, 0xB00327C898FB213FL,
+-        0xBF597FC7BEEF0EE4L, 0xC6E00BF33DA88FC2L, 0xD5A79147930AA725L,
+-        0x06CA6351E003826FL, 0x142929670A0E6E70L, 0x27B70A8546D22FFCL,
+-        0x2E1B21385C26C926L, 0x4D2C6DFC5AC42AEDL, 0x53380D139D95B3DFL,
+-        0x650A73548BAF63DEL, 0x766A0ABB3C77B2A8L, 0x81C2C92E47EDAEE6L,
+-        0x92722C851482353BL, 0xA2BFE8A14CF10364L, 0xA81A664BBC423001L,
+-        0xC24B8B70D0F89791L, 0xC76C51A30654BE30L, 0xD192E819D6EF5218L,
+-        0xD69906245565A910L, 0xF40E35855771202AL, 0x106AA07032BBD1B8L,
+-        0x19A4C116B8D2D0C8L, 0x1E376C085141AB53L, 0x2748774CDF8EEB99L,
+-        0x34B0BCB5E19B48A8L, 0x391C0CB3C5C95A63L, 0x4ED8AA4AE3418ACBL,
+-        0x5B9CCA4F7763E373L, 0x682E6FF3D6B2B8A3L, 0x748F82EE5DEFB2FCL,
+-        0x78A5636F43172F60L, 0x84C87814A1F0AB72L, 0x8CC702081A6439ECL,
+-        0x90BEFFFA23631E28L, 0xA4506CEBDE82BDE9L, 0xBEF9A3F7B2C67915L,
+-        0xC67178F2E372532BL, 0xCA273ECEEA26619CL, 0xD186B8C721C0C207L,
+-        0xEADA7DD6CDE0EB1EL, 0xF57D4F7FEE6ED178L, 0x06F067AA72176FBAL,
+-        0x0A637DC5A2C898A6L, 0x113F9804BEF90DAEL, 0x1B710B35131C471BL,
+-        0x28DB77F523047D84L, 0x32CAAB7B40C72493L, 0x3C9EBE0A15C9BEBCL,
+-        0x431D67C49C100D4CL, 0x4CC5D4BECB3E42B6L, 0x597F299CFC657E2AL,
+-        0x5FCB6FAB3AD6FAECL, 0x6C44198C4A475817L
++            0x428A2F98D728AE22L, 0x7137449123EF65CDL, 0xB5C0FBCFEC4D3B2FL,
++            0xE9B5DBA58189DBBCL, 0x3956C25BF348B538L, 0x59F111F1B605D019L,
++            0x923F82A4AF194F9BL, 0xAB1C5ED5DA6D8118L, 0xD807AA98A3030242L,
++            0x12835B0145706FBEL, 0x243185BE4EE4B28CL, 0x550C7DC3D5FFB4E2L,
++            0x72BE5D74F27B896FL, 0x80DEB1FE3B1696B1L, 0x9BDC06A725C71235L,
++            0xC19BF174CF692694L, 0xE49B69C19EF14AD2L, 0xEFBE4786384F25E3L,
++            0x0FC19DC68B8CD5B5L, 0x240CA1CC77AC9C65L, 0x2DE92C6F592B0275L,
++            0x4A7484AA6EA6E483L, 0x5CB0A9DCBD41FBD4L, 0x76F988DA831153B5L,
++            0x983E5152EE66DFABL, 0xA831C66D2DB43210L, 0xB00327C898FB213FL,
++            0xBF597FC7BEEF0EE4L, 0xC6E00BF33DA88FC2L, 0xD5A79147930AA725L,
++            0x06CA6351E003826FL, 0x142929670A0E6E70L, 0x27B70A8546D22FFCL,
++            0x2E1B21385C26C926L, 0x4D2C6DFC5AC42AEDL, 0x53380D139D95B3DFL,
++            0x650A73548BAF63DEL, 0x766A0ABB3C77B2A8L, 0x81C2C92E47EDAEE6L,
++            0x92722C851482353BL, 0xA2BFE8A14CF10364L, 0xA81A664BBC423001L,
++            0xC24B8B70D0F89791L, 0xC76C51A30654BE30L, 0xD192E819D6EF5218L,
++            0xD69906245565A910L, 0xF40E35855771202AL, 0x106AA07032BBD1B8L,
++            0x19A4C116B8D2D0C8L, 0x1E376C085141AB53L, 0x2748774CDF8EEB99L,
++            0x34B0BCB5E19B48A8L, 0x391C0CB3C5C95A63L, 0x4ED8AA4AE3418ACBL,
++            0x5B9CCA4F7763E373L, 0x682E6FF3D6B2B8A3L, 0x748F82EE5DEFB2FCL,
++            0x78A5636F43172F60L, 0x84C87814A1F0AB72L, 0x8CC702081A6439ECL,
++            0x90BEFFFA23631E28L, 0xA4506CEBDE82BDE9L, 0xBEF9A3F7B2C67915L,
++            0xC67178F2E372532BL, 0xCA273ECEEA26619CL, 0xD186B8C721C0C207L,
++            0xEADA7DD6CDE0EB1EL, 0xF57D4F7FEE6ED178L, 0x06F067AA72176FBAL,
++            0x0A637DC5A2C898A6L, 0x113F9804BEF90DAEL, 0x1B710B35131C471BL,
++            0x28DB77F523047D84L, 0x32CAAB7B40C72493L, 0x3C9EBE0A15C9BEBCL,
++            0x431D67C49C100D4CL, 0x4CC5D4BECB3E42B6L, 0x597F299CFC657E2AL,
++            0x5FCB6FAB3AD6FAECL, 0x6C44198C4A475817L
+     };
+-
++    // initial state value. different between SHA-384 and SHA-512
++    private final long[] initialHashes;
+     // buffer used by implCompress()
+     private long[] W;
+-
+     // state of this object
+     private long[] state;
+ 
+-    // initial state value. different between SHA-384 and SHA-512
+-    private final long[] initialHashes;
+-
+     /**
+      * Creates a new SHA object.
+      */
+@@ -102,44 +100,13 @@ abstract class SHA5 extends DigestBase {
+         resetHashes();
+     }
+ 
+-    final void implReset() {
+-        resetHashes();
+-        if (W != null) {
+-            Arrays.fill(W, 0L);
+-        }
+-    }
+-
+-    private void resetHashes() {
+-        System.arraycopy(initialHashes, 0, state, 0, state.length);
+-    }
+-
+-    final void implDigest(byte[] out, int ofs) {
+-        long bitsProcessed = bytesProcessed << 3;
+-
+-        int index = (int)bytesProcessed & 0x7f;
+-        int padLen = (index < 112) ? (112 - index) : (240 - index);
+-        engineUpdate(padding, 0, padLen + 8);
+-
+-        i2bBig4((int)(bitsProcessed >>> 32), buffer, 120);
+-        i2bBig4((int)bitsProcessed, buffer, 124);
+-        implCompress(buffer, 0);
+-
+-        int len = engineGetDigestLength();
+-        if (len == 28) {
+-            // Special case for SHA-512/224
+-            l2bBig(state, 0, out, ofs, 24);
+-            i2bBig4((int)(state[3] >> 32), out, ofs + 24);
+-        } else {
+-            l2bBig(state, 0, out, ofs, len);
+-        }
+-    }
+-
+     /**
+      * logical function ch(x,y,z) as defined in spec:
+-     * @return (x and y) xor ((complement x) and z)
++     *
+      * @param x long
+      * @param y long
+      * @param z long
++     * @return (x and y) xor ((complement x) and z)
+      */
+     private static long lf_ch(long x, long y, long z) {
+         return (x & y) ^ ((~x) & z);
+@@ -147,10 +114,11 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function maj(x,y,z) as defined in spec:
+-     * @return (x and y) xor (x and z) xor (y and z)
++     *
+      * @param x long
+      * @param y long
+      * @param z long
++     * @return (x and y) xor (x and z) xor (y and z)
+      */
+     private static long lf_maj(long x, long y, long z) {
+         return (x & y) ^ (x & z) ^ (y & z);
+@@ -158,9 +126,10 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function R(x,s) - right shift
+-     * @return x right shift for s times
++     *
+      * @param x long
+      * @param s int
++     * @return x right shift for s times
+      */
+     private static long lf_R(long x, int s) {
+         return (x >>> s);
+@@ -168,9 +137,10 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function S(x,s) - right rotation
+-     * @return x circular right shift for s times
++     *
+      * @param x long
+      * @param s int
++     * @return x circular right shift for s times
+      */
+     private static long lf_S(long x, int s) {
+         return (x >>> s) | (x << (64 - s));
+@@ -178,8 +148,9 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function sigma0(x) - xor of results of right rotations
+-     * @return S(x,28) xor S(x,34) xor S(x,39)
++     *
+      * @param x long
++     * @return S(x, 28) xor S(x,34) xor S(x,39)
+      */
+     private static long lf_sigma0(long x) {
+         return lf_S(x, 28) ^ lf_S(x, 34) ^ lf_S(x, 39);
+@@ -187,8 +158,9 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function sigma1(x) - xor of results of right rotations
+-     * @return S(x,14) xor S(x,18) xor S(x,41)
++     *
+      * @param x long
++     * @return S(x, 14) xor S(x,18) xor S(x,41)
+      */
+     private static long lf_sigma1(long x) {
+         return lf_S(x, 14) ^ lf_S(x, 18) ^ lf_S(x, 41);
+@@ -196,8 +168,9 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function delta0(x) - xor of results of right shifts/rotations
+-     * @return long
++     *
+      * @param x long
++     * @return long
+      */
+     private static long lf_delta0(long x) {
+         return lf_S(x, 1) ^ lf_S(x, 8) ^ lf_R(x, 7);
+@@ -205,21 +178,57 @@ abstract class SHA5 extends DigestBase {
+ 
+     /**
+      * logical function delta1(x) - xor of results of right shifts/rotations
+-     * @return long
++     *
+      * @param x long
++     * @return long
+      */
+     private static long lf_delta1(long x) {
+         return lf_S(x, 19) ^ lf_S(x, 61) ^ lf_R(x, 6);
+     }
+ 
++    public final void implReset() {
++        resetHashes();
++        if (W != null) {
++            Arrays.fill(W, 0L);
++        }
++    }
++
++    private void resetHashes() {
++        System.arraycopy(initialHashes, 0, state, 0, state.length);
++    }
++
++    public final void implDigest(byte[] out, int ofs) {
++        implDigest(out, ofs, engineGetDigestLength());
++    }
++
++    public final void implDigest(byte[] out, int ofs, int len) {
++        long bitsProcessed = bytesProcessed << 3;
++
++        int index = (int) bytesProcessed & 0x7f;
++        int padLen = (index < 112) ? (112 - index) : (240 - index);
++        engineUpdate(padding, 0, padLen + 8);
++
++        i2bBig4((int) (bitsProcessed >>> 32), buffer, 120);
++        i2bBig4((int) bitsProcessed, buffer, 124);
++        implCompress(buffer, 0);
++
++        if (len == 28) {
++            // Special case for SHA-512/224
++            l2bBig(state, 0, out, ofs, 24);
++            i2bBig4((int) (state[3] >> 32), out, ofs + 24);
++        } else {
++            l2bBig(state, 0, out, ofs, len);
++        }
++    }
++
+     /**
+      * Compute the hash for the current block.
+-     *
++     * <p>
+      * This is in the same vein as Peter Gutmann's algorithm listed in
+      * the back of Applied Cryptography, Compact implementation of
+      * "old" NIST Secure Hash Algorithm.
+      */
+-    final void implCompress(byte[] buf, int ofs) {
++    public final void implCompress(byte[] buf, int ofs) {
+         implCompressCheck(buf, ofs);
+         implCompress0(buf, ofs);
+     }
+@@ -247,8 +256,8 @@ abstract class SHA5 extends DigestBase {
+         // The first 16 longs are from the byte stream, compute the rest of
+         // the W[]'s
+         for (int t = 16; t < ITERATION; t++) {
+-            W[t] = lf_delta1(W[t-2]) + W[t-7] + lf_delta0(W[t-15])
+-                   + W[t-16];
++            W[t] = lf_delta1(W[t - 2]) + W[t - 7] + lf_delta0(W[t - 15])
++                    + W[t - 16];
+         }
+ 
+         long a = state[0];
+@@ -261,8 +270,8 @@ abstract class SHA5 extends DigestBase {
+         long h = state[7];
+ 
+         for (int i = 0; i < ITERATION; i++) {
+-            long T1 = h + lf_sigma1(e) + lf_ch(e,f,g) + ROUND_CONSTS[i] + W[i];
+-            long T2 = lf_sigma0(a) + lf_maj(a,b,c);
++            long T1 = h + lf_sigma1(e) + lf_ch(e, f, g) + ROUND_CONSTS[i] + W[i];
++            long T2 = lf_sigma0(a) + lf_maj(a, b, c);
+             h = g;
+             g = f;
+             f = e;
+@@ -282,23 +291,30 @@ abstract class SHA5 extends DigestBase {
+         state[7] += h;
+     }
+ 
+-    public Object clone() throws CloneNotSupportedException {
++    public SHA5 clone() {
+         SHA5 copy = (SHA5) super.clone();
+         copy.state = copy.state.clone();
+         copy.W = null;
+         return copy;
+     }
+ 
++    public void resetTo(DigestBase d) {
++        super.resetTo(d);
++        this.state = ((SHA5) d).state.clone();
++        this.W = null;
++    }
++
++
+     /**
+      * SHA-512 implementation class.
+      */
+     public static final class SHA512 extends SHA5 {
+ 
+         private static final long[] INITIAL_HASHES = {
+-            0x6a09e667f3bcc908L, 0xbb67ae8584caa73bL,
+-            0x3c6ef372fe94f82bL, 0xa54ff53a5f1d36f1L,
+-            0x510e527fade682d1L, 0x9b05688c2b3e6c1fL,
+-            0x1f83d9abfb41bd6bL, 0x5be0cd19137e2179L
++                0x6a09e667f3bcc908L, 0xbb67ae8584caa73bL,
++                0x3c6ef372fe94f82bL, 0xa54ff53a5f1d36f1L,
++                0x510e527fade682d1L, 0x9b05688c2b3e6c1fL,
++                0x1f83d9abfb41bd6bL, 0x5be0cd19137e2179L
+         };
+ 
+         public SHA512() {
+@@ -312,16 +328,17 @@ abstract class SHA5 extends DigestBase {
+     public static final class SHA384 extends SHA5 {
+ 
+         private static final long[] INITIAL_HASHES = {
+-            0xcbbb9d5dc1059ed8L, 0x629a292a367cd507L,
+-            0x9159015a3070dd17L, 0x152fecd8f70e5939L,
+-            0x67332667ffc00b31L, 0x8eb44a8768581511L,
+-            0xdb0c2e0d64f98fa7L, 0x47b5481dbefa4fa4L
++                0xcbbb9d5dc1059ed8L, 0x629a292a367cd507L,
++                0x9159015a3070dd17L, 0x152fecd8f70e5939L,
++                0x67332667ffc00b31L, 0x8eb44a8768581511L,
++                0xdb0c2e0d64f98fa7L, 0x47b5481dbefa4fa4L
+         };
+ 
+         public SHA384() {
+             super("SHA-384", 48, INITIAL_HASHES);
+         }
+     }
++
+     public static final class SHA512_224 extends SHA5 {
+ 
+         private static final long[] INITIAL_HASHES = {
+diff --git a/src/java.base/share/classes/sun/security/provider/SHAKE256.java b/src/java.base/share/classes/sun/security/provider/SHAKE256.java
+index 5dab92fdd78..bfc3183febb 100644
+--- a/src/java.base/share/classes/sun/security/provider/SHAKE256.java
++++ b/src/java.base/share/classes/sun/security/provider/SHAKE256.java
+@@ -24,6 +24,10 @@
+  */
+ package sun.security.provider;
+ 
++import java.security.*;
++import java.util.*;
++
++
+ /*
+  * The SHAKE256 extendable output function.
+  */
+@@ -35,6 +39,7 @@ public final class SHAKE256 extends SHA3 {
+     public void update(byte in) {
+         engineUpdate(in);
+     }
++
+     public void update(byte[] in, int off, int len) {
+         engineUpdate(in, off, len);
+     }
+@@ -43,6 +48,26 @@ public final class SHAKE256 extends SHA3 {
+         return engineDigest();
+     }
+ 
++    public void digest(byte[] out, int outOff, int len) {
++        int numOfPadding =
++                setPaddingBytes(suffix, buffer, (int) (bytesProcessed % buffer.length));
++        if (numOfPadding < 1) {
++            throw new ProviderException("Incorrect pad size: " + numOfPadding);
++        }
++        implCompress(buffer, 0);
++        Arrays.fill(buffer, (byte) 0);
++
++        while (len > 136) {
++            System.arraycopy(state, 0, out, outOff, 136);
++            implCompress(buffer, 0);
++            len -= 136;
++            outOff += 136;
++        }
++        System.arraycopy(state, 0, out, outOff, len);
++
++        engineReset();
++    }
++
+     public void reset() {
+         engineReset();
+     }

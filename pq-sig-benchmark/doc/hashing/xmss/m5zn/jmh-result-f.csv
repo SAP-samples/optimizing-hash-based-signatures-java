@@ -1,0 +1,20 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: digestName","Param: hashingProvider","Param: paramSize"
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.361468,0.000292,"us/op",SHA-256,bc,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.620764,0.001338,"us/op",SHA-256,bc,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.333196,0.000339,"us/op",SHA-256,bc-optimized,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.581367,0.000687,"us/op",SHA-256,bc-optimized,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.244670,0.001215,"us/op",SHA-256,corretto,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.398656,0.000166,"us/op",SHA-256,corretto,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.184428,0.000067,"us/op",SHA-256,jni,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.287188,0.000833,"us/op",SHA-256,jni,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.183571,0.000337,"us/op",SHA-256,jni-fixed-padding,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.283384,0.000331,"us/op",SHA-256,jni-fixed-padding,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.283938,0.001715,"us/op",SHA-256,jni-prf-cache,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.187100,0.000105,"us/op",SHA-256,java,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.328887,0.000234,"us/op",SHA-256,java,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.167788,0.000206,"us/op",SHA-256,java-optimized,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.280295,0.000160,"us/op",SHA-256,java-optimized,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.499737,0.000304,"us/op",SHAKE256,bc,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.485228,0.000290,"us/op",SHAKE256,bc,32
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.272943,0.000895,"us/op",SHAKE256,jni,24
+"com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark","avgt",1,50,0.273640,0.001144,"us/op",SHAKE256,jni,32

@@ -1,0 +1,1920 @@
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = bc, paramSize = 24)
+
+# Run progress: 0.00% complete, ETA 00:37:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.448 us/op
+# Warmup Iteration   2: 0.444 us/op
+Iteration   1: 0.438 us/op
+Iteration   2: 0.445 us/op
+Iteration   3: 0.444 us/op
+Iteration   4: 0.443 us/op
+Iteration   5: 0.444 us/op
+Iteration   6: 0.444 us/op
+Iteration   7: 0.443 us/op
+Iteration   8: 0.439 us/op
+Iteration   9: 0.442 us/op
+Iteration  10: 0.439 us/op
+Iteration  11: 0.439 us/op
+Iteration  12: 0.438 us/op
+Iteration  13: 0.440 us/op
+Iteration  14: 0.441 us/op
+Iteration  15: 0.441 us/op
+Iteration  16: 0.442 us/op
+Iteration  17: 0.445 us/op
+Iteration  18: 0.444 us/op
+Iteration  19: 0.439 us/op
+Iteration  20: 0.440 us/op
+Iteration  21: 0.438 us/op
+Iteration  22: 0.440 us/op
+Iteration  23: 0.441 us/op
+Iteration  24: 0.439 us/op
+Iteration  25: 0.440 us/op
+Iteration  26: 0.444 us/op
+Iteration  27: 0.441 us/op
+Iteration  28: 0.440 us/op
+Iteration  29: 0.439 us/op
+Iteration  30: 0.441 us/op
+Iteration  31: 0.441 us/op
+Iteration  32: 0.438 us/op
+Iteration  33: 0.441 us/op
+Iteration  34: 0.439 us/op
+Iteration  35: 0.437 us/op
+Iteration  36: 0.444 us/op
+Iteration  37: 0.441 us/op
+Iteration  38: 0.440 us/op
+Iteration  39: 0.439 us/op
+Iteration  40: 0.439 us/op
+Iteration  41: 0.439 us/op
+Iteration  42: 0.440 us/op
+Iteration  43: 0.441 us/op
+Iteration  44: 0.440 us/op
+Iteration  45: 0.439 us/op
+Iteration  46: 0.441 us/op
+Iteration  47: 0.440 us/op
+Iteration  48: 0.440 us/op
+Iteration  49: 0.441 us/op
+Iteration  50: 0.441 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.441 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.437, 0.441, 0.445), stdev = 0.002
+  CI (99.9%): [0.440, 0.442] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = bc, paramSize = 32)
+
+# Run progress: 3.13% complete, ETA 00:36:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.814 us/op
+# Warmup Iteration   2: 0.813 us/op
+Iteration   1: 0.812 us/op
+Iteration   2: 0.826 us/op
+Iteration   3: 0.815 us/op
+Iteration   4: 0.815 us/op
+Iteration   5: 0.821 us/op
+Iteration   6: 0.812 us/op
+Iteration   7: 0.812 us/op
+Iteration   8: 0.814 us/op
+Iteration   9: 0.813 us/op
+Iteration  10: 0.822 us/op
+Iteration  11: 0.812 us/op
+Iteration  12: 0.824 us/op
+Iteration  13: 0.818 us/op
+Iteration  14: 0.818 us/op
+Iteration  15: 0.813 us/op
+Iteration  16: 0.811 us/op
+Iteration  17: 0.814 us/op
+Iteration  18: 0.811 us/op
+Iteration  19: 0.815 us/op
+Iteration  20: 0.816 us/op
+Iteration  21: 0.814 us/op
+Iteration  22: 0.827 us/op
+Iteration  23: 0.817 us/op
+Iteration  24: 0.825 us/op
+Iteration  25: 0.812 us/op
+Iteration  26: 0.814 us/op
+Iteration  27: 0.822 us/op
+Iteration  28: 0.822 us/op
+Iteration  29: 0.824 us/op
+Iteration  30: 0.812 us/op
+Iteration  31: 0.815 us/op
+Iteration  32: 0.813 us/op
+Iteration  33: 0.830 us/op
+Iteration  34: 0.825 us/op
+Iteration  35: 0.812 us/op
+Iteration  36: 0.815 us/op
+Iteration  37: 0.821 us/op
+Iteration  38: 0.813 us/op
+Iteration  39: 0.814 us/op
+Iteration  40: 0.814 us/op
+Iteration  41: 0.819 us/op
+Iteration  42: 0.813 us/op
+Iteration  43: 0.812 us/op
+Iteration  44: 0.811 us/op
+Iteration  45: 0.819 us/op
+Iteration  46: 0.822 us/op
+Iteration  47: 0.823 us/op
+Iteration  48: 0.812 us/op
+Iteration  49: 0.815 us/op
+Iteration  50: 0.820 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.817 ±(99.9%) 0.003 us/op [Average]
+  (min, avg, max) = (0.811, 0.817, 0.830), stdev = 0.005
+  CI (99.9%): [0.814, 0.819] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = bc-optimized, paramSize = 24)
+
+# Run progress: 6.25% complete, ETA 00:35:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.416 us/op
+# Warmup Iteration   2: 0.415 us/op
+Iteration   1: 0.416 us/op
+Iteration   2: 0.415 us/op
+Iteration   3: 0.416 us/op
+Iteration   4: 0.414 us/op
+Iteration   5: 0.412 us/op
+Iteration   6: 0.413 us/op
+Iteration   7: 0.414 us/op
+Iteration   8: 0.414 us/op
+Iteration   9: 0.415 us/op
+Iteration  10: 0.415 us/op
+Iteration  11: 0.415 us/op
+Iteration  12: 0.415 us/op
+Iteration  13: 0.415 us/op
+Iteration  14: 0.413 us/op
+Iteration  15: 0.411 us/op
+Iteration  16: 0.416 us/op
+Iteration  17: 0.412 us/op
+Iteration  18: 0.412 us/op
+Iteration  19: 0.414 us/op
+Iteration  20: 0.416 us/op
+Iteration  21: 0.416 us/op
+Iteration  22: 0.413 us/op
+Iteration  23: 0.413 us/op
+Iteration  24: 0.414 us/op
+Iteration  25: 0.414 us/op
+Iteration  26: 0.415 us/op
+Iteration  27: 0.413 us/op
+Iteration  28: 0.416 us/op
+Iteration  29: 0.413 us/op
+Iteration  30: 0.415 us/op
+Iteration  31: 0.417 us/op
+Iteration  32: 0.412 us/op
+Iteration  33: 0.416 us/op
+Iteration  34: 0.415 us/op
+Iteration  35: 0.411 us/op
+Iteration  36: 0.415 us/op
+Iteration  37: 0.414 us/op
+Iteration  38: 0.416 us/op
+Iteration  39: 0.414 us/op
+Iteration  40: 0.413 us/op
+Iteration  41: 0.415 us/op
+Iteration  42: 0.416 us/op
+Iteration  43: 0.413 us/op
+Iteration  44: 0.416 us/op
+Iteration  45: 0.412 us/op
+Iteration  46: 0.418 us/op
+Iteration  47: 0.413 us/op
+Iteration  48: 0.415 us/op
+Iteration  49: 0.413 us/op
+Iteration  50: 0.416 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.414 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.411, 0.414, 0.418), stdev = 0.002
+  CI (99.9%): [0.414, 0.415] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = bc-optimized, paramSize = 32)
+
+# Run progress: 9.38% complete, ETA 00:33:59
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.777 us/op
+# Warmup Iteration   2: 0.772 us/op
+Iteration   1: 0.771 us/op
+Iteration   2: 0.770 us/op
+Iteration   3: 0.773 us/op
+Iteration   4: 0.775 us/op
+Iteration   5: 0.769 us/op
+Iteration   6: 0.774 us/op
+Iteration   7: 0.772 us/op
+Iteration   8: 0.771 us/op
+Iteration   9: 0.772 us/op
+Iteration  10: 0.772 us/op
+Iteration  11: 0.772 us/op
+Iteration  12: 0.769 us/op
+Iteration  13: 0.778 us/op
+Iteration  14: 0.770 us/op
+Iteration  15: 0.774 us/op
+Iteration  16: 0.771 us/op
+Iteration  17: 0.772 us/op
+Iteration  18: 0.772 us/op
+Iteration  19: 0.772 us/op
+Iteration  20: 0.773 us/op
+Iteration  21: 0.770 us/op
+Iteration  22: 0.770 us/op
+Iteration  23: 0.770 us/op
+Iteration  24: 0.775 us/op
+Iteration  25: 0.772 us/op
+Iteration  26: 0.772 us/op
+Iteration  27: 0.771 us/op
+Iteration  28: 0.779 us/op
+Iteration  29: 0.775 us/op
+Iteration  30: 0.774 us/op
+Iteration  31: 0.772 us/op
+Iteration  32: 0.772 us/op
+Iteration  33: 0.772 us/op
+Iteration  34: 0.771 us/op
+Iteration  35: 0.771 us/op
+Iteration  36: 0.771 us/op
+Iteration  37: 0.770 us/op
+Iteration  38: 0.772 us/op
+Iteration  39: 0.772 us/op
+Iteration  40: 0.770 us/op
+Iteration  41: 0.772 us/op
+Iteration  42: 0.773 us/op
+Iteration  43: 0.770 us/op
+Iteration  44: 0.771 us/op
+Iteration  45: 0.778 us/op
+Iteration  46: 0.772 us/op
+Iteration  47: 0.778 us/op
+Iteration  48: 0.772 us/op
+Iteration  49: 0.772 us/op
+Iteration  50: 0.769 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.772 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.769, 0.772, 0.779), stdev = 0.002
+  CI (99.9%): [0.771, 0.773] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = corretto, paramSize = 24)
+
+# Run progress: 12.50% complete, ETA 00:32:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.193 us/op
+# Warmup Iteration   2: 0.192 us/op
+Iteration   1: 0.190 us/op
+Iteration   2: 0.192 us/op
+Iteration   3: 0.192 us/op
+Iteration   4: 0.192 us/op
+Iteration   5: 0.192 us/op
+Iteration   6: 0.192 us/op
+Iteration   7: 0.192 us/op
+Iteration   8: 0.189 us/op
+Iteration   9: 0.191 us/op
+Iteration  10: 0.191 us/op
+Iteration  11: 0.190 us/op
+Iteration  12: 0.189 us/op
+Iteration  13: 0.190 us/op
+Iteration  14: 0.191 us/op
+Iteration  15: 0.191 us/op
+Iteration  16: 0.191 us/op
+Iteration  17: 0.189 us/op
+Iteration  18: 0.190 us/op
+Iteration  19: 0.189 us/op
+Iteration  20: 0.191 us/op
+Iteration  21: 0.189 us/op
+Iteration  22: 0.189 us/op
+Iteration  23: 0.190 us/op
+Iteration  24: 0.189 us/op
+Iteration  25: 0.190 us/op
+Iteration  26: 0.189 us/op
+Iteration  27: 0.189 us/op
+Iteration  28: 0.190 us/op
+Iteration  29: 0.189 us/op
+Iteration  30: 0.189 us/op
+Iteration  31: 0.189 us/op
+Iteration  32: 0.190 us/op
+Iteration  33: 0.189 us/op
+Iteration  34: 0.189 us/op
+Iteration  35: 0.189 us/op
+Iteration  36: 0.190 us/op
+Iteration  37: 0.189 us/op
+Iteration  38: 0.189 us/op
+Iteration  39: 0.190 us/op
+Iteration  40: 0.189 us/op
+Iteration  41: 0.189 us/op
+Iteration  42: 0.189 us/op
+Iteration  43: 0.189 us/op
+Iteration  44: 0.189 us/op
+Iteration  45: 0.189 us/op
+Iteration  46: 0.189 us/op
+Iteration  47: 0.190 us/op
+Iteration  48: 0.189 us/op
+Iteration  49: 0.189 us/op
+Iteration  50: 0.189 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.190 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.189, 0.190, 0.192), stdev = 0.001
+  CI (99.9%): [0.189, 0.190] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = corretto, paramSize = 32)
+
+# Run progress: 15.63% complete, ETA 00:31:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.261 us/op
+# Warmup Iteration   2: 0.259 us/op
+Iteration   1: 0.259 us/op
+Iteration   2: 0.259 us/op
+Iteration   3: 0.259 us/op
+Iteration   4: 0.259 us/op
+Iteration   5: 0.259 us/op
+Iteration   6: 0.259 us/op
+Iteration   7: 0.259 us/op
+Iteration   8: 0.258 us/op
+Iteration   9: 0.259 us/op
+Iteration  10: 0.259 us/op
+Iteration  11: 0.259 us/op
+Iteration  12: 0.259 us/op
+Iteration  13: 0.259 us/op
+Iteration  14: 0.259 us/op
+Iteration  15: 0.259 us/op
+Iteration  16: 0.259 us/op
+Iteration  17: 0.258 us/op
+Iteration  18: 0.259 us/op
+Iteration  19: 0.259 us/op
+Iteration  20: 0.259 us/op
+Iteration  21: 0.259 us/op
+Iteration  22: 0.259 us/op
+Iteration  23: 0.259 us/op
+Iteration  24: 0.259 us/op
+Iteration  25: 0.259 us/op
+Iteration  26: 0.258 us/op
+Iteration  27: 0.259 us/op
+Iteration  28: 0.258 us/op
+Iteration  29: 0.259 us/op
+Iteration  30: 0.259 us/op
+Iteration  31: 0.259 us/op
+Iteration  32: 0.259 us/op
+Iteration  33: 0.259 us/op
+Iteration  34: 0.259 us/op
+Iteration  35: 0.259 us/op
+Iteration  36: 0.259 us/op
+Iteration  37: 0.259 us/op
+Iteration  38: 0.259 us/op
+Iteration  39: 0.259 us/op
+Iteration  40: 0.259 us/op
+Iteration  41: 0.259 us/op
+Iteration  42: 0.259 us/op
+Iteration  43: 0.259 us/op
+Iteration  44: 0.259 us/op
+Iteration  45: 0.259 us/op
+Iteration  46: 0.259 us/op
+Iteration  47: 0.259 us/op
+Iteration  48: 0.259 us/op
+Iteration  49: 0.258 us/op
+Iteration  50: 0.259 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.259 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.258, 0.259, 0.259), stdev = 0.001
+  CI (99.9%): [0.259, 0.259] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = jni, paramSize = 24)
+
+# Run progress: 18.75% complete, ETA 00:30:29
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.108 us/op
+# Warmup Iteration   2: 0.107 us/op
+Iteration   1: 0.108 us/op
+Iteration   2: 0.107 us/op
+Iteration   3: 0.107 us/op
+Iteration   4: 0.107 us/op
+Iteration   5: 0.120 us/op
+Iteration   6: 0.111 us/op
+Iteration   7: 0.111 us/op
+Iteration   8: 0.108 us/op
+Iteration   9: 0.108 us/op
+Iteration  10: 0.109 us/op
+Iteration  11: 0.109 us/op
+Iteration  12: 0.109 us/op
+Iteration  13: 0.109 us/op
+Iteration  14: 0.108 us/op
+Iteration  15: 0.109 us/op
+Iteration  16: 0.123 us/op
+Iteration  17: 0.116 us/op
+Iteration  18: 0.116 us/op
+Iteration  19: 0.116 us/op
+Iteration  20: 0.116 us/op
+Iteration  21: 0.116 us/op
+Iteration  22: 0.116 us/op
+Iteration  23: 0.116 us/op
+Iteration  24: 0.116 us/op
+Iteration  25: 0.116 us/op
+Iteration  26: 0.116 us/op
+Iteration  27: 0.116 us/op
+Iteration  28: 0.116 us/op
+Iteration  29: 0.116 us/op
+Iteration  30: 0.116 us/op
+Iteration  31: 0.116 us/op
+Iteration  32: 0.116 us/op
+Iteration  33: 0.116 us/op
+Iteration  34: 0.116 us/op
+Iteration  35: 0.116 us/op
+Iteration  36: 0.116 us/op
+Iteration  37: 0.116 us/op
+Iteration  38: 0.116 us/op
+Iteration  39: 0.116 us/op
+Iteration  40: 0.116 us/op
+Iteration  41: 0.116 us/op
+Iteration  42: 0.116 us/op
+Iteration  43: 0.116 us/op
+Iteration  44: 0.116 us/op
+Iteration  45: 0.116 us/op
+Iteration  46: 0.116 us/op
+Iteration  47: 0.116 us/op
+Iteration  48: 0.116 us/op
+Iteration  49: 0.116 us/op
+Iteration  50: 0.116 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.114 ±(99.9%) 0.002 us/op [Average]
+  (min, avg, max) = (0.107, 0.114, 0.123), stdev = 0.004
+  CI (99.9%): [0.112, 0.116] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = jni, paramSize = 32)
+
+# Run progress: 21.88% complete, ETA 00:29:19
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.158 us/op
+# Warmup Iteration   2: 0.160 us/op
+Iteration   1: 0.159 us/op
+Iteration   2: 0.160 us/op
+Iteration   3: 0.160 us/op
+Iteration   4: 0.161 us/op
+Iteration   5: 0.161 us/op
+Iteration   6: 0.161 us/op
+Iteration   7: 0.161 us/op
+Iteration   8: 0.159 us/op
+Iteration   9: 0.159 us/op
+Iteration  10: 0.159 us/op
+Iteration  11: 0.159 us/op
+Iteration  12: 0.159 us/op
+Iteration  13: 0.159 us/op
+Iteration  14: 0.159 us/op
+Iteration  15: 0.159 us/op
+Iteration  16: 0.159 us/op
+Iteration  17: 0.160 us/op
+Iteration  18: 0.159 us/op
+Iteration  19: 0.159 us/op
+Iteration  20: 0.160 us/op
+Iteration  21: 0.159 us/op
+Iteration  22: 0.159 us/op
+Iteration  23: 0.159 us/op
+Iteration  24: 0.159 us/op
+Iteration  25: 0.159 us/op
+Iteration  26: 0.160 us/op
+Iteration  27: 0.159 us/op
+Iteration  28: 0.159 us/op
+Iteration  29: 0.160 us/op
+Iteration  30: 0.159 us/op
+Iteration  31: 0.159 us/op
+Iteration  32: 0.160 us/op
+Iteration  33: 0.159 us/op
+Iteration  34: 0.159 us/op
+Iteration  35: 0.159 us/op
+Iteration  36: 0.159 us/op
+Iteration  37: 0.159 us/op
+Iteration  38: 0.159 us/op
+Iteration  39: 0.159 us/op
+Iteration  40: 0.162 us/op
+Iteration  41: 0.160 us/op
+Iteration  42: 0.161 us/op
+Iteration  43: 0.161 us/op
+Iteration  44: 0.161 us/op
+Iteration  45: 0.161 us/op
+Iteration  46: 0.160 us/op
+Iteration  47: 0.160 us/op
+Iteration  48: 0.161 us/op
+Iteration  49: 0.161 us/op
+Iteration  50: 0.160 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.160 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.159, 0.160, 0.162), stdev = 0.001
+  CI (99.9%): [0.159, 0.160] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = jni-fixed-padding, paramSize = 24)
+
+# Run progress: 25.00% complete, ETA 00:28:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.107 us/op
+# Warmup Iteration   2: 0.106 us/op
+Iteration   1: 0.105 us/op
+Iteration   2: 0.106 us/op
+Iteration   3: 0.106 us/op
+Iteration   4: 0.107 us/op
+Iteration   5: 0.106 us/op
+Iteration   6: 0.106 us/op
+Iteration   7: 0.106 us/op
+Iteration   8: 0.112 us/op
+Iteration   9: 0.106 us/op
+Iteration  10: 0.105 us/op
+Iteration  11: 0.105 us/op
+Iteration  12: 0.105 us/op
+Iteration  13: 0.105 us/op
+Iteration  14: 0.105 us/op
+Iteration  15: 0.106 us/op
+Iteration  16: 0.105 us/op
+Iteration  17: 0.107 us/op
+Iteration  18: 0.106 us/op
+Iteration  19: 0.105 us/op
+Iteration  20: 0.106 us/op
+Iteration  21: 0.105 us/op
+Iteration  22: 0.105 us/op
+Iteration  23: 0.105 us/op
+Iteration  24: 0.105 us/op
+Iteration  25: 0.106 us/op
+Iteration  26: 0.105 us/op
+Iteration  27: 0.105 us/op
+Iteration  28: 0.105 us/op
+Iteration  29: 0.105 us/op
+Iteration  30: 0.106 us/op
+Iteration  31: 0.105 us/op
+Iteration  32: 0.105 us/op
+Iteration  33: 0.105 us/op
+Iteration  34: 0.105 us/op
+Iteration  35: 0.105 us/op
+Iteration  36: 0.106 us/op
+Iteration  37: 0.105 us/op
+Iteration  38: 0.105 us/op
+Iteration  39: 0.113 us/op
+Iteration  40: 0.106 us/op
+Iteration  41: 0.106 us/op
+Iteration  42: 0.105 us/op
+Iteration  43: 0.105 us/op
+Iteration  44: 0.105 us/op
+Iteration  45: 0.105 us/op
+Iteration  46: 0.105 us/op
+Iteration  47: 0.105 us/op
+Iteration  48: 0.105 us/op
+Iteration  49: 0.113 us/op
+Iteration  50: 0.106 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.106 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.105, 0.106, 0.113), stdev = 0.002
+  CI (99.9%): [0.105, 0.107] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = jni-fixed-padding, paramSize = 32)
+
+# Run progress: 28.13% complete, ETA 00:26:58
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.160 us/op
+# Warmup Iteration   2: 0.159 us/op
+Iteration   1: 0.156 us/op
+Iteration   2: 0.159 us/op
+Iteration   3: 0.159 us/op
+Iteration   4: 0.159 us/op
+Iteration   5: 0.159 us/op
+Iteration   6: 0.159 us/op
+Iteration   7: 0.159 us/op
+Iteration   8: 0.156 us/op
+Iteration   9: 0.156 us/op
+Iteration  10: 0.156 us/op
+Iteration  11: 0.156 us/op
+Iteration  12: 0.156 us/op
+Iteration  13: 0.156 us/op
+Iteration  14: 0.156 us/op
+Iteration  15: 0.156 us/op
+Iteration  16: 0.156 us/op
+Iteration  17: 0.157 us/op
+Iteration  18: 0.156 us/op
+Iteration  19: 0.156 us/op
+Iteration  20: 0.156 us/op
+Iteration  21: 0.156 us/op
+Iteration  22: 0.157 us/op
+Iteration  23: 0.156 us/op
+Iteration  24: 0.156 us/op
+Iteration  25: 0.156 us/op
+Iteration  26: 0.156 us/op
+Iteration  27: 0.157 us/op
+Iteration  28: 0.156 us/op
+Iteration  29: 0.156 us/op
+Iteration  30: 0.156 us/op
+Iteration  31: 0.156 us/op
+Iteration  32: 0.157 us/op
+Iteration  33: 0.157 us/op
+Iteration  34: 0.156 us/op
+Iteration  35: 0.156 us/op
+Iteration  36: 0.156 us/op
+Iteration  37: 0.156 us/op
+Iteration  38: 0.156 us/op
+Iteration  39: 0.156 us/op
+Iteration  40: 0.156 us/op
+Iteration  41: 0.156 us/op
+Iteration  42: 0.183 us/op
+Iteration  43: 0.161 us/op
+Iteration  44: 0.160 us/op
+Iteration  45: 0.159 us/op
+Iteration  46: 0.160 us/op
+Iteration  47: 0.160 us/op
+Iteration  48: 0.160 us/op
+Iteration  49: 0.160 us/op
+Iteration  50: 0.160 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.158 ±(99.9%) 0.002 us/op [Average]
+  (min, avg, max) = (0.156, 0.158, 0.183), stdev = 0.004
+  CI (99.9%): [0.156, 0.160] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = jni-prf-cache, paramSize = 24)
+
+# Run progress: 31.25% complete, ETA 00:25:47
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unknown digest
+	at org.example.bcpqc.experiments.hashing.JNIPrfCachingHashingProvider.newKHF(JNIPrfCachingHashingProvider.java:19)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = jni-prf-cache, paramSize = 32)
+
+# Run progress: 34.38% complete, ETA 00:22:23
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.153 us/op
+# Warmup Iteration   2: 0.152 us/op
+Iteration   1: 0.152 us/op
+Iteration   2: 0.152 us/op
+Iteration   3: 0.153 us/op
+Iteration   4: 0.152 us/op
+Iteration   5: 0.152 us/op
+Iteration   6: 0.152 us/op
+Iteration   7: 0.152 us/op
+Iteration   8: 0.152 us/op
+Iteration   9: 0.152 us/op
+Iteration  10: 0.152 us/op
+Iteration  11: 0.152 us/op
+Iteration  12: 0.152 us/op
+Iteration  13: 0.152 us/op
+Iteration  14: 0.152 us/op
+Iteration  15: 0.152 us/op
+Iteration  16: 0.152 us/op
+Iteration  17: 0.152 us/op
+Iteration  18: 0.152 us/op
+Iteration  19: 0.152 us/op
+Iteration  20: 0.152 us/op
+Iteration  21: 0.152 us/op
+Iteration  22: 0.151 us/op
+Iteration  23: 0.152 us/op
+Iteration  24: 0.153 us/op
+Iteration  25: 0.153 us/op
+Iteration  26: 0.152 us/op
+Iteration  27: 0.152 us/op
+Iteration  28: 0.152 us/op
+Iteration  29: 0.152 us/op
+Iteration  30: 0.152 us/op
+Iteration  31: 0.154 us/op
+Iteration  32: 0.152 us/op
+Iteration  33: 0.152 us/op
+Iteration  34: 0.152 us/op
+Iteration  35: 0.152 us/op
+Iteration  36: 0.152 us/op
+Iteration  37: 0.152 us/op
+Iteration  38: 0.152 us/op
+Iteration  39: 0.152 us/op
+Iteration  40: 0.152 us/op
+Iteration  41: 0.152 us/op
+Iteration  42: 0.152 us/op
+Iteration  43: 0.152 us/op
+Iteration  44: 0.152 us/op
+Iteration  45: 0.152 us/op
+Iteration  46: 0.153 us/op
+Iteration  47: 0.153 us/op
+Iteration  48: 0.152 us/op
+Iteration  49: 0.152 us/op
+Iteration  50: 0.152 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.152 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.151, 0.152, 0.154), stdev = 0.001
+  CI (99.9%): [0.152, 0.152] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = java, paramSize = 24)
+
+# Run progress: 37.50% complete, ETA 00:21:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.102 us/op
+# Warmup Iteration   2: 0.095 us/op
+Iteration   1: 0.094 us/op
+Iteration   2: 0.095 us/op
+Iteration   3: 0.094 us/op
+Iteration   4: 0.094 us/op
+Iteration   5: 0.094 us/op
+Iteration   6: 0.094 us/op
+Iteration   7: 0.094 us/op
+Iteration   8: 0.094 us/op
+Iteration   9: 0.094 us/op
+Iteration  10: 0.094 us/op
+Iteration  11: 0.094 us/op
+Iteration  12: 0.094 us/op
+Iteration  13: 0.094 us/op
+Iteration  14: 0.094 us/op
+Iteration  15: 0.094 us/op
+Iteration  16: 0.094 us/op
+Iteration  17: 0.094 us/op
+Iteration  18: 0.094 us/op
+Iteration  19: 0.095 us/op
+Iteration  20: 0.094 us/op
+Iteration  21: 0.094 us/op
+Iteration  22: 0.094 us/op
+Iteration  23: 0.094 us/op
+Iteration  24: 0.094 us/op
+Iteration  25: 0.094 us/op
+Iteration  26: 0.094 us/op
+Iteration  27: 0.094 us/op
+Iteration  28: 0.094 us/op
+Iteration  29: 0.094 us/op
+Iteration  30: 0.094 us/op
+Iteration  31: 0.094 us/op
+Iteration  32: 0.094 us/op
+Iteration  33: 0.094 us/op
+Iteration  34: 0.094 us/op
+Iteration  35: 0.094 us/op
+Iteration  36: 0.094 us/op
+Iteration  37: 0.094 us/op
+Iteration  38: 0.094 us/op
+Iteration  39: 0.094 us/op
+Iteration  40: 0.094 us/op
+Iteration  41: 0.094 us/op
+Iteration  42: 0.094 us/op
+Iteration  43: 0.094 us/op
+Iteration  44: 0.094 us/op
+Iteration  45: 0.094 us/op
+Iteration  46: 0.094 us/op
+Iteration  47: 0.094 us/op
+Iteration  48: 0.094 us/op
+Iteration  49: 0.094 us/op
+Iteration  50: 0.094 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.094 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.094, 0.094, 0.095), stdev = 0.001
+  CI (99.9%): [0.094, 0.094] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = java, paramSize = 32)
+
+# Run progress: 40.63% complete, ETA 00:20:33
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.155 us/op
+# Warmup Iteration   2: 0.152 us/op
+Iteration   1: 0.154 us/op
+Iteration   2: 0.154 us/op
+Iteration   3: 0.152 us/op
+Iteration   4: 0.152 us/op
+Iteration   5: 0.152 us/op
+Iteration   6: 0.152 us/op
+Iteration   7: 0.153 us/op
+Iteration   8: 0.154 us/op
+Iteration   9: 0.152 us/op
+Iteration  10: 0.152 us/op
+Iteration  11: 0.153 us/op
+Iteration  12: 0.152 us/op
+Iteration  13: 0.152 us/op
+Iteration  14: 0.152 us/op
+Iteration  15: 0.152 us/op
+Iteration  16: 0.152 us/op
+Iteration  17: 0.153 us/op
+Iteration  18: 0.152 us/op
+Iteration  19: 0.153 us/op
+Iteration  20: 0.153 us/op
+Iteration  21: 0.152 us/op
+Iteration  22: 0.152 us/op
+Iteration  23: 0.153 us/op
+Iteration  24: 0.152 us/op
+Iteration  25: 0.152 us/op
+Iteration  26: 0.152 us/op
+Iteration  27: 0.152 us/op
+Iteration  28: 0.153 us/op
+Iteration  29: 0.153 us/op
+Iteration  30: 0.153 us/op
+Iteration  31: 0.153 us/op
+Iteration  32: 0.153 us/op
+Iteration  33: 0.152 us/op
+Iteration  34: 0.153 us/op
+Iteration  35: 0.152 us/op
+Iteration  36: 0.152 us/op
+Iteration  37: 0.152 us/op
+Iteration  38: 0.152 us/op
+Iteration  39: 0.152 us/op
+Iteration  40: 0.152 us/op
+Iteration  41: 0.153 us/op
+Iteration  42: 0.153 us/op
+Iteration  43: 0.152 us/op
+Iteration  44: 0.152 us/op
+Iteration  45: 0.153 us/op
+Iteration  46: 0.153 us/op
+Iteration  47: 0.152 us/op
+Iteration  48: 0.152 us/op
+Iteration  49: 0.152 us/op
+Iteration  50: 0.153 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.153 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.152, 0.153, 0.154), stdev = 0.001
+  CI (99.9%): [0.152, 0.153] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = java-optimized, paramSize = 24)
+
+# Run progress: 43.75% complete, ETA 00:19:35
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.083 us/op
+# Warmup Iteration   2: 0.085 us/op
+Iteration   1: 0.081 us/op
+Iteration   2: 0.080 us/op
+Iteration   3: 0.080 us/op
+Iteration   4: 0.080 us/op
+Iteration   5: 0.080 us/op
+Iteration   6: 0.080 us/op
+Iteration   7: 0.080 us/op
+Iteration   8: 0.081 us/op
+Iteration   9: 0.081 us/op
+Iteration  10: 0.081 us/op
+Iteration  11: 0.081 us/op
+Iteration  12: 0.081 us/op
+Iteration  13: 0.081 us/op
+Iteration  14: 0.081 us/op
+Iteration  15: 0.081 us/op
+Iteration  16: 0.081 us/op
+Iteration  17: 0.081 us/op
+Iteration  18: 0.081 us/op
+Iteration  19: 0.081 us/op
+Iteration  20: 0.081 us/op
+Iteration  21: 0.081 us/op
+Iteration  22: 0.081 us/op
+Iteration  23: 0.081 us/op
+Iteration  24: 0.081 us/op
+Iteration  25: 0.081 us/op
+Iteration  26: 0.080 us/op
+Iteration  27: 0.081 us/op
+Iteration  28: 0.081 us/op
+Iteration  29: 0.081 us/op
+Iteration  30: 0.081 us/op
+Iteration  31: 0.081 us/op
+Iteration  32: 0.081 us/op
+Iteration  33: 0.081 us/op
+Iteration  34: 0.081 us/op
+Iteration  35: 0.081 us/op
+Iteration  36: 0.081 us/op
+Iteration  37: 0.080 us/op
+Iteration  38: 0.081 us/op
+Iteration  39: 0.081 us/op
+Iteration  40: 0.081 us/op
+Iteration  41: 0.080 us/op
+Iteration  42: 0.081 us/op
+Iteration  43: 0.081 us/op
+Iteration  44: 0.081 us/op
+Iteration  45: 0.081 us/op
+Iteration  46: 0.081 us/op
+Iteration  47: 0.081 us/op
+Iteration  48: 0.081 us/op
+Iteration  49: 0.081 us/op
+Iteration  50: 0.081 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.081 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.080, 0.081, 0.081), stdev = 0.001
+  CI (99.9%): [0.080, 0.081] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHA-256, hashingProvider = java-optimized, paramSize = 32)
+
+# Run progress: 46.88% complete, ETA 00:18:36
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.133 us/op
+# Warmup Iteration   2: 0.133 us/op
+Iteration   1: 0.128 us/op
+Iteration   2: 0.128 us/op
+Iteration   3: 0.128 us/op
+Iteration   4: 0.128 us/op
+Iteration   5: 0.128 us/op
+Iteration   6: 0.128 us/op
+Iteration   7: 0.128 us/op
+Iteration   8: 0.128 us/op
+Iteration   9: 0.128 us/op
+Iteration  10: 0.128 us/op
+Iteration  11: 0.128 us/op
+Iteration  12: 0.128 us/op
+Iteration  13: 0.128 us/op
+Iteration  14: 0.128 us/op
+Iteration  15: 0.128 us/op
+Iteration  16: 0.128 us/op
+Iteration  17: 0.128 us/op
+Iteration  18: 0.128 us/op
+Iteration  19: 0.128 us/op
+Iteration  20: 0.128 us/op
+Iteration  21: 0.128 us/op
+Iteration  22: 0.128 us/op
+Iteration  23: 0.127 us/op
+Iteration  24: 0.128 us/op
+Iteration  25: 0.128 us/op
+Iteration  26: 0.128 us/op
+Iteration  27: 0.128 us/op
+Iteration  28: 0.128 us/op
+Iteration  29: 0.127 us/op
+Iteration  30: 0.128 us/op
+Iteration  31: 0.127 us/op
+Iteration  32: 0.128 us/op
+Iteration  33: 0.128 us/op
+Iteration  34: 0.127 us/op
+Iteration  35: 0.128 us/op
+Iteration  36: 0.127 us/op
+Iteration  37: 0.127 us/op
+Iteration  38: 0.127 us/op
+Iteration  39: 0.127 us/op
+Iteration  40: 0.127 us/op
+Iteration  41: 0.127 us/op
+Iteration  42: 0.127 us/op
+Iteration  43: 0.127 us/op
+Iteration  44: 0.127 us/op
+Iteration  45: 0.128 us/op
+Iteration  46: 0.128 us/op
+Iteration  47: 0.128 us/op
+Iteration  48: 0.127 us/op
+Iteration  49: 0.127 us/op
+Iteration  50: 0.127 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.128 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.127, 0.128, 0.128), stdev = 0.001
+  CI (99.9%): [0.128, 0.128] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = bc, paramSize = 24)
+
+# Run progress: 50.00% complete, ETA 00:17:35
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.528 us/op
+# Warmup Iteration   2: 0.525 us/op
+Iteration   1: 0.524 us/op
+Iteration   2: 0.525 us/op
+Iteration   3: 0.526 us/op
+Iteration   4: 0.525 us/op
+Iteration   5: 0.525 us/op
+Iteration   6: 0.525 us/op
+Iteration   7: 0.526 us/op
+Iteration   8: 0.526 us/op
+Iteration   9: 0.525 us/op
+Iteration  10: 0.524 us/op
+Iteration  11: 0.524 us/op
+Iteration  12: 0.566 us/op
+Iteration  13: 0.525 us/op
+Iteration  14: 0.524 us/op
+Iteration  15: 0.524 us/op
+Iteration  16: 0.526 us/op
+Iteration  17: 0.525 us/op
+Iteration  18: 0.526 us/op
+Iteration  19: 0.525 us/op
+Iteration  20: 0.524 us/op
+Iteration  21: 0.524 us/op
+Iteration  22: 0.524 us/op
+Iteration  23: 0.524 us/op
+Iteration  24: 0.525 us/op
+Iteration  25: 0.524 us/op
+Iteration  26: 0.523 us/op
+Iteration  27: 0.524 us/op
+Iteration  28: 0.525 us/op
+Iteration  29: 0.525 us/op
+Iteration  30: 0.529 us/op
+Iteration  31: 0.523 us/op
+Iteration  32: 0.524 us/op
+Iteration  33: 0.524 us/op
+Iteration  34: 0.524 us/op
+Iteration  35: 0.524 us/op
+Iteration  36: 0.524 us/op
+Iteration  37: 0.524 us/op
+Iteration  38: 0.524 us/op
+Iteration  39: 0.524 us/op
+Iteration  40: 0.525 us/op
+Iteration  41: 0.524 us/op
+Iteration  42: 0.524 us/op
+Iteration  43: 0.525 us/op
+Iteration  44: 0.527 us/op
+Iteration  45: 0.525 us/op
+Iteration  46: 0.525 us/op
+Iteration  47: 0.524 us/op
+Iteration  48: 0.524 us/op
+Iteration  49: 0.524 us/op
+Iteration  50: 0.525 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.525 ±(99.9%) 0.003 us/op [Average]
+  (min, avg, max) = (0.523, 0.525, 0.566), stdev = 0.006
+  CI (99.9%): [0.523, 0.528] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = bc, paramSize = 32)
+
+# Run progress: 53.13% complete, ETA 00:16:33
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.547 us/op
+# Warmup Iteration   2: 0.546 us/op
+Iteration   1: 0.546 us/op
+Iteration   2: 0.549 us/op
+Iteration   3: 0.547 us/op
+Iteration   4: 0.549 us/op
+Iteration   5: 0.546 us/op
+Iteration   6: 0.545 us/op
+Iteration   7: 0.546 us/op
+Iteration   8: 0.546 us/op
+Iteration   9: 0.545 us/op
+Iteration  10: 0.544 us/op
+Iteration  11: 0.544 us/op
+Iteration  12: 0.544 us/op
+Iteration  13: 0.544 us/op
+Iteration  14: 0.543 us/op
+Iteration  15: 0.544 us/op
+Iteration  16: 0.544 us/op
+Iteration  17: 0.544 us/op
+Iteration  18: 0.543 us/op
+Iteration  19: 0.545 us/op
+Iteration  20: 0.545 us/op
+Iteration  21: 0.543 us/op
+Iteration  22: 0.547 us/op
+Iteration  23: 0.544 us/op
+Iteration  24: 0.547 us/op
+Iteration  25: 0.544 us/op
+Iteration  26: 0.548 us/op
+Iteration  27: 0.545 us/op
+Iteration  28: 0.544 us/op
+Iteration  29: 0.544 us/op
+Iteration  30: 0.544 us/op
+Iteration  31: 0.545 us/op
+Iteration  32: 0.544 us/op
+Iteration  33: 0.545 us/op
+Iteration  34: 0.544 us/op
+Iteration  35: 0.541 us/op
+Iteration  36: 0.544 us/op
+Iteration  37: 0.545 us/op
+Iteration  38: 0.543 us/op
+Iteration  39: 0.544 us/op
+Iteration  40: 0.544 us/op
+Iteration  41: 0.544 us/op
+Iteration  42: 0.545 us/op
+Iteration  43: 0.546 us/op
+Iteration  44: 0.552 us/op
+Iteration  45: 0.544 us/op
+Iteration  46: 0.544 us/op
+Iteration  47: 0.543 us/op
+Iteration  48: 0.545 us/op
+Iteration  49: 0.545 us/op
+Iteration  50: 0.544 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.545 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.541, 0.545, 0.552), stdev = 0.002
+  CI (99.9%): [0.544, 0.546] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = bc-optimized, paramSize = 24)
+
+# Run progress: 56.25% complete, ETA 00:15:30
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.BCOptimizedHashingProvider.newKHF(BCOptimizedHashingProvider.java:17)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = bc-optimized, paramSize = 32)
+
+# Run progress: 59.38% complete, ETA 00:13:38
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.BCOptimizedHashingProvider.newKHF(BCOptimizedHashingProvider.java:17)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = corretto, paramSize = 24)
+
+# Run progress: 62.50% complete, ETA 00:11:57
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.CorrettoHashingProvider.getMessageDigest(CorrettoHashingProvider.java:78)
+	at org.example.bcpqc.experiments.hashing.CorrettoHashingProvider.newKHF(CorrettoHashingProvider.java:30)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = corretto, paramSize = 32)
+
+# Run progress: 65.63% complete, ETA 00:10:26
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.CorrettoHashingProvider.getMessageDigest(CorrettoHashingProvider.java:78)
+	at org.example.bcpqc.experiments.hashing.CorrettoHashingProvider.newKHF(CorrettoHashingProvider.java:30)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = jni, paramSize = 24)
+
+# Run progress: 68.75% complete, ETA 00:09:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.298 us/op
+# Warmup Iteration   2: 0.295 us/op
+Iteration   1: 0.296 us/op
+Iteration   2: 0.296 us/op
+Iteration   3: 0.294 us/op
+Iteration   4: 0.295 us/op
+Iteration   5: 0.295 us/op
+Iteration   6: 0.295 us/op
+Iteration   7: 0.295 us/op
+Iteration   8: 0.298 us/op
+Iteration   9: 0.296 us/op
+Iteration  10: 0.296 us/op
+Iteration  11: 0.296 us/op
+Iteration  12: 0.296 us/op
+Iteration  13: 0.296 us/op
+Iteration  14: 0.296 us/op
+Iteration  15: 0.296 us/op
+Iteration  16: 0.296 us/op
+Iteration  17: 0.296 us/op
+Iteration  18: 0.303 us/op
+Iteration  19: 0.296 us/op
+Iteration  20: 0.296 us/op
+Iteration  21: 0.296 us/op
+Iteration  22: 0.296 us/op
+Iteration  23: 0.296 us/op
+Iteration  24: 0.296 us/op
+Iteration  25: 0.296 us/op
+Iteration  26: 0.296 us/op
+Iteration  27: 0.296 us/op
+Iteration  28: 0.296 us/op
+Iteration  29: 0.296 us/op
+Iteration  30: 0.296 us/op
+Iteration  31: 0.296 us/op
+Iteration  32: 0.296 us/op
+Iteration  33: 0.296 us/op
+Iteration  34: 0.296 us/op
+Iteration  35: 0.296 us/op
+Iteration  36: 0.296 us/op
+Iteration  37: 0.296 us/op
+Iteration  38: 0.296 us/op
+Iteration  39: 0.296 us/op
+Iteration  40: 0.296 us/op
+Iteration  41: 0.296 us/op
+Iteration  42: 0.296 us/op
+Iteration  43: 0.296 us/op
+Iteration  44: 0.296 us/op
+Iteration  45: 0.296 us/op
+Iteration  46: 0.296 us/op
+Iteration  47: 0.296 us/op
+Iteration  48: 0.296 us/op
+Iteration  49: 0.296 us/op
+Iteration  50: 0.298 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.296 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.294, 0.296, 0.303), stdev = 0.001
+  CI (99.9%): [0.296, 0.297] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = jni, paramSize = 32)
+
+# Run progress: 71.88% complete, ETA 00:08:15
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.296 us/op
+# Warmup Iteration   2: 0.294 us/op
+Iteration   1: 0.295 us/op
+Iteration   2: 0.294 us/op
+Iteration   3: 0.294 us/op
+Iteration   4: 0.294 us/op
+Iteration   5: 0.294 us/op
+Iteration   6: 0.299 us/op
+Iteration   7: 0.294 us/op
+Iteration   8: 0.295 us/op
+Iteration   9: 0.294 us/op
+Iteration  10: 0.294 us/op
+Iteration  11: 0.294 us/op
+Iteration  12: 0.294 us/op
+Iteration  13: 0.294 us/op
+Iteration  14: 0.294 us/op
+Iteration  15: 0.295 us/op
+Iteration  16: 0.294 us/op
+Iteration  17: 0.294 us/op
+Iteration  18: 0.294 us/op
+Iteration  19: 0.295 us/op
+Iteration  20: 0.295 us/op
+Iteration  21: 0.295 us/op
+Iteration  22: 0.294 us/op
+Iteration  23: 0.294 us/op
+Iteration  24: 0.295 us/op
+Iteration  25: 0.294 us/op
+Iteration  26: 0.294 us/op
+Iteration  27: 0.294 us/op
+Iteration  28: 0.296 us/op
+Iteration  29: 0.294 us/op
+Iteration  30: 0.294 us/op
+Iteration  31: 0.294 us/op
+Iteration  32: 0.295 us/op
+Iteration  33: 0.294 us/op
+Iteration  34: 0.294 us/op
+Iteration  35: 0.294 us/op
+Iteration  36: 0.295 us/op
+Iteration  37: 0.294 us/op
+Iteration  38: 0.294 us/op
+Iteration  39: 0.294 us/op
+Iteration  40: 0.294 us/op
+Iteration  41: 0.295 us/op
+Iteration  42: 0.294 us/op
+Iteration  43: 0.294 us/op
+Iteration  44: 0.294 us/op
+Iteration  45: 0.303 us/op
+Iteration  46: 0.294 us/op
+Iteration  47: 0.294 us/op
+Iteration  48: 0.294 us/op
+Iteration  49: 0.294 us/op
+Iteration  50: 0.294 us/op
+
+
+Result "com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark":
+  0.295 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.294, 0.295, 0.303), stdev = 0.001
+  CI (99.9%): [0.294, 0.295] (assumes normal distribution)
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = jni-fixed-padding, paramSize = 24)
+
+# Run progress: 75.00% complete, ETA 00:07:25
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unknown digest
+	at org.example.bcpqc.experiments.hashing.JNIFixedPaddingHashingProvider.newKHF(JNIFixedPaddingHashingProvider.java:29)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = jni-fixed-padding, paramSize = 32)
+
+# Run progress: 78.13% complete, ETA 00:06:14
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unknown digest
+	at org.example.bcpqc.experiments.hashing.JNIFixedPaddingHashingProvider.newKHF(JNIFixedPaddingHashingProvider.java:29)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = jni-prf-cache, paramSize = 24)
+
+# Run progress: 81.25% complete, ETA 00:05:08
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unknown digest
+	at org.example.bcpqc.experiments.hashing.JNIPrfCachingHashingProvider.newKHF(JNIPrfCachingHashingProvider.java:19)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = jni-prf-cache, paramSize = 32)
+
+# Run progress: 84.38% complete, ETA 00:04:07
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unknown digest
+	at org.example.bcpqc.experiments.hashing.JNIPrfCachingHashingProvider.newKHF(JNIPrfCachingHashingProvider.java:19)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = java, paramSize = 24)
+
+# Run progress: 87.50% complete, ETA 00:03:11
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.JavaHashingProvider.getMessageDigest(JavaHashingProvider.java:65)
+	at org.example.bcpqc.experiments.hashing.JavaHashingProvider.newKHF(JavaHashingProvider.java:19)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = java, paramSize = 32)
+
+# Run progress: 90.63% complete, ETA 00:02:18
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.JavaHashingProvider.getMessageDigest(JavaHashingProvider.java:65)
+	at org.example.bcpqc.experiments.hashing.JavaHashingProvider.newKHF(JavaHashingProvider.java:19)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = java-optimized, paramSize = 24)
+
+# Run progress: 93.75% complete, ETA 00:01:29
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.JavaOptimizedHashingProvider.newKHF(JavaOptimizedHashingProvider.java:20)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# JMH version: 1.34
+# VM version: JDK 18-internal, OpenJDK 64-Bit Server VM, 18-internal+0-adhoc.ubuntu.jdk-patch-public-sha
+# VM invoker: /home/ubuntu/jdk-patch-public-sha/build/linux-x86_64-server-release/images/jdk/bin/java
+# VM options: --add-exports=java.base/sun.security.provider=ALL-UNNAMED --add-opens=java.base/sun.security.provider=ALL-UNNAMED --add-exports=java.base/com.sun.crypto.provider=ALL-UNNAMED --add-opens=java.base/com.sun.crypto.provider=ALL-UNNAMED
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 10 s each
+# Measurement: 50 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.benchmark
+# Parameters: (digestName = SHAKE256, hashingProvider = java-optimized, paramSize = 32)
+
+# Run progress: 96.88% complete, ETA 00:00:43
+# Fork: 1 of 1
+# Warmup Iteration   1: <failure>
+
+java.lang.IllegalArgumentException: Unsupported digest
+	at org.example.bcpqc.experiments.hashing.JavaOptimizedHashingProvider.newKHF(JavaOptimizedHashingProvider.java:20)
+	at com.sap.pq_sig_benchmark.hash.XMSSHashBenchmark.setup(XMSSHashBenchmark.java:31)
+	at com.sap.pq_sig_benchmark.hash.jmh_generated.XMSSHashBenchmark_benchmark_jmhTest.benchmark_AverageTime(XMSSHashBenchmark_benchmark_jmhTest.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:475)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:458)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+
+
+# Run complete. Total time: 00:22:19
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                    (digestName)  (hashingProvider)  (paramSize)  Mode  Cnt  Score    Error  Units
+XMSSHashBenchmark.benchmark       SHA-256                 bc           24  avgt   50  0.441 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256                 bc           32  avgt   50  0.817 ±  0.003  us/op
+XMSSHashBenchmark.benchmark       SHA-256       bc-optimized           24  avgt   50  0.414 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256       bc-optimized           32  avgt   50  0.772 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256           corretto           24  avgt   50  0.190 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256           corretto           32  avgt   50  0.259 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256                jni           24  avgt   50  0.114 ±  0.002  us/op
+XMSSHashBenchmark.benchmark       SHA-256                jni           32  avgt   50  0.160 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256  jni-fixed-padding           24  avgt   50  0.106 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256  jni-fixed-padding           32  avgt   50  0.158 ±  0.002  us/op
+XMSSHashBenchmark.benchmark       SHA-256      jni-prf-cache           32  avgt   50  0.152 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256               java           24  avgt   50  0.094 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256               java           32  avgt   50  0.153 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256     java-optimized           24  avgt   50  0.081 ±  0.001  us/op
+XMSSHashBenchmark.benchmark       SHA-256     java-optimized           32  avgt   50  0.128 ±  0.001  us/op
+XMSSHashBenchmark.benchmark      SHAKE256                 bc           24  avgt   50  0.525 ±  0.003  us/op
+XMSSHashBenchmark.benchmark      SHAKE256                 bc           32  avgt   50  0.545 ±  0.001  us/op
+XMSSHashBenchmark.benchmark      SHAKE256                jni           24  avgt   50  0.296 ±  0.001  us/op
+XMSSHashBenchmark.benchmark      SHAKE256                jni           32  avgt   50  0.295 ±  0.001  us/op
+
+Benchmark result is saved to jmh-result.csv

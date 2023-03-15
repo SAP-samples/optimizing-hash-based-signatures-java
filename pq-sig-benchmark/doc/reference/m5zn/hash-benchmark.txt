@@ -1,0 +1,21 @@
+SHA256 OpenSSL direct 52 bytes: 		14820894
+SHA256 OpenSSL with CTX 52 bytes: 		14105022
+SHA256 OpenSSL Fixed padding 52 bytes: 		13604176
+SHA256 OpenSSL Custom padding 52 bytes: 		13745334
+SHA256 OpenSSL direct 96 bytes: 		27390094
+SHA256 OpenSSL with CTX 96 bytes: 		26629631
+SHA256 OpenSSL Fixed padding 96 bytes: 		23635464
+SHA256 OpenSSL Custom padding 96 bytes: 		23762728
+SHA256 OpenSSL direct 128 bytes: 		37437577
+SHA256 OpenSSL with CTX 128 bytes: 		36587949
+SHA256 OpenSSL Fixed padding 128 bytes: 		35725129
+SHA256 OpenSSL Custom padding 128 bytes: 		35815341
+SHAKE256_256 Custom 52 bytes: 		43826035
+SHAKE256_256 Custom 96 bytes: 		44045295
+SHAKE256_256 Custom 128 bytes: 		44035084
+SHAKE256_256 OpenSSL 52 bytes: 		33630730
+SHAKE256_256 OpenSSL 96 bytes: 		33801358
+SHAKE256_256 OpenSSL 128 bytes: 		33700121
+SHAKE256_256 XKCP 52 bytes: 		22001152
+SHAKE256_256 XKCP 96 bytes: 		21982600
+SHAKE256_256 XKCP 128 bytes: 		22185767

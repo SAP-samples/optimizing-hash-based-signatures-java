@@ -1,0 +1,25 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: digestName","Param: hashingProvider","Param: paramSize","Param: robust"
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.354852,0.000406,"us/op",SHA-256,bc,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.345765,0.000752,"us/op",SHA-256,bc,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.344836,0.000667,"us/op",SHA-256,bc,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.176551,0.000112,"us/op",SHA-256,java,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.179825,0.000146,"us/op",SHA-256,java,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.181105,0.000120,"us/op",SHA-256,java,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.465359,0.000377,"us/op",SHAKE256,bc,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.468902,0.000464,"us/op",SHAKE256,bc,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.473959,0.000527,"us/op",SHAKE256,bc,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.249165,0.001711,"us/op",SHAKE256,jni,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.250758,0.000510,"us/op",SHAKE256,jni,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.251586,0.000727,"us/op",SHAKE256,jni,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.682029,0.001183,"us/op",SHAKE256,java,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.678702,0.000849,"us/op",SHAKE256,java,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.723363,0.000872,"us/op",SHAKE256,java,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.774290,0.000391,"us/op",Haraka,bc,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.773845,0.000374,"us/op",Haraka,bc,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.773633,0.000202,"us/op",Haraka,bc,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.044418,0.000229,"us/op",Haraka,jni,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.042099,0.000060,"us/op",Haraka,jni,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.036400,0.000136,"us/op",Haraka,jni,32,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.031302,0.000267,"us/op",Haraka,java,16,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.031538,0.000244,"us/op",Haraka,java,24,false
+"com.sap.pq_sig_benchmark.hash.SPHINCSPlusHashBenchmark.benchmark","avgt",1,50,0.030308,0.000674,"us/op",Haraka,java,32,false
