@@ -1,4 +1,4 @@
-	# Optimizing Hash-Based Signatures in Java
+# Optimizing Hash-Based Signatures in Java
 
 <!--- Register repository https://api.reuse.software/register, then add REUSE badge:
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
@@ -32,7 +32,11 @@ A patch for OpenJDK 18 to allow direct access to the SHA256 implementation and i
 
 A independent project to benchmark different strategies to pass data between Java and native code.
 
-## Installation
+## Requirements
+
+See individual subprojects.
+
+## Download and Installation
 
 See the individual repositories. In ``pq-sig-benchmark``, ``doc/aws-setup.md`` describes our benchmarking setup on AWS. This can be taken as a guideline on how to install all required parts.
 
